@@ -1,4 +1,12 @@
+/.DS_Store
 /AdminStaff
+/Course.class
+/CourseIndex.class
+/CourseMgr.class
+/CourseRegistrationController.class
+/CourseRegistrationUI.class
+/CourseType.class
+/CourseUI.class
 /LoginController.class
 /LoginUI.class
 /Staff.class
@@ -7,9 +15,3 @@
 /StudentUI.class
 /Students
 /User.class
-/Course.class
-/CourseIndex.class
-/CourseType.class
-/CourseManager.class
-/CourseMgr.class
-/CourseUI.class

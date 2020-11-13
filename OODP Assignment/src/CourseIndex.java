@@ -35,6 +35,22 @@ public class CourseIndex {
 		this.course = course;
 	}
 	
+	// Added
+	public ArrayList<Student> getStudentList() {
+			return studentsRegistered;
+	}
+	
+	public void addStudentList(Student student) {
+		studentsRegistered.add(student);
+}
+	
+	
+	public void setNoofVacancies(int assign) {
+		
+		noOfVacancies=noOfVacancies+(assign);
+		
+	}
+	
 	
 
 
