@@ -26,7 +26,7 @@ public class Student extends User{
 	public ArrayList<User> retrieveStudentLoginDetails() { 		
 		ArrayList<User> userarray = new ArrayList<User>();
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Students");    //creates a new file instance  
+			File file=new File(System.getProperty("user.dir")+"/OODP Assignment/src/Students");    //creates a new file instance  
 			FileReader fr=new FileReader(file);   //reads the file  
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream  
 			String line;  
