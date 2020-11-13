@@ -17,7 +17,7 @@ public class StudentUI {
 		Scanner sc = new Scanner(System.in);
 		
 		do {
-		System.out.println("Welcome to STARS (Student): "+this.student.getUsername());
+		System.out.println("\nWelcome to STARS (Student): "+this.student.getUsername());
 		System.out.println("1. Add Course");
 		System.out.println("2. Drop Course");
 		System.out.println("3. Check/Print Courses Registered");
