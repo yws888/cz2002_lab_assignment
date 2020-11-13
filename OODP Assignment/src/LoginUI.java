@@ -1,7 +1,8 @@
 import java.util.Scanner;
+import java.io.*;
 
 public class LoginUI {
-
+	
 	
 	public static void main(String[] args) {
 		LoginController logincontroller = new LoginController();
@@ -18,8 +19,15 @@ public class LoginUI {
 			case 1:
 				System.out.println("Username:");
 				username = sc.next();
-				System.out.println("Password:");
-				password = sc.next();
+				Console cnsl = System.console(); 
+				if (cnsl == null) { //eclipse doesnt support input masking
+					System.out.println("Password:");
+					password = sc.next();
+			    } 
+				else {
+					char[] ch = cnsl.readPassword( "Enter password : ");
+					password = new String(ch);
+				}
 				//System.out.println("Username: "+username+ " Password: "+password);
 				System.out.println("Processing....");
 				verifylogin = logincontroller.verifylogin(username,password);
@@ -46,6 +54,7 @@ public class LoginUI {
 				
 				break;
 			case 2:
+				sc.close();
 				System.exit(0);
 				break;
 			}

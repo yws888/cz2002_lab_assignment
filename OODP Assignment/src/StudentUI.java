@@ -14,6 +14,8 @@ public class StudentUI {
 	}
 	public void initStudentUI() {
 		int choice;
+		CourseMgr courseMgr = new CourseMgr();
+
 		Scanner sc = new Scanner(System.in);
 		
 		do {
@@ -37,14 +39,13 @@ public class StudentUI {
 		case 3: 
 			break;
 		case 4: 
-			CourseMgr courseMgr = new CourseMgr();
 			
 			System.out.println("Pls enter course code (e.g. CZ2002)");
 			String code = sc.next();
 			System.out.println("Pls enter course index no. (e.g. 10198)");
 			int index = sc.nextInt();
 			int noOfVacancies = courseMgr.checkVacancies(code, index);
-			System.out.println("no. of vacancies = " + noOfVacancies);
+			System.out.println("no. of vacancies for " + code +" index " + index + " = " + noOfVacancies);
 			break;
 		case 5: 
 			break;
