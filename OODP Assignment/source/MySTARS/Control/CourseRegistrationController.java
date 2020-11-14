@@ -11,7 +11,6 @@ public class CourseRegistrationController {
 	public boolean checkCourseCode(String courseCode) {
 		// Using this temp code for the lists first
 		ArrayList<Course> courseList = new ArrayList<Course>();
-
 		for (int i = 0; i < courseList.size(); i++) {
 			// get courseList
 			if (courseList.get(i).getCourseCode() == courseCode)
@@ -59,6 +58,15 @@ public class CourseRegistrationController {
 			}
 		}
 		return false;
+	}
+	
+	//Check if timing clashes with other registered course
+	public boolean checkforClash(int index) {
+		//get the time for the index chosen
+		//check and compare  all the timings for the course registered by the student
+		
+		return true;
+		
 	}
 
 }

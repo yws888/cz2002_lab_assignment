@@ -7,18 +7,18 @@ import MySTARS.Entity.Student;
 public class CourseRegistrationUI {
 	Scanner sc = new Scanner(System.in);
 
-	public void registerforCourse() {
+	public void registerforCourse(Student student) {
 		boolean valid = true;
 		// Controller used
 		CourseRegistrationController CRC = new CourseRegistrationController();
-		Student student = new Student();
+		
 
 		System.out.print("Registering Course---------------");
 		while (valid) {
 			System.out.print("Enter Course Code:");
 			String coursecode = sc.next();
 
-			// Check if coursecode is a valid course code
+			// Check if coursecode is a valid course code & if course alr registered by student
 			if (CRC.checkCourseCode(coursecode) == true && CRC.checkIfRegistered(coursecode, student)) {
 				// print Course Indexes list
 				int noofIndex = CRC.showCourseIndexNVacancies(coursecode);
