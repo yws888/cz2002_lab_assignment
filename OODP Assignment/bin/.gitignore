@@ -1,12 +1,3 @@
-/.DS_Store
-/AddCourseUI.class
-/CourseRegistrationController.class
-/CourseRegistrationUI.class
-/Boundary
-/printslist$CourseMgr.class
-/printslist.class
 /boundary/
 /control/
 /entity/
-/enumeration.class
-/enumeration/

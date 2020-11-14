@@ -2,6 +2,8 @@ package boundary;
 import java.util.Scanner;
 
 import control.CourseMgr;
+import entity.Course;
+import entity.CourseIndex;
 import entity.Student;
 
 public class StudentUI {
@@ -19,6 +21,8 @@ public class StudentUI {
 	public void initStudentUI() {
 		int choice;
 		CourseMgr courseMgr = new CourseMgr();
+		CourseUI courseUI = new CourseUI();
+
 
 		Scanner sc = new Scanner(System.in);
 		
@@ -44,12 +48,18 @@ public class StudentUI {
 			break;
 		case 4: 
 			
-			System.out.println("Pls enter course code (e.g. CZ2002)");
-			String code = sc.next();
+			// System.out.println("Pls enter course code (e.g. CZ2002)");
+			// String code = sc.next();
+			
+			
 			System.out.println("Pls enter course index no. (e.g. 10198)");
-			int index = sc.nextInt();
-			int noOfVacancies = courseMgr.checkVacancies(code, index);
-			System.out.println("no. of vacancies for " + code +" index " + index + " = " + noOfVacancies);
+			int indexNo = sc.nextInt();
+			
+			if (courseMgr.validateCourseIndex(indexNo)) {
+				courseUI.printVacancies(indexNo);
+			}
+				
+			// int noOfVacancies = courseMgr.checkVacancies(code, index);
 			break;
 		case 5: 
 			break;

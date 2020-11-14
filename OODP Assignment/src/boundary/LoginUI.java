@@ -18,6 +18,8 @@ public class LoginUI {
 			System.out.println("====MySTARS====");
 			System.out.println("1. Login");
 			System.out.println("2. Exit");
+			System.out.println("3. Student Tester");
+
 			userinput = sc.nextInt();
 			switch(userinput) {
 			case 1:
@@ -60,6 +62,10 @@ public class LoginUI {
 			case 2:
 				sc.close();
 				System.exit(0);
+				break;
+			case 3:
+				StudentUI studentUI = new StudentUI(logincontroller.getStudent("a"));
+				studentUI.initStudentUI();
 				break;
 			}
 			

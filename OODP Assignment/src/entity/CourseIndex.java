@@ -5,14 +5,16 @@ public class CourseIndex {
 	
 	private int indexNo;
 	private int noOfVacancies;
+	private int maxCapacity; //to avoid using the term vacancies which may be confusing?
 	private Course course;
 	private ArrayList<Student> studentsRegistered;
 	private ArrayList<Student> studentsOnWaitList;
 	//create separate class for venues and timings?
 	
-	public CourseIndex(int indexNo, int noOfVacancies, Course course) {
+	public CourseIndex(int indexNo, int maxCapacity, Course course) {
 		this.indexNo =indexNo;
-		this.noOfVacancies = noOfVacancies;
+		noOfVacancies = maxCapacity;
+		this.setMaxCapacity(maxCapacity);
 		this.course = course;
 		
 	}
@@ -36,8 +38,17 @@ public class CourseIndex {
 		this.course = course;
 	}
 	
+	public int getWaitListLength() {
+		return studentsOnWaitList.size();
+	}
+
+
+	public ArrayList<Student> getStudentsOnWaitList() {
+		return studentsOnWaitList;
+	}
+
 	// Added
-	public ArrayList<Student> getStudentList() {
+	public ArrayList<Student> getStudentsRegistered() {
 			return studentsRegistered;
 	}
 	
@@ -47,10 +58,19 @@ public class CourseIndex {
 	public void addWaitList(Student student) {
 		studentsOnWaitList.add(student);}
 	
+	//can just reuse above and change the argument passed in?
 	public void setNoofVacancies(int assign) {
 		
 		noOfVacancies=noOfVacancies+(assign);
 		
+	}
+
+	public int getMaxCapacity() {
+		return maxCapacity;
+	}
+
+	public void setMaxCapacity(int maxCapacity) {
+		this.maxCapacity = maxCapacity;
 	}
 	
 	

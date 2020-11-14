@@ -9,9 +9,9 @@ public class Course {
 	
 	private String courseName;
 	private String courseCode;
-	private String school; //or enum?
-	private HashMap<Integer, CourseIndex> courseIndexes = new HashMap<Integer, CourseIndex>();
-	private ArrayList<Integer> indexNos = new ArrayList<Integer>();
+	private String faculty; //or enum?
+	private HashMap<Integer, CourseIndex> courseIndexes;
+	// private ArrayList<Integer> indexNos = new ArrayList<Integer>();
 	private int noOfAUs;
 	private CourseType courseType;
 	
@@ -19,16 +19,15 @@ public class Course {
 	public Course() {
 		this.setCourseCode("CZ2002");
 		this.setCourseName("OODP");
-		this.school = "SCSE";
+		this.faculty = "SCSE";
 		this.courseType = CourseType.LAB;
 		this.noOfAUs = 3;
-		indexNos.add(10198);
+		courseIndexes = new HashMap<Integer, CourseIndex>();
+
+		// indexNos.add(10198);
 		CourseIndex courseIndex1 = new CourseIndex(10198, 35, this);
 		courseIndexes.put(10198, courseIndex1);
-		//for (int i = 10198; i<=10200; i++ )
-		//	indexNos.add(i);
-		//for (int j = 1; j <= indexNos.size(); j++)
-		//	courseIndexes = 
+
 	}
 	
 	public Course(String courseName, CourseType courseType, int noOfAUs) {
@@ -54,8 +53,17 @@ public class Course {
 		this.courseCode = courseCode;
 	}
 	
-	//get corresponding index object based on index no.
-	public CourseIndex getcourseIndex(int index) {
+	//check if course index no. exists for that course
+	public boolean checkCourseIndex(int index) {
+		for (int courseIndexNo : courseIndexes.keySet()) {
+			if (index == courseIndexNo)
+				return true;
+		}
+			return false;
+	}
+	
+	//get course index object based on index no.
+	public CourseIndex getCourseIndexObject(int index) {
 		return courseIndexes.get(index);
 	}
 	
