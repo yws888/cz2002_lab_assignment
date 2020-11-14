@@ -30,7 +30,7 @@ public class CourseRegistrationController {
 		
 	}
 	
-	//Adds the student into the Student array
+	//Adds the student into the StudentRegister array
 	public void registerStudentforCourse(String courseCode,int i,Student student){
 		ArrayList<CourseIndex> indexList = new ArrayList<CourseIndex>();
 		if (indexList.get(i-1).getNoOfVacancies()!=0) {
@@ -39,7 +39,9 @@ public class CourseRegistrationController {
 			System.out.print("Registration is successful.");
 		}
 		else {
-			System.out.print("Please choose an index with vacancies");
+			//Add student into Waitlist Array
+			System.out.print("Course Index has 0 vacancies, you have been placed on waitlist");
+			indexList.get(i-1).addWaitList(student);
 		}
 	}
 		

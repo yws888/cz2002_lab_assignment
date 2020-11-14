@@ -41,9 +41,10 @@ public class CourseIndex {
 	}
 	
 	public void addStudentList(Student student) {
-		studentsRegistered.add(student);
-}
+		studentsRegistered.add(student);}
 	
+	public void addWaitList(Student student) {
+		studentsOnWaitList.add(student);}
 	
 	public void setNoofVacancies(int assign) {
 		
