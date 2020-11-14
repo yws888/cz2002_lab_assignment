@@ -36,7 +36,7 @@ public class printslist {
 				Student student = courseReg.getStudent();
 				System.out.print(student.getUsername() + "\t\t ");
 				System.out.print(student.getMatricNumber() + "\t ");
-				System.out.print(student.getFirstName() + " " + student.getLastName());
+				System.out.print(student.getusername());
 				System.out.println();
 				
 				flag = true;
