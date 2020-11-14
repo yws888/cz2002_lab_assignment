@@ -1,4 +1,8 @@
+package boundary;
 import java.util.*;
+
+import control.CourseRegistrationController;
+import entity.Student;
 
 public class CourseRegistrationUI{
 	Scanner sc = new Scanner(System.in);

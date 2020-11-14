@@ -1,5 +1,7 @@
-package printslist;
+package boundary;
 import functionapp;
+import entity.Course;
+import entity.Student;
 import datap;
 
 

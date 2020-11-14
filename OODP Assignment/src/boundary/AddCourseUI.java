@@ -1,3 +1,5 @@
+package boundary;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 // Purpose of resolving 3. Add a course

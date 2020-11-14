@@ -1,4 +1,9 @@
+package control;
 import java.util.ArrayList;
+
+import entity.Course;
+import entity.CourseIndex;
+import entity.Student;
 
 public class CourseRegistrationController {
 	
