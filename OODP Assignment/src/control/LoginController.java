@@ -1,3 +1,7 @@
+package control;
+import entity.Staff;
+import entity.Student;
+import entity.User;
 
 public class LoginController {
 	public boolean verifylogin(String username, String password) {

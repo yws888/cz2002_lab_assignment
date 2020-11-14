@@ -1,3 +1,4 @@
+package boundary;
 
 public class CourseUI {
 	

@@ -1,5 +1,8 @@
+package entity;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import enumeration.CourseType;
 
 
 public class Course {

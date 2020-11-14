@@ -1,5 +1,8 @@
+package control;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import entity.Course;
 
 public class CourseMgr {
 

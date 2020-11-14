@@ -1,3 +1,7 @@
+package boundary;
+import java.util.Scanner;
+
+import entity.Staff;
 
 public class StaffUI {
 
@@ -15,10 +19,11 @@ public class StaffUI {
 	
 	public void initStaffUI() {
 		
-		do{
 		System.out.println("Welcome to STARS (Staff): "+this.staff.getUsername());
 		System.out.println("1. Print Studentlist in the course");	
-		choice = sc.nextInt();
+		Scanner sc = new Scanner(System.in);
+
+		int choice = sc.nextInt();
 		
 		switch (choice) {
 		case 1: 
@@ -31,5 +36,6 @@ public class StaffUI {
 			
 		System.exit(0);//temp code
 	}
+		}
 
 }

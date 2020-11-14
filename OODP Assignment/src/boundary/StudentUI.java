@@ -1,4 +1,8 @@
+package boundary;
 import java.util.Scanner;
+
+import control.CourseMgr;
+import entity.Student;
 
 public class StudentUI {
 

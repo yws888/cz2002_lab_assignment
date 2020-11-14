@@ -1,4 +1,8 @@
+package boundary;
 import java.util.Scanner;
+
+import control.LoginController;
+
 import java.io.*;
 
 public class LoginUI {
