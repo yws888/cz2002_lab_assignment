@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Staff extends User{
@@ -29,8 +31,12 @@ public class Staff extends User{
 	public ArrayList<User> retrieveStaffLoginDetails() { 
 		ArrayList<User> userarray = new ArrayList<User>();
 		try {
-			File file=new File(System.getProperty("user.dir")+"/OODP Assignment/src/AdminStaff");    //creates a new file instance  
-			//add new if-else for terminal console?
+			// File file=new File(System.getProperty("user.dir")+"/OODP Assignment/src/AdminStaff");    //creates a new file instance  
+			// FileReader fr=new FileReader(file);   //reads the file 
+
+			Path currentRelativePath = Paths.get("");
+			String s = currentRelativePath.toAbsolutePath().toString();
+			File file = new File(s + "/OODP Assignment/src/AdminStaff"); // creates a new
 			FileReader fr=new FileReader(file);   //reads the file  
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream   
 			String line;  
