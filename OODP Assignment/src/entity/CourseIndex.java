@@ -5,16 +5,16 @@ public class CourseIndex {
 	
 	private int indexNo;
 	private int noOfVacancies;
-	private int maxCapacity; //to avoid using the term vacancies which may be confusing?
+	private int totalSize; 
 	private Course course;
 	private ArrayList<Student> studentsRegistered;
 	private ArrayList<Student> studentsOnWaitList;
 	//create separate class for venues and timings?
 	
-	public CourseIndex(int indexNo, int maxCapacity, Course course) {
+	public CourseIndex(int indexNo, int totalSize, Course course) {
 		this.indexNo =indexNo;
-		noOfVacancies = maxCapacity;
-		this.setMaxCapacity(maxCapacity);
+		noOfVacancies = totalSize;
+		this.setTotalSize(totalSize);
 		this.course = course;
 		
 	}
@@ -65,13 +65,14 @@ public class CourseIndex {
 		
 	}
 
-	public int getMaxCapacity() {
-		return maxCapacity;
+	public int getTotalSize() {
+		return totalSize;
 	}
 
-	public void setMaxCapacity(int maxCapacity) {
-		this.maxCapacity = maxCapacity;
+	public void setTotalSize(int totalSize) {
+		this.totalSize = totalSize;
 	}
+
 	
 	
 
