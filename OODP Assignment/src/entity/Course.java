@@ -2,7 +2,7 @@ package entity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import enumeration.CourseType;
+import enumeration.SessionType;
 
 
 public class Course {
@@ -13,24 +13,23 @@ public class Course {
 	private HashMap<Integer, CourseIndex> courseIndexes;
 	// private ArrayList<Integer> indexNos = new ArrayList<Integer>();
 	private int noOfAUs;
-	private CourseType courseType;
+	private SessionType sessionType;
 	
 	//test method
 	public Course() {
 		this.setCourseCode("CZ2002");
 		this.setCourseName("OODP");
 		this.faculty = "SCSE";
-		this.courseType = CourseType.LAB;
+		this.sessionType = SessionType.LAB;
 		this.noOfAUs = 3;
 		courseIndexes = new HashMap<Integer, CourseIndex>();
 
-		// indexNos.add(10198);
-		CourseIndex courseIndex1 = new CourseIndex(10198, 35, this);
+		CourseIndex courseIndex1 = new CourseIndex(10198, 35, "SS8", this);
 		courseIndexes.put(10198, courseIndex1);
 
 	}
 	
-	public Course(String courseName, CourseType courseType, int noOfAUs) {
+	public Course(String courseName, SessionType courseType, int noOfAUs) {
 		this.setCourseName(courseName);
 		this.courseType = courseType;
 		this.courseCode = courseCode;

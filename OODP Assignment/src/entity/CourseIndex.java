@@ -1,27 +1,56 @@
 package entity;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import enumeration.SessionType;
 
 public class CourseIndex {
 	
 	private int indexNo;
 	private int noOfVacancies;
 	private int totalSize; 
+	private String groupName; //e.g. SS8
 	private Course course;
 	private ArrayList<Student> studentsRegistered;
 	private ArrayList<Student> studentsOnWaitList;
-	//create separate class for venues and timings?
-	
-	public CourseIndex(int indexNo, int totalSize, Course course) {
-		this.indexNo =indexNo;
-		noOfVacancies = totalSize;
-		this.setTotalSize(totalSize);
-		this.course = course;
+	private HashMap<SessionType, Timeslot> sessions;
+
 		
+	public CourseIndex(int indexNo, int totalSize, String groupName, Course course) {
+		this.indexNo = indexNo;
+		this.noOfVacancies = totalSize;
+		this.totalSize = totalSize;
+		this.groupName = groupName;
+		this.course = course;
+		this.studentsRegistered = new ArrayList<Student>();
+		this.studentsOnWaitList = new ArrayList<Student>();
+		
+		/*int choice;
+		switch(choice) {
+		case 1: //lectures only
+			sessions = 	new HashMap<SessionType, Timeslot>();
+			sessions.put(SessionType.LEC, Timeslot);
+			
+			break;
+		case 2: // lec + tut
+			sessions = 	new HashMap<SessionType, Timeslot>();
+			sessions.put(SessionType.LEC, Timeslot);
+			sessions.put(SessionType.TUT, Timeslot);
+
+			break;
+		case 3: // lec, tut, lab
+			sessions = 	new HashMap<SessionType, Timeslot>();
+			sessions.put(SessionType.LEC, Timeslot);
+			sessions.put(SessionType.TUT, Timeslot);
+			sessions.put(SessionType.LAB, Timeslot);
+			break;
+		}*/
 	}
-	
+
 	public int getNoOfVacancies() {
 		return noOfVacancies;
 	}
+	
 	public void setNoOfVacancies(int noOfVacancies) {
 		this.noOfVacancies = noOfVacancies;
 	}
