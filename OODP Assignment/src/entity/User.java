@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class User {
 	private String username;
 	private String password;
+	private String salt;
 	private String type;
 		
 	public String getUsername() {
@@ -12,28 +13,33 @@ public class User {
 	public String getPassword() {
 		return this.password;
 	}
+	public String getSalt(){ return this.salt; }
+	public String getType() {
+		return this.type;
+	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public User() {
-		
-	}
-	public String getType() {
-		return this.type;
-	}
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public User() {
+		
+	}
+
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
-	public User(String username, String password, String type) {
+	public User(String username, String password, String salt, String type) {
 		this.username = username;
 		this.password = password;
+		this.salt = salt;
 		this.type = type;
 	}
 	public boolean verifylogin() {
@@ -43,8 +49,9 @@ public class User {
 		userlist.addAll((student.retrieveStudentLoginDetails()));
 		userlist.addAll((staff.retrieveStaffLoginDetails()));
 		for(int i=0;i<userlist.size();i++) {
-			if(this.username.equals(userlist.get(i).getUsername()) && this.password.equals(userlist.get(i).getPassword().trim())){
-				return true;
+			if(this.username.equals(userlist.get(i).getUsername())){
+				return PasswordManager.PasswordValidation(this.password.toCharArray(), PasswordManager.hexDecoder(userlist.get(i).getSalt()),PasswordManager.hexDecoder(userlist.get(i).getPassword()));
+
 			}
 		}
 		return false;

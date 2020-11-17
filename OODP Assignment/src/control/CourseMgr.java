@@ -15,10 +15,10 @@ public class CourseMgr {
 		courses.put(testCourse.getCourseCode(), testCourse);
 	}
 
-	public int checkVacancies(String courseCode, int courseIndex) {
+	//public int checkVacancies(String courseCode, int courseIndex) {
 		//assume validation of input done in UI
-		return courses.get(courseCode).getcourseIndex(courseIndex).getNoOfVacancies();
-		}
+	//	return courses.get(courseCode).getcourseIndex(courseIndex).getNoOfVacancies();
+	//	}
 	
 	
 	

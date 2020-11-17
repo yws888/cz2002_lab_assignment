@@ -2,6 +2,7 @@ package boundary;
 import java.util.Scanner;
 
 import control.CourseMgr;
+import control.StudentController;
 import entity.Student;
 
 public class StudentUI {
@@ -29,34 +30,30 @@ public class StudentUI {
 		System.out.println("3. Check/Print Courses Registered");
 		System.out.println("4. Check Vacancies Available");
 		System.out.println("5. Change Index Number of Course");
-		System.out.println("6. Swop Index Number with Another Student");
+		System.out.println("6. Swap Index Number with Another Student");
 		System.out.println("0. Exit");
 		System.out.print("\nEnter the number of your choice: "); 
 		choice = sc.nextInt();
 		
 		switch (choice) {
-		case 1: 
-			
+		case 1:
+			StudentController.addCourse(student);
 			break;
-		case 2: 
+		case 2:
+			StudentController.dropCourse(student);
 			break;
-		case 3: 
+		case 3:
+			StudentController.printRegisteredCourses(student);
 			break;
-		case 4: 
-			
-			System.out.println("Pls enter course code (e.g. CZ2002)");
-			String code = sc.next();
-			System.out.println("Pls enter course index no. (e.g. 10198)");
-			int index = sc.nextInt();
-			int noOfVacancies = courseMgr.checkVacancies(code, index);
-			System.out.println("no. of vacancies for " + code +" index " + index + " = " + noOfVacancies);
+		case 4:
+			StudentController.checkCourseVacancy();
 			break;
-		case 5: 
+		case 5:
+			StudentController.changeIndex(student);
 			break;
-
 		case 6:
+			StudentController.swapIndex(student);
 			break;
-
 		case 0: //quit
 			break;
 		default:
@@ -71,7 +68,7 @@ public class StudentUI {
 		
 		
 
-		System.exit(0);//temp code
+		return;//temp code
 	}
 
 }

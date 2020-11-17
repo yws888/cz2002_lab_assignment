@@ -8,7 +8,7 @@ import java.io.*;
 public class LoginUI {
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		LoginController logincontroller = new LoginController();
 		String username, password;
 		int userinput;
@@ -23,13 +23,13 @@ public class LoginUI {
 			case 1:
 				System.out.println("Username:");
 				username = sc.next();
-				Console cnsl = System.console(); 
-				if (cnsl == null) { //eclipse doesnt support input masking
+				Console con = System.console();
+				if (con == null) { //eclipse doesnt support input masking
 					System.out.println("Password:");
 					password = sc.next();
 			    } 
 				else {
-					char[] ch = cnsl.readPassword( "Enter password : ");
+					char[] ch = con.readPassword( "Enter password : ");
 					password = new String(ch);
 				}
 				//System.out.println("Username: "+username+ " Password: "+password);
@@ -62,9 +62,7 @@ public class LoginUI {
 				System.exit(0);
 				break;
 			}
-			
-			
-			
+
 		}
 		
 	}

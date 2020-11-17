@@ -29,7 +29,7 @@ public class Staff extends User{
 	public ArrayList<User> retrieveStaffLoginDetails() { 
 		ArrayList<User> userarray = new ArrayList<User>();
 		try {
-			File file=new File(System.getProperty("user.dir")+"/OODP Assignment/src/AdminStaff");    //creates a new file instance  
+			File file=new File(System.getProperty("user.dir")+"/src/AdminStaff");    //creates a new file instance
 			//add new if-else for terminal console?
 			FileReader fr=new FileReader(file);   //reads the file  
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream   
@@ -37,7 +37,7 @@ public class Staff extends User{
 			while((line=br.readLine())!=null)  
 			{
 			String[] entry = line.split(";");
-			userarray.add(new User(entry[0], entry[1], entry[2])); //0 is username, 1 is password
+			userarray.add(new User(entry[0], entry[1], entry[2], entry[3])); //0 is username, 1 is password, 2 is salt, 3 is type
 			}  
 			fr.close();    //closes the stream and release the resources  
 			}  

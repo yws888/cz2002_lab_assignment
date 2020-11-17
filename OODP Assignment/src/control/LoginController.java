@@ -34,6 +34,6 @@ public class LoginController {
 	}
 	public Student getStudent(String username) {
 		Student student = new Student();
-		return student.retrieveStudentInfo(username);
+		return student.retrieveStudentInfoByUsername(username);
 	}
 }
