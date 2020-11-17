@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Student extends User{
 	private String name;
@@ -412,7 +413,7 @@ public class Student extends User{
 		while((line=br.readLine())!=null)
 		{
 			String[] entry = line.split(";");
-			if(entry[6].equals(courseIndex)){
+			if(entry[6].equals(courseIndex) && entry[7] == "ACCEPTED"){
 				studentList.add(student.retrieveStudentInfoByUsername(entry[0]));
 			}
 
@@ -432,7 +433,7 @@ public class Student extends User{
 		while((line=br.readLine())!=null)
 		{
 			String[] entry = line.split(";");
-			if(entry[4].equals(courseCode)){
+			if(entry[4].equals(courseCode) && entry[7] == "ACCEPTED"){
 				studentList.add(student.retrieveStudentInfoByUsername(entry[0]));
 			}
 
@@ -440,4 +441,51 @@ public class Student extends User{
 		fr.close();
 		return studentList;
 	}
+
+	public String removeStudentsFromWaitList(String courseIndex, int availableSlots) throws IOException {
+		//remember trimtosize
+		int counter = availableSlots;
+		ArrayList<String> recordList = new ArrayList<>();
+		Student student = new Student();
+		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		FileReader fr=new FileReader(file);   //reads the file
+		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+		String line;
+		while((line=br.readLine())!=null)
+		{
+			String[] entry = line.split(";");
+			if(entry[6].equals(courseIndex)){
+				if(entry[7].equals("WAITLIST") && counter > 0){
+					entry[7] = "ACCEPTED";
+					recordList.add(String.join(";",entry));
+				}else{
+					recordList.add(line);
+				}
+			}else {
+				recordList.add(line);
+			}
+
+		}
+		fr.close();
+
+		try {
+			file = new File(System.getProperty("user.dir") + "/src/registeredRecords");    //creates a new file instance
+			Scanner scanner = new Scanner(file);
+			Writer output;
+			PrintWriter pw = new PrintWriter(new FileOutputStream(file));
+			for(int i=0; i<recordList.size();i++){
+				pw.println(recordList.get(i));
+			}
+			pw.close();
+			return "Waitlist updated accordingly.";
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return "Error updating waitlist.";
+		}
+
+
+
+
+	}
+
 }

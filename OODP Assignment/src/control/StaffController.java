@@ -417,6 +417,82 @@ public class StaffController {
     }
 
     private static void updateCourseVacancy() {
+        Scanner sc = new Scanner(System.in);
+        String courseIndex="",input="";
+        Course course = new Course();
+        Student student = new Student();
+        System.out.println("\nStarting Update Course Vacancy Process: (Enter \"cancel\" to cancel process) ");
+        System.out.println("Please enter course index:");
+        courseIndex = sc.nextLine();
+        if(courseIndex.toLowerCase().equals("cancel")){
+            System.out.println("\nUpdate Course Vacancy Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }
+        if(course.isIndexTaken(courseIndex)){
+            try {
+                course = course.retrieveCourseByIndex(courseIndex);
+                int currentVacancy = course.getVacancy();
+                System.out.println("Current Vacancy is now set at: "+currentVacancy);
+                System.out.println("Please enter vacancy amount to increase to: ");
+                input = sc.nextLine();
+                while(!Ultility.isNumeric(input)){
+                    System.out.println("Invalid input, please enter a valid vacancy amount to increase to:");
+                    input = sc.nextLine();
+                }
+                int targetVacancy = Integer.parseInt(input);
+                boolean fieldIsValid = false;
+                while(!fieldIsValid) {
+                    System.out.println("\nAre you sure to proceed with increasing vacancy amount from "+currentVacancy+" to "+targetVacancy+"? ('Y' or 'N')");
+                    input = sc.nextLine();
+                    if (input.toLowerCase().equals("cancel")) {
+                        System.out.println("\nUpdate Course Vacancy Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+                        sc.nextLine();
+                        return;
+                    }
+                    if (input.toUpperCase().equals("Y")) {
+                        fieldIsValid = true;
+                    }else if (input.toUpperCase().equals("N")){
+                        System.out.println("\nUpdate Course Vacancy Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+                        sc.nextLine();
+                        return;
+
+                    }else {
+                        System.out.println("\nInvalid Input please try again!");
+                    }
+                }
+                if(!(targetVacancy <= currentVacancy)){
+                    //update vacancy
+                    Course updatedCourse = course;
+                    updatedCourse.setVacancy(targetVacancy);
+                    String message = updatedCourse.updateCourse();
+                    System.out.println(message);
+                    //fill up spaces from waitlist
+                    int vacancyIncrease = targetVacancy - currentVacancy;
+                    message = student.removeStudentsFromWaitList(courseIndex, vacancyIncrease);
+                    System.out.println(message);
+                    System.out.println("\nUPress the \"ENTER\" key to be directed back to the previous menu!");
+                    sc.nextLine();
+                    return;
+                }else{
+                    System.out.println("Input vacancy must be more than the current set vacancy, unable to update vacancy.");
+                    System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+                    sc.nextLine();
+                    return;
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }
+
+
+
+
 
     }
 
