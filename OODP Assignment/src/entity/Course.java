@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import enumeration.CourseType;
+import enumeration.SessionType;
 
 
 public class Course {
@@ -20,6 +20,7 @@ public class Course {
 	private String labSchedule;
 	private String tutorialSchedule;
 	private String lectureSchedule;
+
 
 	public String getCourseName() {
 		return courseName;

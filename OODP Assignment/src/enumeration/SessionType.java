@@ -1,6 +1,6 @@
 package enumeration;
 
-public enum CourseType {
+public enum SessionType {
 	  /**
 	   * Course that has Lecture only.
 	   */

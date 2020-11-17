@@ -20,6 +20,8 @@ public class StudentUI {
 	public void initStudentUI() {
 		int choice;
 		CourseMgr courseMgr = new CourseMgr();
+		CourseUI courseUI = new CourseUI();
+
 
 		Scanner sc = new Scanner(System.in);
 		
@@ -62,11 +64,6 @@ public class StudentUI {
 			break;
 	}
 } while (choice != 0);
-		
-
-		
-		
-		
 
 		return;//temp code
 	}
