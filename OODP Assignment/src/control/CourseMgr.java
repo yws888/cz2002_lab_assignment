@@ -27,7 +27,7 @@ public class CourseMgr {
 	public boolean validateCourseIndex(int courseIndex) {
 
 	    for (Course course : courses.values()) {
-	        if (course.checkCourseIndex(courseIndex) == true)
+	        //if (course.checkCourseIndex(courseIndex) == true)
 	        	return true;
 	    }
 	    
@@ -38,7 +38,7 @@ public class CourseMgr {
 	public Course retrieveCourseFromIndex(int courseIndex) {
 
 	    for (Course course : courses.values()) {
-	        if (course.checkCourseIndex(courseIndex) == true)
+	        //if (course.checkCourseIndex(courseIndex) == true)
 	        	return course;
 	    }
 	    

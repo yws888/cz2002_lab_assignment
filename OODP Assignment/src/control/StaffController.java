@@ -44,7 +44,7 @@ public class StaffController {
             if(gender.toLowerCase().equals("cancel")){
                 return;
             }
-            }
+        }
         System.out.println("Please enter student's nationality:");
         nationality = sc.nextLine();
         byte[] salt = PasswordManager.getRandomSalt();
@@ -421,11 +421,109 @@ public class StaffController {
     }
 
     public static void checkAvailableSlot() {
+        Scanner sc = new Scanner(System.in);
+        String courseIndex="";
+        Course course = new Course();
+        System.out.println("\nStarting Check Course Vacancy Process: (Enter \"cancel\" to cancel process) ");
+        System.out.println("Please enter course index:");
+        courseIndex = sc.nextLine();
+        if(courseIndex.toLowerCase().equals("cancel")){
+            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }
+        if(course.isIndexTaken(courseIndex)){
+            int vacancy = course.courseIndexVacancy(courseIndex);
+            System.out.println("Course vacancy of index '"+courseIndex+"' is "+vacancy);
+            System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }else{
+            System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }
     }
 
     public static void printListByIndex() {
+        //name gender nationality only
+        Scanner sc = new Scanner(System.in);
+        String courseIndex="";
+        Course course = new Course();
+        Student student = new Student();
+        System.out.println("Please enter the course index to print student list:");
+        courseIndex = sc.nextLine();
+        if(courseIndex.toLowerCase().equals("cancel")){
+            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }
+        if(course.isIndexTaken(courseIndex)){
+            ArrayList<Student> studentList = new ArrayList<Student>();
+            try {
+                studentList = student.studentListByIndex(courseIndex);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.print("=====Student list=====");
+            //print list
+            if(studentList.size() > 0){
+                for(int i=0;i<studentList.size();i++){
+                    System.out.print("\nName:"+studentList.get(i).getName()+"\tGender:"+studentList.get(i).getGender()+"\tNationality:"+studentList.get(i).getNationality());
+                }
+
+            }else{
+                System.out.print("\nNo student list found.");
+            }
+            System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }else{
+            System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }
     }
 
     public static void printListByCourse() {
+        //name gender nationality only
+        Scanner sc = new Scanner(System.in);
+        String courseCode="";
+        Course course = new Course();
+        Student student = new Student();
+        System.out.println("Please enter the course index to print student list:");
+        courseCode = sc.nextLine();
+        if(courseCode.toLowerCase().equals("cancel")){
+            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }
+        if(course.isCourseTaken(courseCode)){
+            ArrayList<Student> studentList = new ArrayList<Student>();
+            try {
+                studentList = student.studentListByCourseCode(courseCode);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.print("=====Student list=====");
+            //print list
+            if(studentList.size() > 0){
+                for(int i=0;i<studentList.size();i++){
+                    System.out.print("\nName:"+studentList.get(i).getName()+"\tGender:"+studentList.get(i).getGender()+"\tNationality:"+studentList.get(i).getNationality());
+                }
+
+            }else{
+                System.out.print("\nNo student list found.");
+            }
+            System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }else{
+            System.out.println("\nThere are no records of course code entered. Press the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }
+
+
     }
 }

@@ -5,6 +5,7 @@ import entity.PasswordManager;
 import entity.Student;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentController {
@@ -60,23 +61,40 @@ public class StudentController {
                 }
                 //check if index is already taken
                 if(!student.courseIndexTakenByStudent(courseIndex)){
-                    if(!student.hasClashingSchedule(course)){
-                        String message = "";
-                        if(course.courseIndexVacancy(courseIndex) > 0){
-                            //added to course, status ACCEPTED
-                            message = student.enrollStudent(course, "ACCEPTED");
-                        }else{
-                            //0 vacancy, put in waitlist, status WAITLIST
-                            message = student.enrollStudent(course, "WAITLIST");
-                        }
+                    //check if course code taken
+                    if(!student.courseCodeTakenByStudent(courseIndex)) {
+                        //check if clashes with schedule
+                        if (!student.hasClashingSchedule(course)) {
+                            //AU must not be > 21
+                            if ((student.retrieveTotalAUTaken() + course.getNoOfAUs()) <= 21) {
+                                String message = "";
+                                if (course.courseIndexVacancy(courseIndex) > 0) {
+                                    //added to course, status ACCEPTED
+                                    message = student.enrollStudent(course, "ACCEPTED");
+                                } else {
+                                    //0 vacancy, put in waitlist, status WAITLIST
+                                    message = student.enrollStudent(course, "WAITLIST");
+                                }
 
-                        System.out.println(message);
-                        System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
-                        sc.nextLine();
-                        return;
+                                System.out.println(message);
+                                System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+                                sc.nextLine();
+                                return;
+                            } else {
+                                //AU Exceeded
+                                System.out.println("\nCourse adding failed. Maximum number of AUs possible exceeded!! Press the \"ENTER\" key to be directed back to the previous menu!");
+                                sc.nextLine();
+                                return;
+                            }
+                        }else{
+                            //clashing schedule
+                            System.out.println("\nCourse adding failed. Selected course clashes with your schedule!! Press the \"ENTER\" key to be directed back to the previous menu!");
+                            sc.nextLine();
+                            return;
+                        }
                     }else{
-                        //clashing schedule
-                        System.out.println("\nCourse adding failed. Selected course clashes with your schedule!! Press the \"ENTER\" key to be directed back to the previous menu!");
+                        //course taken by you already
+                        System.out.println("\nCourse adding failed. Selected course is taken by you!! Press the \"ENTER\" key to be directed back to the previous menu!");
                         sc.nextLine();
                         return;
                     }
@@ -93,37 +111,11 @@ public class StudentController {
             }
 
         }else{
-            System.out.println("\nThere are no records of course code entered. Press the \"ENTER\" key to be directed back to the previous menu!");
+            System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
             sc.nextLine();
             return;
 
         }
-//
-//
-//        //if index has no vacancy, put on waitlist, else enter, do vacancy with math
-//        System.out.println("Please enter student's matric number:");
-//        matriculationNumber = sc.nextLine();
-//        if(matriculationNumber.toLowerCase().equals("cancel")){
-//            return;
-//        }
-//
-//        while(!(gender.equals("Male") || gender.equals("Female"))) {
-//            System.out.println("Please enter student's gender: ('Male' or 'Female')");
-//            gender = sc.nextLine();
-//            if(gender.toLowerCase().equals("cancel")){
-//                return;
-//            }
-//        }
-//        System.out.println("Please enter student's nationality:");
-//        nationality = sc.nextLine();
-//        byte[] salt = PasswordManager.getRandomSalt();
-//        char[] passwordEntered = password.toCharArray();
-//        byte[] hashedpassword = PasswordManager.hash(passwordEntered, salt);
-//        Student student = new Student();
-//        student.createStudent(username, PasswordManager.hexEncoder(hashedpassword), PasswordManager.hexEncoder(salt), name, matriculationNumber, gender, nationality);
-//        System.out.println(student.printStudentList());
-//        System.out.println("Add Student Operation Completed!! Press the \"ENTER\" key to be directed back to STARS main menu!");
-//        sc.nextLine();
 
     }
 
@@ -131,9 +123,42 @@ public class StudentController {
     }
 
     public static void printRegisteredCourses(Student student) {
+        try{
+            Scanner sc = new Scanner(System.in);
+            String registeredCourses = student.printCourseList();
+            System.out.println("=====Registered Courses=====");
+            System.out.print(registeredCourses);
+            System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void checkCourseVacancy() {
+        Scanner sc = new Scanner(System.in);
+        String courseIndex="";
+        Course course = new Course();
+        System.out.println("\nStarting Check Course Vacancy Process: (Enter \"cancel\" to cancel process) ");
+        System.out.println("Please enter course index:");
+        courseIndex = sc.nextLine();
+        if(courseIndex.toLowerCase().equals("cancel")){
+            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }
+        if(course.isIndexTaken(courseIndex)){
+            int vacancy = course.courseIndexVacancy(courseIndex);
+            System.out.println("Course vacancy of index '"+courseIndex+"' is "+vacancy);
+            System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }else{
+            System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }
     }
 
     public static void changeIndex(Student student) {

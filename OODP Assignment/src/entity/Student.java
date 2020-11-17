@@ -293,6 +293,74 @@ public class Student extends User{
 	return false;
 
 	}
+	public ArrayList<Course> retrieveRegisteredCourses() throws IOException {
+		ArrayList<String> indexList = new ArrayList<String>();
+		String matriculation_no = this.matricnumber;
+		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		FileReader fr=new FileReader(file);   //reads the file
+		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+		String line;
+		while((line=br.readLine())!=null)
+		{
+			String[] entry = line.split(";");
+			if(entry[1].equals(matriculation_no)){
+				indexList.add((entry[6]));
+			}
+
+		}
+		fr.close();    //closes the stream and release the resources
+
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+		fr=new FileReader(file);   //reads the file
+		br=new BufferedReader(fr);  //creates a buffering character input stream
+		while((line=br.readLine())!=null)
+		{
+			for(int i=0;i <indexList.size();i++) {
+				String[] entry = line.split(";");
+				if (entry[4].equals(indexList.get(i))) {
+					courseList.add(new Course(entry[0],entry[1],entry[2],Integer.parseInt(entry[3]),entry[4],Integer.parseInt(entry[5]),entry[6],entry[7],entry[8]));
+				}
+			}
+		}
+		fr.close();    //closes the stream and release the resources
+		return courseList;
+
+	}
+
+	public String printCourseList() throws IOException {
+		ArrayList<Course> courseList = retrieveRegisteredCourses();
+		StringBuilder sb = new StringBuilder();
+		String matriculation_no = this.matricnumber;
+		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		FileReader fr=new FileReader(file);   //reads the file
+		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+		String line;
+		while((line=br.readLine())!=null)
+		{
+			String[] entry = line.split(";");
+			for(int i = 0;i<courseList.size();i++){
+				if(entry[1].equals(matriculation_no) && entry[6].equals(courseList.get(i).getCourseIndex())){
+					sb.append("\nCourse:"+courseList.get(i).getCourseCode()+"\tAU:"+courseList.get(i).getNoOfAUs()+"\tIndex No.:"+courseList.get(i).getCourseIndex()+"\tStatus:"+entry[7]);
+				}
+
+			}
+
+		}
+		fr.close();    //closes the stream and release the resources
+		sb.append("\nTotal AU: "+retrieveTotalAUTaken());
+		return sb.toString();
+
+	}
+
+	public int retrieveTotalAUTaken() throws IOException {
+		ArrayList<Course> registeredCourses = retrieveRegisteredCourses();
+		int count=0;
+		for(int i=0;i<registeredCourses.size();i++){
+			count += registeredCourses.get(i).getNoOfAUs();
+		}
+		return count;
+	}
 	public String enrollStudent(Course course, String status){
 			try {
 				File file = new File(System.getProperty("user.dir") + "/src/registeredRecords");    //creates a new file instance
@@ -309,4 +377,67 @@ public class Student extends User{
 			}
 	}
 
+	public boolean courseCodeTakenByStudent(String courseIndex) throws IOException {
+		Course course = new Course();
+		course = course.retrieveCourseByIndex(courseIndex);
+		String courseCodeToTake = course.getCourseCode();
+
+		String matriculation_no = this.matricnumber;
+		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		FileReader fr=new FileReader(file);   //reads the file
+		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+		String line;
+		while((line=br.readLine())!=null)
+		{
+			String[] entry = line.split(";");
+			if(entry[1].equals(matriculation_no) && entry[4].equals(courseCodeToTake)){
+				fr.close();
+				return true;
+			}
+
+		}
+		fr.close();    //closes the stream and release the resources
+		return false;
+
+	}
+
+	public ArrayList<Student> studentListByIndex(String courseIndex) throws IOException {
+		//name gender nationality only
+		ArrayList<Student> studentList = new ArrayList<>();
+		Student student = new Student();
+		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		FileReader fr=new FileReader(file);   //reads the file
+		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+		String line;
+		while((line=br.readLine())!=null)
+		{
+			String[] entry = line.split(";");
+			if(entry[6].equals(courseIndex)){
+				studentList.add(student.retrieveStudentInfoByUsername(entry[0]));
+			}
+
+		}
+		fr.close();
+		return studentList;
+
+	}
+	public ArrayList<Student> studentListByCourseCode(String courseCode) throws IOException {
+		//name gender nationality only
+		ArrayList<Student> studentList = new ArrayList<>();
+		Student student = new Student();
+		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		FileReader fr=new FileReader(file);   //reads the file
+		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+		String line;
+		while((line=br.readLine())!=null)
+		{
+			String[] entry = line.split(";");
+			if(entry[4].equals(courseCode)){
+				studentList.add(student.retrieveStudentInfoByUsername(entry[0]));
+			}
+
+		}
+		fr.close();
+		return studentList;
+	}
 }

@@ -54,10 +54,10 @@ public class CourseRegistrationController {
 	public boolean checkIfRegistered(String courseCode,Student student) {
 		ArrayList<CourseIndex> indexList = new ArrayList<CourseIndex>();
 		for(int i=0; i<indexList.size();i++) {
-			ArrayList<Student> studentList= indexList.get(i).getStudentList();
-			if (studentList.contains(student)) {
+			//ArrayList<Student> studentList= indexList.get(i).getStudentList();
+			//if (studentList.contains(student)) {
 				return true;
-			}
+			//}
 		}
 		return false;
 	}

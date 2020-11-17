@@ -198,6 +198,26 @@ public class Course {
 		return course;
 		}
 
+	public Course retrieveCourseByCourseCode(String courseCode) throws IOException {
+		Course course = new Course();
+		File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+		FileReader fr=new FileReader(file);   //reads the file
+		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+		String line;
+		while((line=br.readLine())!=null)
+		{
+			String[] entry = line.split(";");
+			if(entry[0].equals(courseCode)){
+				course = new Course(entry[0],entry[1],entry[2],Integer.parseInt(entry[3]),entry[4],Integer.parseInt(entry[5]),entry[6],entry[7],entry[8]);
+				fr.close();
+				return course;
+			}
+
+		}
+		fr.close();    //closes the stream and release the resources
+		return course;
+	}
+
 	public String printSchedule(String schedule){
 		if(schedule.equals("NONE")){
 			return "No schedule found.";
@@ -287,5 +307,28 @@ public class Course {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	public boolean isCourseTaken(String courseCode) {
+		try {
+			File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+			FileReader fr=new FileReader(file);   //reads the file
+			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+			String line;
+			while((line=br.readLine())!=null)
+			{
+				String[] entry = line.split(";");
+				if(entry[0].equals(courseCode.trim())){
+					fr.close();
+					return true;
+				}
+
+			}
+			fr.close();    //closes the stream and release the resources
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

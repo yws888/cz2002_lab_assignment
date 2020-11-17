@@ -20,12 +20,12 @@ public class CourseUI {
 	public void printVacancies(int index) {
 
 		Course course = courseMgr.retrieveCourseFromIndex(index);
-		CourseIndex courseIndex = course.getCourseIndexObject(index);
+		//CourseIndex courseIndex = course.getCourseIndexObject(index);
 		// int vacancies = courseMgr.checkVacancies(course.getCourseCode(), courseIndex);
 
-		System.out.println("Index Number: " + courseIndex.getIndexNo() + " \t\t Course: " + course.getCourseCode());
+		//System.out.println("Index Number: " + courseIndex.getIndexNo() + " \t\t Course: " + course.getCourseCode());
 		//to insert a table
-		System.out.println("Vacancies Available: " + courseIndex.getNoOfVacancies() + " \t Waitlist Length: " + courseIndex.getNoOfVacancies());
+		//System.out.println("Vacancies Available: " + courseIndex.getNoOfVacancies() + " \t Waitlist Length: " + courseIndex.getNoOfVacancies());
 
 
 	}
