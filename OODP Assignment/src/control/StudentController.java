@@ -120,6 +120,83 @@ public class StudentController {
     }
 
     public static void dropCourse(Student student) {
+    	Scanner sc = new Scanner(System.in);
+        String courseIndex="";
+        Course course = new Course();
+        System.out.println("\nStarting Drop Course Process: (Enter \"cancel\" to cancel process) ");
+        System.out.println("Please enter course index:");
+        courseIndex = sc.nextLine();
+        if(courseIndex.toLowerCase().equals("cancel")){
+            System.out.println("\nDrop Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }
+                    
+        try {
+        	String input;
+            boolean fieldIsValid;
+        	//check if the student takes the course
+            if(student.courseIndexTakenByStudent(courseIndex)){
+                //check if course index taken by student
+                if(student.courseCodeTakenByStudent(courseIndex)) {
+                	course = course.retrieveCourseByIndex(courseIndex);
+                    System.out.println("=====SUMMARY=====");
+                    System.out.print("Course Code:\t\t"+course.getCourseCode());
+                    System.out.print("\nCourse Name:\t\t"+course.getCourseName());
+                    System.out.print("\nAU:\t\t"+course.getNoOfAUs());
+                    System.out.print("\nSchool:\t\t"+course.getSchool());
+                    System.out.print("\nIndex:\t\t"+course.getCourseIndex());
+                    System.out.print("\n---Lecture Schedule---");
+                    System.out.print("\n"+course.printSchedule(course.getLectureSchedule()));
+                    System.out.print("\n---Lab Schedule---");
+                    System.out.print("\n"+course.printSchedule(course.getLabSchedule()));
+                    System.out.print("\n---Tutorial Schedule---");
+                    System.out.print("\n"+course.printSchedule(course.getTutorialSchedule()));
+                    System.out.print("\n=============================");
+                    fieldIsValid = false;
+                    while(!fieldIsValid) {
+                        System.out.println("\nAre you sure to proceed with dropping this course index? ('Y' or 'N')");
+                        input = sc.nextLine();
+                        if (input.toLowerCase().equals("cancel")) {
+                            System.out.println("\nDropping Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+                            sc.nextLine();
+                            return;
+                        }
+                        if (input.toUpperCase().equals("Y")) {
+                            fieldIsValid = true;
+                        }else if (input.toUpperCase().equals("N")){
+                            System.out.println("\nDropping Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+                            sc.nextLine();
+                            return;
+
+                        }else {
+                            System.out.println("\nInvalid Input please try again!");
+                        }
+                    }
+                    //remove the course
+                    String message = "";                            
+                    message = student.dropStudentCourse(course);
+                    System.out.println(message);
+                    System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+                    sc.nextLine();
+                    return; 
+                }
+                else {
+                	//course is not taken by you
+                    System.out.println("\nCourse dropping failed. Selected course is not taken by you!! Press the \"ENTER\" key to be directed back to the previous menu!");
+                    sc.nextLine();
+                    return;
+                }
+        	}
+            else {
+            	System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
+                sc.nextLine();
+                return;
+            }	
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void printRegisteredCourses(Student student) {
