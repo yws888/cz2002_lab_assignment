@@ -36,4 +36,42 @@ public class LoginController {
 		Student student = new Student();
 		return student.retrieveStudentInfoByUsername(username);
 	}
+	public static String retriveAccessperiod() {
+		
+		ArrayList<AccessPeriod> aplist = new ArrayList<AccessPeriod>();
+		aplist.addAll((AccessPeriod.retrieveAccessPeriod()));
+		for(int i=0;i<aplist.size();i++) {
+			if((aplist.size()-1)==i){
+				
+				return aplist.get(i).getap();
+				}
+	
+		}
+		return null;
+	}
+	public static  boolean isValidAccessTime() {
+	
+		
+		ArrayList<AccessPeriod> aplist = new ArrayList<AccessPeriod>();
+		aplist.addAll((AccessPeriod.retrieveAccessPeriod()));
+		//String time = "12/11/2020";              //check changing today
+		
+		String daten =LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		String timen =LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+		for(int i=0;i<aplist.size();i++) {
+			
+			if(daten.equals(aplist.get(i).getap()) && (timen.compareTo(aplist.get(i).getapt()))>0){              //manipulate the today time
+				
+				
+				return true;
+
+			}
+		
+		}
+		
+		return false;
+	}
+	
+	
+	
 }

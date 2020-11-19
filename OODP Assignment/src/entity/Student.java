@@ -361,6 +361,7 @@ public class Student extends User{
 		}
 		return count;
 	}
+	
 	public String enrollStudent(Course course, String status){
 			try {
 				File file = new File(System.getProperty("user.dir") + "/src/registeredRecords");    //creates a new file instance
@@ -376,6 +377,52 @@ public class Student extends User{
 				return "Error adding courses.";
 			}
 	}
+	
+	public String dropStudentCourse(Course course) {
+    	String courseCodeToRemove = course.getCourseCode();
+		String matriculation_no = this.matricnumber;
+    	
+		//transfer data from old file to temp file without that course info
+    	String tempFile = "temp.txt";
+    	File oldFile = new File("registeredRecords");
+    	File newFile = new File (tempFile);
+    	
+    	String currentLine;
+    	String entry[];
+    	try {
+    		FileWriter fw = new FileWriter(tempFile,true);
+    		BufferedWriter bw = new BufferedWriter(fw);
+    		PrintWriter pw = new PrintWriter(bw);
+    		
+    		FileReader fr = new FileReader("registeredRecords");
+    		BufferedReader br = new BufferedReader(fr);
+    		
+    		while((currentLine = br.readLine()) != null)  {
+    			entry = currentLine.split(";");
+    			//if it does not contain that entry, print the line
+    			if(!(entry[1].equals(matriculation_no) && entry[4].equals(courseCodeToRemove))) {
+    				pw.println(currentLine);
+    			}
+    		}
+    		
+    		pw.flush();
+    		pw.close();
+    		fr.close();
+    		br.close();
+    		bw.close();
+    		fw.close();
+    		
+    		oldFile.delete();
+    		File dump = new File("registeredRecords");
+    		newFile.renameTo(dump);
+    		
+    		return "Course dropped successfully.";
+    		
+    	}
+    	catch(Exception ex) {
+    		return "Error dropping course.";
+    	}
+    }
 
 	public boolean courseCodeTakenByStudent(String courseIndex) throws IOException {
 		Course course = new Course();

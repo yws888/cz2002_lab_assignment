@@ -59,7 +59,25 @@ public class StaffController {
     }
 
     public static void editAccessPeriod() {
-
+        Scanner sc = new Scanner(System.in);
+		String startdate, starttime;
+		while(true) {
+			System.out.println("Please enter Access Period Date Allowed: ");
+			System.out.println("(Enter in this formate dd/mm/yyyy)");
+			startdate = sc.nextLine();
+			System.out.println("Please enter Access Period time Allowed: ");
+			System.out.println("(Enter in this formate  HH:mm)");
+			starttime = sc.nextLine();
+				if (startdate.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")) {
+					AccessPeriod accessperiod = new AccessPeriod();
+					accessperiod.createAccessPeriod(startdate,starttime);
+					sc.nextLine();
+					System.out.println("Access time is updated Successfully!");
+					break;
+				}
+				else 
+					System.out.println("Wrong format try again");
+    }
     }
 
     public static void addCourse(){

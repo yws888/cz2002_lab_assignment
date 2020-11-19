@@ -42,8 +42,18 @@ public class LoginUI {
 					switch(mode) {
 						case 1: //Student
 							userUI = new StudentUI(logincontroller.getStudent(username));
-							System.out.println("Login Successful.");
-							((StudentUI) userUI).initStudentUI();
+							
+							if (LoginController.isValidAccessTime()==true){
+								System.out.println("Login Successful.");
+								((StudentUI) userUI).initStudentUI();
+								}
+							else
+							{
+								System.out.println("Sorry you are not allowed to access the portal now!");
+								System.out.println("Please log in at your specified access period!");
+								System.out.println("Your access period is on " +logincontroller.retriveAccessperiod());
+							}
+							
 							break;
 						case 2: //Staff
 							userUI = new StaffUI(logincontroller.getStaff(username));
