@@ -115,7 +115,7 @@ public class Course {
 	
 	public boolean isIndexTaken(ArrayList<String> courseIndex){
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+			File file=new File("Courses");    //creates a new file instance
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 			String line;
@@ -140,7 +140,7 @@ public class Course {
 
 	public boolean isIndexTaken(String courseIndex){
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+			File file=new File("Courses");    //creates a new file instance
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 			String line;
@@ -184,7 +184,7 @@ public class Course {
 
 	public Course retrieveCourseByIndex(String courseIndex) throws IOException {
 		Course course = new Course();
-			File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+			File file=new File("Courses");    //creates a new file instance
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 			String line;
@@ -204,7 +204,7 @@ public class Course {
 
 	public Course retrieveCourseByCourseCode(String courseCode) throws IOException {
 		Course course = new Course();
-		File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+		File file=new File("Courses");    //creates a new file instance
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 		String line;
@@ -291,7 +291,7 @@ public class Course {
 			course = retrieveCourseByIndex(courseIndex);
 			int vacancy = course.getVacancy();
 
-			File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+			File file=new File("registeredRecords");    //creates a new file instance
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 			String line;
@@ -315,7 +315,7 @@ public class Course {
 
 	public boolean isCourseTaken(String courseCode) {
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+			File file=new File("Courses");    //creates a new file instance
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 			String line;
