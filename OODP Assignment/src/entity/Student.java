@@ -58,7 +58,7 @@ public class Student extends User{
 		Student student = new Student();
 		//ArrayList<User> studentlist = retrieveStudentLoginDetails();
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Students");    //creates a new file instance
+			File file=new File("Students");    //creates a new file instance
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 			String line;
@@ -83,7 +83,7 @@ public class Student extends User{
 	public ArrayList<User> retrieveStudentLoginDetails() { 		
 		ArrayList<User> userarray = new ArrayList<User>();
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Students");    //creates a new file instance
+			File file=new File("Students");    //creates a new file instance
 			FileReader fr=new FileReader(file);   //reads the file  
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 			String line;  
@@ -104,7 +104,7 @@ public class Student extends User{
 		StringBuilder sb = new StringBuilder();
 		sb.append("====================Student List====================\n");
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Students");    //creates a new file instance
+			File file=new File("Students");    //creates a new file instance
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 			String line;
@@ -123,7 +123,7 @@ public class Student extends User{
 	public void createStudent(String username, String password, String salt, String name, String matriculationNumber, String gender, String nationality) {
 		try {
 
-			File file = new File(System.getProperty("user.dir") + "/src/Students");    //creates a new file instance
+			File file = new File("Students");    //creates a new file instance
 			Writer output;
 			PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
 			pw.println(username+";"+password+";"+salt+";student;"+name+";"+matriculationNumber+";"+gender+";"+nationality);
@@ -135,7 +135,7 @@ public class Student extends User{
 
 	public boolean courseIndexTakenByStudent(String courseIndex) throws IOException {
 		String matriculation_no = this.matricnumber;
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		File file=new File("registeredRecords");    //creates a new file instance
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 		String line;
@@ -174,7 +174,7 @@ public class Student extends User{
 
 	public boolean hasClashingSchedule(Course course) throws IOException {
 		String matriculation_no = this.matricnumber;
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		File file=new File("registeredRecords");    //creates a new file instance
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 		String line;
@@ -292,7 +292,7 @@ public class Student extends User{
 	public ArrayList<Course> retrieveRegisteredCourses() throws IOException {
 		ArrayList<String> indexList = new ArrayList<String>();
 		String matriculation_no = this.matricnumber;
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		File file=new File("registeredRecords");    //creates a new file instance
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 		String line;
@@ -307,7 +307,7 @@ public class Student extends User{
 		fr.close();    //closes the stream and release the resources
 
 		ArrayList<Course> courseList = new ArrayList<Course>();
-		file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+		file=new File("Courses");    //creates a new file instance
 		fr=new FileReader(file);   //reads the file
 		br=new BufferedReader(fr);  //creates a buffering character input stream
 		while((line=br.readLine())!=null)
@@ -328,7 +328,7 @@ public class Student extends User{
 		ArrayList<Course> courseList = retrieveRegisteredCourses();
 		StringBuilder sb = new StringBuilder();
 		String matriculation_no = this.matricnumber;
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		File file=new File("registeredRecords");    //creates a new file instance
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 		String line;
@@ -359,7 +359,7 @@ public class Student extends User{
 	}
 	public String enrollStudent(Course course, String status){
 			try {
-				File file = new File(System.getProperty("user.dir") + "/src/registeredRecords");    //creates a new file instance
+				File file = new File("registeredRecords");    //creates a new file instance
 				Writer output;
 				PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
 				pw.println(this.getUsername()+";"+this.getMatricnumber()+";"+this.getName()+";"+this.getGender()+";"+course.getCourseCode()+";"+course.getCourseName()+";"+course.getCourseIndex()+";"+status);
@@ -372,6 +372,52 @@ public class Student extends User{
 				return "Error adding courses.";
 			}
 	}
+	
+	public String dropStudentCourse(Course course) {
+    	String courseCodeToRemove = course.getCourseCode();
+		String matriculation_no = this.matricnumber;
+    	
+		//transfer data from old file to temp file without that course info
+    	String tempFile = "temp.txt";
+    	File oldFile = new File("registeredRecords");
+    	File newFile = new File (tempFile);
+    	
+    	String currentLine;
+    	String entry[];
+    	try {
+    		FileWriter fw = new FileWriter(tempFile,true);
+    		BufferedWriter bw = new BufferedWriter(fw);
+    		PrintWriter pw = new PrintWriter(bw);
+    		
+    		FileReader fr = new FileReader("registeredRecords");
+    		BufferedReader br = new BufferedReader(fr);
+    		
+    		while((currentLine = br.readLine()) != null)  {
+    			entry = currentLine.split(";");
+    			//if it does not contain that entry, print the line
+    			if(!(entry[1].equals(matriculation_no) && entry[4].equals(courseCodeToRemove))) {
+    				pw.println(currentLine);
+    			}
+    		}
+    		
+    		pw.flush();
+    		pw.close();
+    		fr.close();
+    		br.close();
+    		bw.close();
+    		fw.close();
+    		
+    		oldFile.delete();
+    		File dump = new File("registeredRecords");
+    		newFile.renameTo(dump);
+    		
+    		return "Course dropped successfully.";
+    		
+    	}
+    	catch(Exception ex) {
+    		return "Error dropping course.";
+    	}
+    }
 
 	public boolean courseCodeTakenByStudent(String courseIndex) throws IOException {
 		Course course = new Course();
@@ -379,7 +425,7 @@ public class Student extends User{
 		String courseCodeToTake = course.getCourseCode();
 
 		String matriculation_no = this.matricnumber;
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		File file=new File("registeredRecords");    //creates a new file instance
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 		String line;
@@ -401,7 +447,7 @@ public class Student extends User{
 		//name gender nationality only
 		ArrayList<Student> studentList = new ArrayList<>();
 		Student student = new Student();
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		File file=new File("registeredRecords");    //creates a new file instance
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 		String line;
@@ -421,7 +467,7 @@ public class Student extends User{
 		//name gender nationality only
 		ArrayList<Student> studentList = new ArrayList<>();
 		Student student = new Student();
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		File file=new File("registeredRecords");    //creates a new file instance
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 		String line;
@@ -439,7 +485,7 @@ public class Student extends User{
 	
 	public String changeIndexForStudent(Course course){
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+			File file=new File("registeredRecords");    //creates a new file instance
 			// File file = new File("registeredRecords");    //creates a new file instance
 			// FileReader fr=new FileReader(file);   //reads the file
 			//BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
@@ -476,7 +522,7 @@ public class Student extends User{
 		int counter = availableSlots;
 		ArrayList<String> recordList = new ArrayList<>();
 		Student student = new Student();
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+		File file=new File("registeredRecords");    //creates a new file instance
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 		String line;
@@ -498,7 +544,7 @@ public class Student extends User{
 		fr.close();
 
 		try {
-			file = new File(System.getProperty("user.dir") + "/src/registeredRecords");    //creates a new file instance
+			file = new File("registeredRecords");    //creates a new file instance
 			Scanner scanner = new Scanner(file);
 			Writer output;
 			PrintWriter pw = new PrintWriter(new FileOutputStream(file));
