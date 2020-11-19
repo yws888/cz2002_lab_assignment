@@ -1,17 +1,11 @@
 /.DS_Store
 /AdminStaff
-/Course.class
-/CourseIndex.class
-/CourseMgr.class
-/CourseRegistrationController.class
-/CourseRegistrationUI.class
-/CourseType.class
-/CourseUI.class
-/LoginController.class
-/LoginUI.class
-/Staff.class
-/StaffUI.class
-/Student.class
-/StudentUI.class
+/Courses
+/StudentAccessPeriod
 /Students
-/User.class
+/TextFile Guide
+/boundary/
+/control/
+/entity/
+/enumeration/
+/registeredRecords

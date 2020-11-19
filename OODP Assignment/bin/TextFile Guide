@@ -1,0 +1,12 @@
+===STAFF FILE===
+username;hashed_password;salt;type;name
+===STUDENT FILE===
+username;hashed_password;salt;type;name;matriculation_number;gender;nationality
+===COURSES===
+course_code;course_name;school;au;index;vacancy;[Lab Schedule];[Tutorial Schedule];[Lecture Schedule]
+===COURSE WAITLIST===
+username;index
+===REGISTEREDRECORDS===
+username;matriculation_no;name;gender;course_code;course_name;course;status
+
+Square brackets data defaults to [NONE]
