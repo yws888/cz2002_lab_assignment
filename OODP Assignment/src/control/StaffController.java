@@ -1,5 +1,6 @@
 package control;
 
+import entity.AccessPeriod;
 import entity.Course;
 import entity.PasswordManager;
 import entity.Student;
