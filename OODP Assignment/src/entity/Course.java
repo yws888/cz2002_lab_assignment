@@ -16,6 +16,8 @@ public class Course {
 	private String school;
 	private int noOfAUs;
 	private String courseIndex;
+	private HashMap<Integer, CourseIndex> courseIndexes;
+
 	private int vacancy;
 	private String labSchedule;
 	private String tutorialSchedule;
@@ -109,6 +111,8 @@ public class Course {
 		this.tutorialSchedule = tutorialSchedule;
 		this.lectureSchedule = lectureSchedule;
 	}
+	
+	
 	public boolean isIndexTaken(ArrayList<String> courseIndex){
 		try {
 			File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance

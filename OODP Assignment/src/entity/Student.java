@@ -3,11 +3,6 @@ package entity;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -441,6 +436,41 @@ public class Student extends User{
 		fr.close();
 		return studentList;
 	}
+	
+	public String changeIndexForStudent(Course course){
+		try {
+			File file = new File("registeredRecords");    //creates a new file instance
+			FileReader fr=new FileReader(file);   //reads the file
+			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+			String message = "oh no";
+			Scanner scanner = new Scanner(file);
+			ArrayList<String> textcontent = new ArrayList<String>();
+			while (scanner.hasNextLine()){
+				textcontent.add(scanner.nextLine());
+			}
+			scanner.close();
+			
+			for(int i =0;i<textcontent.size();i++){
+				if((course.getCourseCode().equals(textcontent.get(i).split(";")[4]) && (this.matricnumber.equals(textcontent.get(i).split(";")[1]))) ){
+					textcontent.set(i, this.getUsername()+";"+this.getMatricnumber()+";"+this.getName()+";"+this.getGender()+";"+course.getCourseCode()+";"+course.getCourseName()+";"+course.getCourseIndex()+";"+"ACCEPTED");
+					message = "index changed successfully.";
+				}
+			}
+				
+			PrintWriter pw = new PrintWriter(new FileOutputStream(file));
+			for(int i=0; i<textcontent.size();i++){
+					pw.println(textcontent.get(i));
+			}
+				pw.close();
+				br.close();
+				return message;
+
+			// return "An error occurred.";
+			
+		}catch(Exception ex){
+			return "Error adding courses.";
+		}
+}
 
 	public String removeStudentsFromWaitList(String courseIndex, int availableSlots) throws IOException {
 		//remember trimtosize

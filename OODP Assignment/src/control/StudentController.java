@@ -162,7 +162,93 @@ public class StudentController {
     }
 
     public static void changeIndex(Student student) {
-    }
+        Scanner sc = new Scanner(System.in);
+        String courseIndex, newCourseIndex ="";
+        Course course = new Course();
+        System.out.println("\nStarting Change Index Number of Course Process: (Enter \"cancel\" to cancel process) ");
+        System.out.println("Please enter current index no.:");
+        courseIndex = sc.nextLine();
+        
+        if(courseIndex.toLowerCase().equals("cancel")){
+            System.out.println("\n Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+            sc.nextLine();
+            return;
+        }
+            //checks if index exists in system, if true, course index is in system
+
+        	try {
+				if(student.courseIndexTakenByStudent(courseIndex)){
+					System.out.println("Current index: " + courseIndex);
+					System.out.println("Please enter new index no. to change to:");
+					newCourseIndex = sc.nextLine();
+				    
+				    if(newCourseIndex.toLowerCase().equals("cancel")){
+				        System.out.println("\nProcess Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+				        sc.nextLine();
+				        return;
+				    }
+
+					if(!student.courseIndexTakenByStudent(newCourseIndex)){
+						
+						System.out.println("New index: " + newCourseIndex);
+						// check if index has vacancies & check if new index timetable clashes
+						try {
+							if ((course.courseIndexVacancy(newCourseIndex) > 0) && (!student.hasClashingSchedule(course.retrieveCourseByIndex(newCourseIndex))) ) {
+								//course.printSchedule(courseIndex);
+								//course.printSchedule(newCourseIndex);
+								System.out.println("\nPress Y to confirm");
+								char c = sc.next().charAt(0);
+						        sc.nextLine();
+								if (c == 'Y'||c == 'y') {
+									System.out.println("\nChanging index no...");
+									course = course.retrieveCourseByIndex(newCourseIndex);
+									course.setCourseIndex(newCourseIndex);
+							        String message = student.changeIndexForStudent(course);
+							        System.out.println(message);
+							        System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+							        sc.nextLine();
+							        return;
+									}
+								else {
+									System.out.println("\nProcess cancelled. Press the \"ENTER\" key to be directed back to the previous menu!");
+									sc.nextLine();
+									return;
+									}
+							}
+							else if((course.courseIndexVacancy(newCourseIndex) <= 0)) {
+							    System.out.println("\nIndex has no vacancies");
+							    System.out.println("\nProcess cancelled. Press the \"ENTER\" key to be directed back to the previous menu!");
+							    sc.nextLine();
+							    return;
+							}
+							else if(student.hasClashingSchedule(course.retrieveCourseByIndex(newCourseIndex))) {
+							    System.out.println("\nSchedule clashes");
+							    System.out.println("\nProcess cancelled. Press the \"ENTER\" key to be directed back to the previous menu!");
+							    sc.nextLine();
+							    return;
+							}
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					}
+
+					System.out.println("Course index entered is taken already by the student");
+				    System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+				    sc.nextLine();
+				    return;
+				}else{
+				    System.out.println("\nEither student is not registered for that course index or course index does not exist. Press the \"ENTER\" key to be directed back to the previous menu!");
+				    sc.nextLine();
+				    return;
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+}
 
     public static void swapIndex(Student student) {
     }
