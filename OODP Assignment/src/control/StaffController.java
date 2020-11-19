@@ -72,8 +72,8 @@ public class StaffController {
 				if (startdate.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")) {
 					AccessPeriod accessperiod = new AccessPeriod();
 					accessperiod.createAccessPeriod(startdate,starttime);
+					System.out.println("Access time is updated Successfully!\n Press ENTER to return to previous menu");
 					sc.nextLine();
-					System.out.println("Access time is updated Successfully!");
 					break;
 				}
 				else 

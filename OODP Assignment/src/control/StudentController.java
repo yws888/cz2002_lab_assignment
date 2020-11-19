@@ -399,7 +399,7 @@ public class StudentController {
 			
 			if(student.courseIndexTakenByStudent(courseIndex1)&& student2.courseIndexTakenByStudent(courseIndex2)){
 				if (course1.getCourseCode().equals(course2.getCourseCode())) {
-					//Swapping of index happens here... 
+					//Swapping of index happens here
 					System.out.println("\n\nStudent: " + student.getName() + "," + student.getMatricnumber());
 					System.out.println("Index " + courseIndex1);
 					System.out.print("\n---Lecture Schedule---");

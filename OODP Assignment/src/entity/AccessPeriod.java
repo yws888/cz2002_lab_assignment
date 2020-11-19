@@ -30,7 +30,7 @@ public class AccessPeriod {
 
 			File file = new File(System.getProperty("user.dir") + "/src/StudentAccessPeriod");    //creates a new file instance
 			Writer output;
-			PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
+			PrintWriter pw = new PrintWriter(new FileOutputStream(file, false)); //changed to false to overwrite the previous one,
 			pw.println(ap +";" +apt);
 			pw.close();
 		}catch(Exception ex){

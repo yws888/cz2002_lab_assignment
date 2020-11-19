@@ -51,7 +51,7 @@ public class LoginUI {
 							{
 								System.out.println("Sorry you are not allowed to access the portal now!");
 								System.out.println("Please log in at your specified access period!");
-								System.out.println("Your access period is on " +logincontroller.retriveAccessperiod());
+								System.out.println("Your access period is on " +LoginController.retriveAccessperiod());
 							}
 							
 							break;
