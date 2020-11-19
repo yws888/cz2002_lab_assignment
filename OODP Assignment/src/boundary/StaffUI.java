@@ -4,7 +4,7 @@ import java.util.Scanner;
 import control.StaffController;
 import entity.Staff;
 
-public class StaffUI {
+public class StaffUI implements UserUI {
 
 	private Staff staff;
 	private Staff getStaff() {

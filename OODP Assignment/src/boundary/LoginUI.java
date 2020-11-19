@@ -13,6 +13,7 @@ public class LoginUI {
 		String username, password;
 		int userinput;
 		boolean verifylogin;
+		UserUI userUI;
 		Scanner sc = new Scanner(System.in);	
 		while(true) {
 			System.out.println("====MySTARS====");
@@ -40,14 +41,14 @@ public class LoginUI {
 					int mode = logincontroller.getLoginMode(username);
 					switch(mode) {
 						case 1: //Student
-							StudentUI studentUI = new StudentUI(logincontroller.getStudent(username));
+							userUI = new StudentUI(logincontroller.getStudent(username));
 							System.out.println("Login Successful.");
-							studentUI.initStudentUI();
+							((StudentUI) userUI).initStudentUI();
 							break;
 						case 2: //Staff
-							StaffUI staffUI = new StaffUI(logincontroller.getStaff(username));
+							userUI = new StaffUI(logincontroller.getStaff(username));
 							System.out.println("Login Successful.");
-							staffUI.initStaffUI();
+							((StaffUI) userUI).initStaffUI();
 							break;
 						case 3: //error
 							System.out.println("Error, could not find user entry.");

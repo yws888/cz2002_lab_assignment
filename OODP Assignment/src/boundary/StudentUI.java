@@ -5,7 +5,7 @@ import control.CourseMgr;
 import control.StudentController;
 import entity.Student;
 
-public class StudentUI {
+public class StudentUI implements UserUI {
 
 	private Student student;
 	private Student getStudent() {

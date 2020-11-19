@@ -439,9 +439,10 @@ public class Student extends User{
 	
 	public String changeIndexForStudent(Course course){
 		try {
-			File file = new File("registeredRecords");    //creates a new file instance
-			FileReader fr=new FileReader(file);   //reads the file
-			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+			File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+			// File file = new File("registeredRecords");    //creates a new file instance
+			// FileReader fr=new FileReader(file);   //reads the file
+			//BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 			String message = "oh no";
 			Scanner scanner = new Scanner(file);
 			ArrayList<String> textcontent = new ArrayList<String>();
@@ -462,13 +463,11 @@ public class Student extends User{
 					pw.println(textcontent.get(i));
 			}
 				pw.close();
-				br.close();
+				//br.close();
 				return message;
-
-			// return "An error occurred.";
 			
-		}catch(Exception ex){
-			return "Error adding courses.";
+		}catch(FileNotFoundException ex){
+			return "FileNotFoundException";
 		}
 }
 
