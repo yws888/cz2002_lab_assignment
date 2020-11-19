@@ -86,7 +86,7 @@ public class StaffController {
         Scanner sc = new Scanner(System.in);
         String course_code,course_name, au="", school, index, input="";
         ArrayList<String> indexList = new ArrayList<String>(), vacancyList = new ArrayList<String>();
-        int vacancy;
+        //int vacancy;
         boolean validation1=true, validation2=true;
 
         System.out.println("Please enter the course code:");

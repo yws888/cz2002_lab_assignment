@@ -1,8 +1,8 @@
 package boundary;
 
 import control.CourseMgr;
-import entity.Course;
-import entity.CourseIndex;
+//import entity.Course;
+//import entity.CourseIndex;
 
 public class CourseUI {
 	public void getCourseInput() {
@@ -19,7 +19,7 @@ public class CourseUI {
 
 	public void printVacancies(int index) {
 
-		Course course = courseMgr.retrieveCourseFromIndex(index);
+		// Course course = courseMgr.retrieveCourseFromIndex(index);
 		//CourseIndex courseIndex = course.getCourseIndexObject(index);
 		// int vacancies = courseMgr.checkVacancies(course.getCourseCode(), courseIndex);
 

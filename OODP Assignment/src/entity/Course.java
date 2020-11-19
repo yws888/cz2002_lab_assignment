@@ -1,36 +1,82 @@
 package entity;
+
 import java.io.*;
-import java.lang.reflect.Array;
+//import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.Scanner;
 
-import enumeration.SessionType;
-
+//import enumeration.SessionType;
 
 public class Course {
 	//datetime standard
-	private String dateformat = "HH:mm";
+	// private String dateformat = "HH:mm";
+	
+	  /**
+	   * The name of the course, e.g. "Object Oriented Design and Programming"
+	   */
+	
 	private String courseName;
+	
+	  /**
+	   * The code of the course, e.g. CZ2002
+	   */
+	
 	private String courseCode;
+	
+	  /**
+	   * The school offering the course.
+	   */
+	
 	private String school;
+	
+	  /**
+	   * The number of AUs of the course.
+	   */
+	
 	private int noOfAUs;
+	
+	/**
+	   * The course Index number, e.g. 18001, 18002, etc.
+	   */
+	
 	private String courseIndex;
-
+	
+	/**
+	   * Maximum number of vacancies (not current vacancies)
+	   */
+	
 	private int vacancy;
+
 	private String labSchedule;
 	private String tutorialSchedule;
+	
+	/**
+	   * lecture schedule
+	   */
+	
 	private String lectureSchedule;
 
 
+	/**
+	   * Getter method for course name.
+	   * 
+	   * @return course name
+	   */
 	public String getCourseName() {
 		return courseName;
 	}
 
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
-	}
+//	public void setCourseName(String courseName) {
+//		this.courseName = courseName;
+//	}
 
+	/**
+	   * Getter method for course code.
+	   * 
+	   * @return course code
+	   */
+	
 	public String getCourseCode() {
 		return courseCode;
 	}
@@ -38,6 +84,7 @@ public class Course {
 	public void setCourseCode(String courseCode) {
 		this.courseCode = courseCode;
 	}
+
 
 	public String getSchool() {
 		return school;
@@ -47,13 +94,25 @@ public class Course {
 		this.school = school;
 	}
 
+	/**
+	   * Getter method for no of AUs.
+	   * 
+	   * @return no Of AUs
+	   */
+	
 	public int getNoOfAUs() {
 		return noOfAUs;
 	}
 
-	public void setNoOfAUs(int noOfAUs) {
-		this.noOfAUs = noOfAUs;
-	}
+//	public void setNoOfAUs(int noOfAUs) {
+//		this.noOfAUs = noOfAUs;
+//	}
+	
+	/**
+	   * Getter method for courseIndex
+	   * 
+	   * @return courseIndex
+	   */
 
 	public String getCourseIndex() {
 		return courseIndex;
@@ -123,7 +182,7 @@ public class Course {
 				String[] entry = line.split(";");
 				for(int i=0;i<courseIndex.size();i++){
 					if(entry[4].equals(courseIndex.get(i))){
-						fr.close();
+						br.close();
 						return true;
 					}
 				}
@@ -147,7 +206,7 @@ public class Course {
 			{
 				String[] entry = line.split(";");
 					if(entry[4].equals(courseIndex.trim())){
-						fr.close();
+						br.close();
 						return true;
 				}
 
@@ -164,7 +223,6 @@ public class Course {
 		if(!isIndexTaken(courseIndex)){
 			try {
 				File file = new File(System.getProperty("user.dir") + "/src/Courses");    //creates a new file instance
-				Writer output;
 				PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
 				for(int i = 0;i<courseIndex.size();i++){
 					pw.println(courseCode+";"+courseName+";"+school+";"+noOfAUs+";"+courseIndex.get(i)+";"+vacancy.get(i)+";NONE;NONE;NONE");
@@ -192,7 +250,7 @@ public class Course {
 				String[] entry = line.split(";");
 				if(entry[4].equals(courseIndex)){
 					course = new Course(entry[0],entry[1],entry[2],Integer.parseInt(entry[3]),entry[4],Integer.parseInt(entry[5]),entry[6],entry[7],entry[8]);
-					fr.close();
+					br.close();
 					return course;
 				}
 
@@ -212,7 +270,7 @@ public class Course {
 			String[] entry = line.split(";");
 			if(entry[0].equals(courseCode)){
 				course = new Course(entry[0],entry[1],entry[2],Integer.parseInt(entry[3]),entry[4],Integer.parseInt(entry[5]),entry[6],entry[7],entry[8]);
-				fr.close();
+				br.close();
 				return course;
 			}
 
@@ -269,7 +327,6 @@ public class Course {
 						textcontent.set(i, this.courseCode+";"+this.courseName+";"+this.school+";"+this.noOfAUs+";"+this.courseIndex+";"+this.vacancy+";"+this.labSchedule+";"+this.tutorialSchedule+";"+this.lectureSchedule);
 					}
 				}
-				Writer output;
 				PrintWriter pw = new PrintWriter(new FileOutputStream(file));
 				for(int i=0; i<textcontent.size();i++){
 					pw.println(textcontent.get(i));
@@ -322,7 +379,7 @@ public class Course {
 			{
 				String[] entry = line.split(";");
 				if(entry[0].equals(courseCode.trim())){
-					fr.close();
+					br.close();
 					return true;
 				}
 

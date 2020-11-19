@@ -1,8 +1,6 @@
 package entity;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,52 +8,82 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Student extends User{
+	  /**
+	   * The name of the student.
+	   */
 	private String name;
+	
+	  /**
+	   * The matriculation number of the student as a string.
+	   */
+	
 	private String matricnumber;
+	
+	/**
+   * The gender of the Student. Either Male or Female.
+   */
+	
 	private String gender;
+	
+	/**
+   * The nationality of the Student. 
+   */
+	
 	private String nationality;
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 
 	public String getMatricnumber() {
 		return matricnumber;
 	}
 
-	public void setMatricnumber(String matricnumber) {
-		this.matricnumber = matricnumber;
-	}
+//	public void setMatricnumber(String matricnumber) {
+//		this.matricnumber = matricnumber;
+//	}
 
 	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+//	public void setGender(String gender) {
+//		this.gender = gender;
+//	}
 
 	public String getNationality() {
 		return nationality;
 	}
 
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
+//	public void setNationality(String nationality) {
+//		this.nationality = nationality;
+//	}
 
 	public Student() {
 	}
+	
+	  /**
+	   * Constructor for Student object.
+	   * 
+	   * @param username                            username of the student
+	   * @param name                             name of the student
+	   * @param matricnumber                           matric number of the student
+	   * @param gender                           gender of the student
+	   * @param nationality                           nationality of the student
+	   */	
+	
 	public Student(String username, String name, String matricnumber, String gender, String nationality) {
-		this.setUsername(username);
-		this.setName(name);
-		this.setMatricnumber(matricnumber);
-		this.setGender(gender);
-		this.setNationality(nationality);
+		super.setUsername(username);
+		this.name = name;
+		this.matricnumber = matricnumber;
+		this.gender = gender;
+		this.nationality = nationality;
 	}
+	
 	public Student retrieveStudentInfoByUsername(String username) {
 		Student student = new Student();
 		//ArrayList<User> studentlist = retrieveStudentLoginDetails();
@@ -128,7 +156,6 @@ public class Student extends User{
 		try {
 
 			File file = new File(System.getProperty("user.dir") + "/src/Students");    //creates a new file instance
-			Writer output;
 			PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
 			pw.println(username+";"+password+";"+salt+";student;"+name+";"+matriculationNumber+";"+gender+";"+nationality);
 			pw.close();
@@ -148,7 +175,7 @@ public class Student extends User{
 			String[] entry = line.split(";");
 			if(entry[1].equals(matriculation_no) && entry[6].equals(courseIndex)){
 
-				fr.close();
+				br.close();
 				return true;
 			}
 
@@ -285,11 +312,12 @@ public class Student extends User{
 				}
 			}
 			if(result1 || result2 || result3 || result4 || result5 || result6 || result7 || result8 || result9){
+				br.close();    //closes the stream and release the resources
 				return true;
 			}
 
 		}
-		fr.close();    //closes the stream and release the resources
+		br.close();    //closes the stream and release the resources
 	return false;
 
 	}
@@ -365,7 +393,6 @@ public class Student extends User{
 	public String enrollStudent(Course course, String status){
 			try {
 				File file = new File(System.getProperty("user.dir") + "/src/registeredRecords");    //creates a new file instance
-				Writer output;
 				PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
 				pw.println(this.getUsername()+";"+this.getMatricnumber()+";"+this.getName()+";"+this.getGender()+";"+course.getCourseCode()+";"+course.getCourseName()+";"+course.getCourseIndex()+";"+status);
 				pw.close();
@@ -438,12 +465,12 @@ public class Student extends User{
 		{
 			String[] entry = line.split(";");
 			if(entry[1].equals(matriculation_no) && entry[4].equals(courseCodeToTake)){
-				fr.close();
+				br.close();
 				return true;
 			}
 
 		}
-		fr.close();    //closes the stream and release the resources
+		br.close();    //closes the stream and release the resources
 		return false;
 
 	}
@@ -526,7 +553,7 @@ public class Student extends User{
 		//remember trimtosize
 		int counter = availableSlots;
 		ArrayList<String> recordList = new ArrayList<>();
-		Student student = new Student();
+		//Student student = new Student();
 		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
@@ -550,8 +577,7 @@ public class Student extends User{
 
 		try {
 			file = new File(System.getProperty("user.dir") + "/src/registeredRecords");    //creates a new file instance
-			Scanner scanner = new Scanner(file);
-			Writer output;
+			// Scanner scanner = new Scanner(file);
 			PrintWriter pw = new PrintWriter(new FileOutputStream(file));
 			for(int i=0; i<recordList.size();i++){
 				pw.println(recordList.get(i));

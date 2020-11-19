@@ -1,7 +1,7 @@
 package boundary;
 import java.util.Scanner;
 
-import control.CourseMgr;
+//import control.CourseMgr;
 import control.StudentController;
 import entity.Student;
 
@@ -11,16 +11,16 @@ public class StudentUI implements UserUI {
 	public Student getStudent() {
 		return this.student;
 	}
-	private void setStudent(Student student) {
-		this.student = student;
-	}
+//	private void setStudent(Student student) {
+//		this.student = student;
+//	}
 	public StudentUI(Student student) {
 		this.student = student;
 	}
 	public void initStudentUI() {
 		int choice;
-		CourseMgr courseMgr = new CourseMgr();
-		CourseUI courseUI = new CourseUI();
+//		CourseMgr courseMgr = new CourseMgr();
+//		CourseUI courseUI = new CourseUI();
 
 
 		Scanner sc = new Scanner(System.in);
@@ -65,6 +65,7 @@ public class StudentUI implements UserUI {
 	}
 } while (choice != 0);
 
+		sc.close();
 		return;//temp code
 	}
 

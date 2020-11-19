@@ -7,12 +7,12 @@ import entity.Staff;
 public class StaffUI implements UserUI {
 
 	private Staff staff;
-	private Staff getStaff() {
-		return this.staff;
-	}
-	private void setStaff(Staff staff) {
-		this.staff = staff;
-	}
+//	private Staff getStaff() {
+//		return this.staff;
+//	}
+//	private void setStaff(Staff staff) {
+//		this.staff = staff;
+//	}
 	public StaffUI(Staff staff) {
 		this.staff = staff;
 	}
@@ -25,7 +25,7 @@ public class StaffUI implements UserUI {
 		int choice;
 
 		do {
-			System.out.println("\nWelcome to STARS (Staff): ");//+this.staff.getUsername());
+			System.out.println("\nWelcome to STARS (Staff): " +this.staff.getUsername());
 			System.out.println("1. Edit Student Access Period");
 			System.out.println("2. Add a student");
 			System.out.println("3. Add/Update a course");
@@ -72,7 +72,8 @@ public class StaffUI implements UserUI {
 //			int index = sc.nextInt();
 //
 //			//printslist.printStudentList(code);
-//
+		
+		sc.close();
 		return;//temp code
 	}
 }
