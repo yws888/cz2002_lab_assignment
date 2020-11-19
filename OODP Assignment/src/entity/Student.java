@@ -1,6 +1,8 @@
 package entity;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -59,6 +61,7 @@ public class Student extends User{
 		//ArrayList<User> studentlist = retrieveStudentLoginDetails();
 		try {
 			File file=new File(System.getProperty("user.dir")+"/src/Students");    //creates a new file instance
+			
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 			String line;
@@ -84,6 +87,7 @@ public class Student extends User{
 		ArrayList<User> userarray = new ArrayList<User>();
 		try {
 			File file=new File(System.getProperty("user.dir")+"/src/Students");    //creates a new file instance
+			
 			FileReader fr=new FileReader(file);   //reads the file  
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 			String line;  

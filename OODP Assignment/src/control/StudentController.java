@@ -166,7 +166,17 @@ public class StudentController {
         String courseIndex, newCourseIndex ="";
         Course course = new Course();
         System.out.println("\nStarting Change Index Number of Course Process: (Enter \"cancel\" to cancel process) ");
-        System.out.println("Please enter current index no.:");
+		try {
+	        String registeredCourses;
+			registeredCourses = student.printCourseList();
+			System.out.println("=====Registered Courses=====");
+	        System.out.print(registeredCourses);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
+        System.out.println("\nPlease enter current index no.:");
         courseIndex = sc.nextLine();
         
         if(courseIndex.toLowerCase().equals("cancel")){
@@ -195,7 +205,7 @@ public class StudentController {
 						try {
 							if ((course.courseIndexVacancy(newCourseIndex) > 0) && (!student.hasClashingSchedule(course.retrieveCourseByIndex(newCourseIndex))) ) {
 								Course tempCourse1 = course.retrieveCourseByIndex(courseIndex);
-								System.out.println("Index " + courseIndex);
+								System.out.println("\nIndex " + courseIndex);
 								System.out.print("\n---Lecture Schedule---");
 				                System.out.print("\n"+tempCourse1.printSchedule(tempCourse1.getLectureSchedule()));
 				                System.out.print("\n---Lab Schedule---");
@@ -204,7 +214,7 @@ public class StudentController {
 				                System.out.print("\n"+tempCourse1.printSchedule(tempCourse1.getTutorialSchedule()));
 				                
 								Course tempCourse2= course.retrieveCourseByIndex(newCourseIndex);
-								System.out.println("Index " + newCourseIndex);
+								System.out.println("\nIndex " + newCourseIndex);
 								System.out.print("\n---Lecture Schedule---");
 				                System.out.print("\n"+tempCourse2.printSchedule(tempCourse2.getLectureSchedule()));
 				                System.out.print("\n---Lab Schedule---");
@@ -244,7 +254,6 @@ public class StudentController {
 							    return;
 							}
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 

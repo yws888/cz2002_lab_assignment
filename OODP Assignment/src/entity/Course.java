@@ -16,7 +16,6 @@ public class Course {
 	private String school;
 	private int noOfAUs;
 	private String courseIndex;
-	private HashMap<Integer, CourseIndex> courseIndexes;
 
 	private int vacancy;
 	private String labSchedule;

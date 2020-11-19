@@ -33,7 +33,6 @@ public class Staff extends User{
 		try {
 			File file=new File(System.getProperty("user.dir")+"/src/AdminStaff");    //creates a new file instance
 
-
 			FileReader fr=new FileReader(file);   //reads the file  
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream   
 			String line;  
