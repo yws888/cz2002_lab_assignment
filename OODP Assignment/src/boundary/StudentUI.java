@@ -8,7 +8,7 @@ import entity.Student;
 public class StudentUI implements UserUI {
 
 	private Student student;
-	private Student getStudent() {
+	public Student getStudent() {
 		return this.student;
 	}
 	private void setStudent(Student student) {

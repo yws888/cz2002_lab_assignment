@@ -3,10 +3,11 @@ package control;
 import entity.Course;
 import entity.PasswordManager;
 import entity.Student;
-
+import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import boundary.StudentUI;
 
 public class StudentController {
     public static void addCourse(Student student) {
@@ -267,5 +268,112 @@ public class StudentController {
 }
 
     public static void swapIndex(Student student) {
+    	LoginController logincontroller = new LoginController();
+		String username, password;
+		boolean verifylogin;
+		String courseIndex1="";
+		String courseIndex2="";
+    	Scanner sc = new Scanner(System.in);
+    	
+    	
+    try{System.out.println("\nSwapping Index with classmate...(Enter \"cancel\" to cancel process) ");
+    	System.out.println("\nPlease enter YOUR index to be swapped: ");
+    	courseIndex1 = sc.nextLine();
+    	
+    	if (courseIndex1.toLowerCase().equals("cancel")) {
+    		System.out.println("\nSwapping Index Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+    		sc.nextLine();
+    		return;
+    	}
+    	
+    	System.out.println("Enter Peer's Username:");
+		username = sc.next();
+		Console con = System.console();
+		if (con == null) { //eclipse doesnt support input masking
+			System.out.println("Enter Peer's Password:");
+			password = sc.next();
+	    } 
+		else {
+			char[] ch = con.readPassword( "Enter Peer's password: ");
+			password = new String(ch);
+		}
+		verifylogin = logincontroller.verifylogin(username,password);
+		
+		if(verifylogin == true) {
+			System.out.println("Verified.");
+			System.out.println("\nPlease enter PEER's index to be swapped: ");
+	    	courseIndex2 = sc.next();
+	    	
+			StudentUI studentUI = new StudentUI(logincontroller.getStudent(username));
+			Student student2= new Student();
+			student2=studentUI.getStudent();
+			Course course1 = new Course();
+			Course course2 = new Course();
+			course1 = course1.retrieveCourseByIndex(courseIndex1);//CourseIndexTakenByFirstStudent
+			course2 = course2.retrieveCourseByIndex(courseIndex2); //CourseIndexTakenBySecondStudent
+			
+			if(student.courseIndexTakenByStudent(courseIndex1)&& student2.courseIndexTakenByStudent(courseIndex2)){
+				if (course1.getCourseCode().equals(course2.getCourseCode())) {
+					//Swapping of index happens here... 
+					System.out.println("\n\nStudent: " + student.getName() + "," + student.getMatricnumber());
+					System.out.println("Index " + courseIndex1);
+					System.out.print("\n---Lecture Schedule---");
+	                System.out.print("\n"+course1.printSchedule(course1.getLectureSchedule()));
+	                System.out.print("\n---Lab Schedule---");
+	                System.out.print("\n"+course1.printSchedule(course1.getLabSchedule()));
+	                System.out.print("\n---Tutorial Schedule---");
+	                System.out.print("\n"+course1.printSchedule(course1.getTutorialSchedule()));
+	                
+	                System.out.println("\n\nStudent: " + student2.getName() + "," + student2.getMatricnumber());
+					System.out.println("Index " + courseIndex2);
+					System.out.print("\n---Lecture Schedule---");
+	                System.out.print("\n"+course2.printSchedule(course2.getLectureSchedule()));
+	                System.out.print("\n---Lab Schedule---");
+	                System.out.print("\n"+course2.printSchedule(course2.getLabSchedule()));
+	                System.out.print("\n---Tutorial Schedule---");
+	                System.out.print("\n"+course2.printSchedule(course2.getTutorialSchedule()));
+	                
+	                
+	                System.out.println("\nConfirm to swap index number? Press 'Y' to confirm");
+	            	char c = sc.next().charAt(0);
+			        sc.nextLine();
+					if (c == 'Y'||c == 'y') {
+						String message1=student.changeIndexForStudent(course2);
+						String message2=student2.changeIndexForStudent(course1);
+						if (message1=="index changed successfully." && message2=="index changed successfully.") {
+							System.out.print("\n"+ student.getMatricnumber()+ ", CourseIndex: "+ courseIndex1 + " is swapped with " + student2.getMatricnumber() + ",Course Index:"+ courseIndex2 );
+							System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+							sc.nextLine();
+							return;
+						}
+						else {System.out.println("FileNotFound.");}
+					}
+					else {
+						System.out.println("\nProcess cancelled. Press the \"ENTER\" key to be directed back to the previous menu!");
+						sc.nextLine();
+						
+						}
+				}
+					
+			
+				else {
+					System.out.println("Two indexes do not belong to same course. Please try again.");
+					swapIndex(student);
+					}
+			}
+			else {
+				System.out.println("Please enter indexes that you and your peer are registered in.Please try again");
+				swapIndex(student);
+			}
+		}
+		else {
+			System.out.println("Login Failed. Please try again.");
+			swapIndex(student);
+			}
+		
+    	
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 }
