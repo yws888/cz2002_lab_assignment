@@ -18,10 +18,10 @@ public class StaffUI implements UserUI {
 	}
 
 	public StaffUI(){}
-	public static void main(String[] args) throws InterruptedException {
+	/*public static void main(String[] args) throws InterruptedException {
 		StaffUI staffui = new StaffUI();
 		staffui.initStaffUI();
-	}
+	}*/
 	public void initStaffUI() throws InterruptedException {
 		Scanner sc = new Scanner(System.in);
 

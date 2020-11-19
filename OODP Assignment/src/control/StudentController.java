@@ -194,8 +194,24 @@ public class StudentController {
 						// check if index has vacancies & check if new index timetable clashes
 						try {
 							if ((course.courseIndexVacancy(newCourseIndex) > 0) && (!student.hasClashingSchedule(course.retrieveCourseByIndex(newCourseIndex))) ) {
-								//course.printSchedule(courseIndex);
-								//course.printSchedule(newCourseIndex);
+								Course tempCourse1 = course.retrieveCourseByIndex(courseIndex);
+								System.out.println("Index " + courseIndex);
+								System.out.print("\n---Lecture Schedule---");
+				                System.out.print("\n"+tempCourse1.printSchedule(tempCourse1.getLectureSchedule()));
+				                System.out.print("\n---Lab Schedule---");
+				                System.out.print("\n"+tempCourse1.printSchedule(tempCourse1.getLabSchedule()));
+				                System.out.print("\n---Tutorial Schedule---");
+				                System.out.print("\n"+tempCourse1.printSchedule(tempCourse1.getTutorialSchedule()));
+				                
+								Course tempCourse2= course.retrieveCourseByIndex(newCourseIndex);
+								System.out.println("Index " + newCourseIndex);
+								System.out.print("\n---Lecture Schedule---");
+				                System.out.print("\n"+tempCourse2.printSchedule(tempCourse2.getLectureSchedule()));
+				                System.out.print("\n---Lab Schedule---");
+				                System.out.print("\n"+tempCourse2.printSchedule(tempCourse2.getLabSchedule()));
+				                System.out.print("\n---Tutorial Schedule---");
+				                System.out.print("\n"+tempCourse2.printSchedule(tempCourse2.getTutorialSchedule()));
+				                
 								System.out.println("\nPress Y to confirm");
 								char c = sc.next().charAt(0);
 						        sc.nextLine();
@@ -239,7 +255,7 @@ public class StudentController {
 				    sc.nextLine();
 				    return;
 				}else{
-				    System.out.println("\nEither student is not registered for that course index or course index does not exist. Press the \"ENTER\" key to be directed back to the previous menu!");
+				    System.out.println("\nEither student is not registered for that course index or course index does not exist. \nPress the \"ENTER\" key to be directed back to the previous menu!");
 				    sc.nextLine();
 				    return;
 				}
