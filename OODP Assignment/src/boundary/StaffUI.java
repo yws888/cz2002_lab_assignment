@@ -20,11 +20,12 @@ public class StaffUI implements UserUI {
 	public StaffUI(){}
 
 	public void initStaffUI() throws InterruptedException {
-		int choice;
-		boolean isChoice0 = false;
-		boolean inputValid = false;
+		int choice = -1;
+		//boolean isChoice0 = false;
+		//boolean inputValid = false;
 
-		Scanner sc;
+		Scanner sc = new Scanner(System.in);
+
 		do {
 			System.out.println("\nWelcome to STARS (Staff): " +this.staff.getUsername());
 			System.out.println("1. Edit Student Access Period");
@@ -36,12 +37,12 @@ public class StaffUI implements UserUI {
 			System.out.println("0. Exit");
 			System.out.print("\nEnter the number of your choice: ");
 			
-			sc = new Scanner(System.in);
 			
-			if(sc.hasNextInt()) {
+			//if(sc.hasNextInt()) {
+			try {
+
 				choice = Integer.parseInt(sc.next());
-				if ( choice == 1 || choice == 2)
-					inputValid = true;
+				
 	
 				switch (choice) {
 					case 1:
@@ -63,21 +64,19 @@ public class StaffUI implements UserUI {
 						StaffController.printListByCourse();
 						break;
 					case 0: //quit
-						isChoice0 = true;
 						break;
 					default:
 						System.out.println("Please select an option from 0-6");
 						System.out.println();
 						break;
 				}
-			} else {
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
 				System.out.println("Please select an option from 0-6");
-				System.out.println();
-				continue;
 			}
 			
 						
-		} while (!isChoice0 && !inputValid);
+		} while (choice != 0);
 
 		return;//temp code
 	}

@@ -41,7 +41,7 @@ public class LoginController {
 		Student student = new Student();
 		return student.retrieveStudentInfoByUsername(username);
 	}
-	public static String retriveAccessperiod() {
+/*	public static String retriveAccessperiod() {
 		
 		ArrayList<AccessPeriod> aplist = new ArrayList<AccessPeriod>();
 		aplist.addAll((AccessPeriod.retrieveAccessPeriod()));
@@ -53,7 +53,7 @@ public class LoginController {
 	
 		}
 		return null;
-	}
+	}*/
 	public static  boolean isValidAccessTime() {
 	
 		

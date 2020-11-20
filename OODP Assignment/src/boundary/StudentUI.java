@@ -18,7 +18,7 @@ public class StudentUI implements UserUI {
 		this.student = student;
 	}
 	public void initStudentUI() {
-		int choice;
+		int choice = -1;
 //		CourseMgr courseMgr = new CourseMgr();
 //		CourseUI courseUI = new CourseUI();
 
@@ -35,37 +35,41 @@ public class StudentUI implements UserUI {
 		System.out.println("6. Swap Index Number with Another Student");
 		System.out.println("0. Exit");
 		System.out.print("\nEnter the number of your choice: "); 
-		choice = sc.nextInt();
-		
-		switch (choice) {
-		case 1:
-			StudentController.addCourse(student);
-			break;
-		case 2:
-			StudentController.dropCourse(student);
-			break;
-		case 3:
-			StudentController.printRegisteredCourses(student);
-			break;
-		case 4:
-			StudentController.checkCourseVacancy();
-			break;
-		case 5:
-			StudentController.changeIndex(student);
-			break;
-		case 6:
-			StudentController.swapIndex(student);
-			break;
-		case 0: //quit
-			break;
-		default:
+		try {
+			choice = Integer.parseInt(sc.next());
+			
+			switch (choice) {
+			case 1:
+				StudentController.addCourse(student);
+				break;
+			case 2:
+				StudentController.dropCourse(student);
+				break;
+			case 3:
+				StudentController.printRegisteredCourses(student);
+				break;
+			case 4:
+				StudentController.checkCourseVacancy();
+				break;
+			case 5:
+				StudentController.changeIndex(student);
+				break;
+			case 6:
+				StudentController.swapIndex(student);
+				break;
+			case 0: //quit
+				break;
+			default:
+				System.out.println("Please select an option from 0-6");
+				System.out.println();
+				break;
+}
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
 			System.out.println("Please select an option from 0-6");
-			System.out.println();
-			break;
-	}
+		}
 } while (choice != 0);
 
-		sc.close();
 		return;//temp code
 	}
 
