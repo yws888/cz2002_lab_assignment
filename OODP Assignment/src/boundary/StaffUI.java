@@ -20,10 +20,9 @@ public class StaffUI implements UserUI {
 	public StaffUI(){}
 
 	public void initStaffUI() throws InterruptedException {
-		Scanner sc = new Scanner(System.in);
-
 		int choice;
-
+		boolean isChoice0 = false;
+		Scanner sc;
 		do {
 			System.out.println("\nWelcome to STARS (Staff): " +this.staff.getUsername());
 			System.out.println("1. Edit Student Access Period");
@@ -34,46 +33,48 @@ public class StaffUI implements UserUI {
 			System.out.println("6. Print student list by course");
 			System.out.println("0. Exit");
 			System.out.print("\nEnter the number of your choice: ");
-			choice = sc.nextInt();
-
-			switch (choice) {
-				case 1:
-					StaffController.editAccessPeriod();
-					break;
-				case 2:
-					StaffController.addStudent();
-					break;
-				case 3:
-					StaffController.courseConfiguration();
-					break;
-				case 4:
-					StaffController.checkAvailableSlot();
-					break;
-				case 5:
-					StaffController.printListByIndex();
-					break;
-				case 6:
-					StaffController.printListByCourse();
-					break;
-				case 0: //quit
-					break;
-				default:
-					System.out.println("Please select an option from 0-6");
-					System.out.println();
-					break;
+			
+			sc = new Scanner(System.in);
+			
+			if(sc.hasNextInt()) {
+				choice = sc.nextInt();
+	
+				switch (choice) {
+					case 1:
+						StaffController.editAccessPeriod();
+						break;
+					case 2:
+						StaffController.addStudent();
+						break;
+					case 3:
+						StaffController.courseConfiguration();
+						break;
+					case 4:
+						StaffController.checkAvailableSlot();
+						break;
+					case 5:
+						StaffController.printListByIndex();
+						break;
+					case 6:
+						StaffController.printListByCourse();
+						break;
+					case 0: //quit
+						isChoice0 = true;
+						break;
+					default:
+						System.out.println("Please select an option from 0-6");
+						System.out.println();
+						break;
+				}
+			} else {
+				System.out.println("Please select an option from 0-6");
+				System.out.println();
+				continue;
 			}
-		} while (choice != 0);
+			
+						
+		} while (!isChoice0);
 
-//		switch (choice) {
-//		case 1:
-//			System.out.println("Pls enter course code (e.g. CZ2002)");
-//			String code = sc.next();
-//			System.out.println("Pls enter course index no. (e.g. 10198)");
-//			int index = sc.nextInt();
-//
-//			//printslist.printStudentList(code);
-		
-		sc.close();
 		return;//temp code
 	}
 }
