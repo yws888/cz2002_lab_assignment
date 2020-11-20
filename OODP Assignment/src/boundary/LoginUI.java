@@ -20,8 +20,8 @@ public class LoginUI {
 		UserUI userUI;
 		
 		
-		while(!inputValid && !isChoice2) {
-			
+		//while(!inputValid && !isChoice2) {
+		do {	
 			System.out.println("====MySTARS====");
 			System.out.println("1. Login");
 			System.out.println("2. Exit");
@@ -57,7 +57,7 @@ public class LoginUI {
 								if (LoginController.isValidAccessTime()==true){
 									System.out.println("Login Successful.");
 									((StudentUI) userUI).initStudentUI();
-									// inputValid = false;
+									
 
 									}
 								else
@@ -72,14 +72,14 @@ public class LoginUI {
 								userUI = new StaffUI(logincontroller.getStaff(username));
 								System.out.println("Login Successful. ");
 								((StaffUI) userUI).initStaffUI();
-								// inputValid = false;
+								
 								break;
 							case 3: //error
 								System.out.println("Error, could not find user entry.");
 								break;
 						}
 					}else {
-						System.out.println("Login Failed.");
+						System.out.println("Login Unsuccessful.");
 						System.out.println();
 						break;
 					}
@@ -104,7 +104,7 @@ public class LoginUI {
 				System.out.println("Please select option 1 or 2");
 			}
 
-		}
+		} while(!inputValid && !isChoice2);
 		
 	}
 

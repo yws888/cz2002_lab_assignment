@@ -22,6 +22,8 @@ public class StaffUI implements UserUI {
 	public void initStaffUI() throws InterruptedException {
 		int choice;
 		boolean isChoice0 = false;
+		boolean inputValid = false;
+
 		Scanner sc;
 		do {
 			System.out.println("\nWelcome to STARS (Staff): " +this.staff.getUsername());
@@ -37,7 +39,9 @@ public class StaffUI implements UserUI {
 			sc = new Scanner(System.in);
 			
 			if(sc.hasNextInt()) {
-				choice = sc.nextInt();
+				choice = Integer.parseInt(sc.next());
+				if ( choice == 1 || choice == 2)
+					inputValid = true;
 	
 				switch (choice) {
 					case 1:
@@ -73,7 +77,7 @@ public class StaffUI implements UserUI {
 			}
 			
 						
-		} while (!isChoice0);
+		} while (!isChoice0 && !inputValid);
 
 		return;//temp code
 	}
