@@ -249,7 +249,6 @@ public class StudentController {
 			System.out.println("=====Registered Courses=====");
 	        System.out.print(registeredCourses);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
         
@@ -275,8 +274,9 @@ public class StudentController {
 				        return;
 				    }
 
-					if(!student.courseIndexTakenByStudent(newCourseIndex)){
-						
+					if(!student.courseIndexTakenByStudent(newCourseIndex) &&  (course.retrieveCourseByIndex(courseIndex).getCourseCode().equals(course.retrieveCourseByIndex(newCourseIndex).getCourseCode()))){ // add condition that both course indexes must have the same course code
+						 
+
 						System.out.println("New index: " + newCourseIndex);
 						// check if index has vacancies & check if new index timetable clashes
 						try {
@@ -341,12 +341,11 @@ public class StudentController {
 				    sc.nextLine();
 				    return;
 				}else{
-				    System.out.println("\nEither student is not registered for that course index or course index does not exist. \nPress the \"ENTER\" key to be directed back to the previous menu!");
+				    System.out.println("\nEither student is not registered for that course index, course index is for a different course code, or new course index does not exist. \nPress the \"ENTER\" key to be directed back to the previous menu!");
 				    sc.nextLine();
 				    return;
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         	
