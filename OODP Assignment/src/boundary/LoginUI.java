@@ -14,10 +14,11 @@ public class LoginUI {
 		int userinput;
 		
 		boolean verifylogin;
+		boolean isChoice2 = false;
 		UserUI userUI;
 		
 		
-		while(true) {
+		while(!isChoice2) {
 			
 			System.out.println("====MySTARS====");
 			System.out.println("1. Login");
@@ -62,12 +63,12 @@ public class LoginUI {
 									System.out.println("Your access period is on " +LoginController.retriveAccessperiod());
 								}
 								
-								continue;
+								break;
 							case 2: //Staff
 								userUI = new StaffUI(logincontroller.getStaff(username));
 								System.out.println("Login Successful. ");
 								((StaffUI) userUI).initStaffUI();							
-								continue;
+								break;
 							case 3: //error
 								System.out.println("Error, could not find user entry.");
 								break;
@@ -84,21 +85,21 @@ public class LoginUI {
 					sc.close();
 					System.out.println("Thank you for using MyStars, goodbye!");
 					System.exit(0);
+					isChoice2 = true;
 					break;
 				
 				//default error input message
 				default: 
 					System.out.println("Please select option 1 or 2");
 					System.out.println();
-					
-					continue;
+					break;
 				}
 							
-			}
-			
+			} else {
 			System.out.println("Please select option 1 or 2");
 			System.out.println();
 			continue;
+			}
 		}
 		
 	}
