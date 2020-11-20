@@ -60,21 +60,29 @@ public class StaffController {
     }
 
     public static void editAccessPeriod() {
+		System.out.println("Access period is on " +LoginController.retriveAccessperiod());
         Scanner sc = new Scanner(System.in);
 		String startDate, startTime;
 		String endDate, endTime;
 		while(true) {
 			System.out.println("Please enter Access Period Start Date: ");
 			System.out.println("(Enter in this format yyyy-MM-dd)");
+			System.out.println("e.g. 2020-08-08");
 			startDate = sc.nextLine();
 			System.out.println("Please enter Access Period Start Time: ");
 			System.out.println("(Enter in this format  HH:mm)");
+			System.out.println("e.g. 08:08");
+
 			startTime = sc.nextLine();
 			System.out.println("Please enter Access Period End Date: ");
 			System.out.println("(Enter in this format yyyy-MM-dd)");
+			System.out.println("e.g. 2020-08-28");
+
 			endDate = sc.nextLine();
 			System.out.println("Please enter Access Period End Time: ");
 			System.out.println("(Enter in this format  HH:mm)");
+			System.out.println("e.g. 08:08");
+
 			endTime = sc.nextLine();
 				if (startDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})") && startTime.matches("([0-9]{2}):([0-9]{2})") &&
 						endDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})") && endTime.matches("([0-9]{2}):([0-9]{2})")	) {
