@@ -25,12 +25,13 @@ public class AccessPeriod {
 		this.setapt(apt);
 	}
 	
-	public void createAccessPeriod(String ap, String apt) {
+	public void createAccessPeriod(String ap, String apt, String endDate, String endTime) {
 		try {
 
 			File file = new File(System.getProperty("user.dir") + "/src/StudentAccessPeriod");    //creates a new file instance
 			PrintWriter pw = new PrintWriter(new FileOutputStream(file, false)); //changed to false to overwrite the previous one,
 			pw.println(ap +";" +apt);
+			pw.println(endDate +";" +endTime);
 			pw.close();
 		}catch(Exception ex){
 
@@ -46,6 +47,7 @@ public class AccessPeriod {
 			while((line=br.readLine())!=null)  
 			{
 			String[] entry = line.split(";");
+			// entry[0] is date, entry[1] is time
 			aparray.add(new AccessPeriod(entry[0],entry[1])); 
 			}  
 			fr.close();   

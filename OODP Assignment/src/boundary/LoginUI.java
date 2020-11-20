@@ -15,10 +15,12 @@ public class LoginUI {
 		
 		boolean verifylogin;
 		boolean isChoice2 = false;
+		boolean inputValid = false;
+
 		UserUI userUI;
 		
 		
-		while(!isChoice2) {
+		while(!inputValid && !isChoice2) {
 			
 			System.out.println("====MySTARS====");
 			System.out.println("1. Login");
@@ -26,10 +28,10 @@ public class LoginUI {
 			
 			Scanner sc = new Scanner(System.in);
 			
-			if(sc.hasNextInt()) {
-				
+			try {
 				userinput = Integer.parseInt(sc.next());
-						
+				if (userinput == 1 || userinput == 2)
+					inputValid = true;
 				switch(userinput) {
 				case 1:
 					System.out.println("Username:");
@@ -55,6 +57,8 @@ public class LoginUI {
 								if (LoginController.isValidAccessTime()==true){
 									System.out.println("Login Successful.");
 									((StudentUI) userUI).initStudentUI();
+									// inputValid = false;
+
 									}
 								else
 								{
@@ -67,7 +71,8 @@ public class LoginUI {
 							case 2: //Staff
 								userUI = new StaffUI(logincontroller.getStaff(username));
 								System.out.println("Login Successful. ");
-								((StaffUI) userUI).initStaffUI();							
+								((StaffUI) userUI).initStaffUI();
+								// inputValid = false;
 								break;
 							case 3: //error
 								System.out.println("Error, could not find user entry.");
@@ -94,12 +99,11 @@ public class LoginUI {
 					System.out.println();
 					break;
 				}
-							
-			} else {
-			System.out.println("Please select option 1 or 2");
-			System.out.println();
-			continue;
+						
+			} catch (NumberFormatException e) {
+				System.out.println("Please select option 1 or 2");
 			}
+
 		}
 		
 	}

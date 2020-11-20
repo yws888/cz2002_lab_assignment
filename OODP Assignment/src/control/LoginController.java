@@ -1,5 +1,6 @@
 package control;
 import java.time.LocalDateTime;
+// import java.time.LocalDate; // import the LocalDate class
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -61,12 +62,24 @@ public class LoginController {
 		aplist.addAll((AccessPeriod.retrieveAccessPeriod()));
 		//String time = "12/11/2020";              //check changing today
 		
-		String daten =LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		String timen =LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+		//String daten =LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		LocalDateTime daten =LocalDateTime.now();
+
+		//String timen =LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+		
+		// String str = "2016-03-04 11:30";
+		
 		for(int i=0;i<aplist.size();i++) {
 			
-			if(daten.equals(aplist.get(i).getap()) && (timen.compareTo(aplist.get(i).getapt()))>0){              //manipulate the today time
-				
+			String accessPeriodStartDate = aplist.get(i).getap() + " " + aplist.get(i).getapt();
+			//System.out.println(accessPeriodStartDate);
+			// DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+			LocalDateTime accessPeriodStartDateTime = LocalDateTime.parse(accessPeriodStartDate, formatter);
+
+			// if(daten.equals(aplist.get(i).getap()) && (timen.compareTo(aplist.get(i).getapt()))>0){              //manipulate the today time
+			if(daten.compareTo(accessPeriodStartDateTime)>=0){            
 				
 				return true;
 

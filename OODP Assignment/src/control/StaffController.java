@@ -61,24 +61,34 @@ public class StaffController {
 
     public static void editAccessPeriod() {
         Scanner sc = new Scanner(System.in);
-		String startdate, starttime;
+		String startDate, startTime;
+		String endDate, endTime;
 		while(true) {
-			System.out.println("Please enter Access Period Date Allowed: ");
-			System.out.println("(Enter in this formate dd/mm/yyyy)");
-			startdate = sc.nextLine();
-			System.out.println("Please enter Access Period time Allowed: ");
-			System.out.println("(Enter in this formate  HH:mm)");
-			starttime = sc.nextLine();
-				if (startdate.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")) {
+			System.out.println("Please enter Access Period Start Date: ");
+			System.out.println("(Enter in this format yyyy-MM-dd)");
+			startDate = sc.nextLine();
+			System.out.println("Please enter Access Period Start Time: ");
+			System.out.println("(Enter in this format  HH:mm)");
+			startTime = sc.nextLine();
+			System.out.println("Please enter Access Period End Date: ");
+			System.out.println("(Enter in this format yyyy-MM-dd)");
+			endDate = sc.nextLine();
+			System.out.println("Please enter Access Period End Time: ");
+			System.out.println("(Enter in this format  HH:mm)");
+			endTime = sc.nextLine();
+				if (startDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})") && startTime.matches("([0-9]{2}):([0-9]{2})") &&
+						endDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})") && endTime.matches("([0-9]{2}):([0-9]{2})")	) {
 					AccessPeriod accessperiod = new AccessPeriod();
-					accessperiod.createAccessPeriod(startdate,starttime);
+					accessperiod.createAccessPeriod(startDate,startTime, endDate, endTime);
 					System.out.println("Access time is updated Successfully!\n Press ENTER to return to previous menu");
 					sc.nextLine();
+					sc.close();
 					break;
 				}
 				else 
 					System.out.println("Wrong format try again");
     }
+		
     }
 
     public static void addCourse(){
