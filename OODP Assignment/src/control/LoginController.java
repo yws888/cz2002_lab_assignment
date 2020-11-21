@@ -1,7 +1,10 @@
 package control;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 import entity.AccessPeriod;
 import entity.Staff;
@@ -59,38 +62,30 @@ public class LoginController {
 		return null;
 	}*/
 	public static  boolean isValidAccessTime() {
-	
-		
-		//ArrayList<AccessPeriod> aplist = new ArrayList<AccessPeriod>();
-		//aplist.addAll((AccessPeriod.retrieveAccessPeriod()));
-		
-		ArrayList<AccessPeriod> aplist = AccessPeriod.retrieveAccessPeriod();
-		//String daten =LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		LocalDateTime daten =LocalDateTime.now();
+		AccessPeriod accessPeriod = AccessPeriod.retrieveAccessPeriod();
+		// LocalDateTime daten =LocalDateTime.now();
+		String currentDate =LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-		//String timen =LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+		/*SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = null;
+		Date startDate = null;
+		Date endDate = null;
+		try {
+			currentDate = simpleDateFormat.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+			startDate = simpleDateFormat.parse(accessPeriod.getStartDate());
+			endDate = simpleDateFormat.parse(accessPeriod.getEndDate());
+		} catch (ParseException e) {
+			//e.printStackTrace();
+		}*/
+		String currentTime =LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
 		
-		// String str = "2016-03-04 11:30";
-		
-		//for(int i=0;i<aplist.size();i++) {
-			
-			String accessPeriodStartDate = aplist.get(0).getap() + " " + aplist.get(0).getapt();
-			String accessPeriodEndDate = aplist.get(1).getap() + " " + aplist.get(1).getapt();
 
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-			LocalDateTime accessPeriodStartDateTime = LocalDateTime.parse(accessPeriodStartDate, formatter);
-			LocalDateTime accessPeriodEndDateTime = LocalDateTime.parse(accessPeriodEndDate, formatter);
-
-			// if(daten.equals(aplist.get(i).getap()) && (timen.compareTo(aplist.get(i).getapt()))>0){              //manipulate the today time
-			if(daten.compareTo(accessPeriodStartDateTime)>=0 && daten.compareTo(accessPeriodEndDateTime)<0){            
-				
+			//if(daten.compareTo(accessPeriodStartDateTime)>=0 && daten.compareTo(accessPeriodEndDateTime)<0){            
+			if(currentDate.compareTo( accessPeriod.getStartDate() ) >= 0 && currentDate.compareTo( accessPeriod.getEndDate() ) <= 0
+					&& currentTime.compareTo( accessPeriod.getStartTime() ) >= 0 && currentTime.compareTo( accessPeriod.getEndTime() ) <= 0) {	
 				return true;
 
 			}
-		
-		// }
-		
 		return false;
 	}
 	

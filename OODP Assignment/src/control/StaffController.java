@@ -60,8 +60,9 @@ public class StaffController {
     }
 
     public static void editAccessPeriod() {
-    	System.out.println("Access period starts on " +AccessPeriod.retrieveAccessPeriod().get(0).getap() + " " +  AccessPeriod.retrieveAccessPeriod().get(0).getapt());
-		System.out.println("Access period ends on " +AccessPeriod.retrieveAccessPeriod().get(1).getap() + " " +  AccessPeriod.retrieveAccessPeriod().get(1).getapt());
+    	AccessPeriod accessPeriod = AccessPeriod.retrieveAccessPeriod();
+    	System.out.println("Access period Dates are: " +accessPeriod.getStartDate() + " to " +  accessPeriod.getEndDate());
+		System.out.println("Access period Time is: " +accessPeriod.getStartTime() + " to " +  accessPeriod.getEndTime());
         Scanner sc = new Scanner(System.in);
 		String startDate, startTime;
 		String endDate, endTime;
@@ -77,17 +78,7 @@ public class StaffController {
 	            //sc.close();
 	            return;
 	        }
-			System.out.println("Please enter Access Period Start Time: ");
-			System.out.println("(Enter in this format  HH:mm)");
-			System.out.println("e.g. 08:08");
-
-			startTime = sc.nextLine();
-			if(startTime.toLowerCase().equals("cancel")){
-	            System.out.println("\n Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-	            sc.nextLine();
-	            //sc.close();
-	            return;
-	        }
+			
 			System.out.println("Please enter Access Period End Date: ");
 			System.out.println("(Enter in this format yyyy-MM-dd)");
 			System.out.println("e.g. 2020-08-28");
@@ -99,9 +90,22 @@ public class StaffController {
 	            //sc.close();
 	            return;
 	        }
-			System.out.println("Please enter Access Period End Time: ");
+			
+			System.out.println("Please enter Access Period Start Time: ");
 			System.out.println("(Enter in this format  HH:mm)");
 			System.out.println("e.g. 08:08");
+
+			startTime = sc.nextLine();
+			if(startTime.toLowerCase().equals("cancel")){
+	            System.out.println("\n Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+	            sc.nextLine();
+	            //sc.close();
+	            return;
+	        }
+
+			System.out.println("Please enter Access Period End Time: ");
+			System.out.println("(Enter in this format  HH:mm)");
+			System.out.println("e.g. 18:08");
 
 			endTime = sc.nextLine();
 			if(endTime.toLowerCase().equals("cancel")){
@@ -114,13 +118,13 @@ public class StaffController {
 			/*if (startDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})") && startTime.matches("([0-9]{2}):([0-9]{2})") &&
 					endDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})") && endTime.matches("([0-9]{2}):([0-9]{2})")	)*/
 			
-				if (Ultility.isValidFormat("HH:mm", startTime) && Ultility.isValidFormat("HH:mm", endTime)&& Ultility.isValidFormat("yyyy-MM-dd", startDate) && Ultility.isValidFormat("yyyy-MM-dd", endDate)) {
-					if (Ultility.isValidTimeRange(startDate,endDate,startTime,endTime)) {
-						AccessPeriod accessperiod = new AccessPeriod();
-						accessperiod.createAccessPeriod(startDate,startTime, endDate, endTime);
+				if (Ultility.isValidFormat("HH:mm", startTime) && Ultility.isValidFormat("HH:mm", endTime)&& 
+						Ultility.isValidFormat("yyyy-MM-dd", startDate) && Ultility.isValidFormat("yyyy-MM-dd", endDate)
+						) {
+					if (Ultility.isValidTimeRange(startDate,endDate,startTime,endTime) && Ultility.isValidTimeInput(startTime, endTime)) {
+						AccessPeriod.createAccessPeriod(startDate, endDate, startTime,  endTime);
 						System.out.println("Access time is updated Successfully!\n Press ENTER to return to previous menu");
 						sc.nextLine();
-						//sc.close();
 						return;}
 					
 					else {System.out.println("Starting Access Date is later than Ending Access Date. Please try again.");}

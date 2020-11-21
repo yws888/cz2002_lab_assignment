@@ -73,10 +73,13 @@ public class LoginUI {
 									{
 										System.out.println("Sorry you are not allowed to access the portal now!");
 										System.out.println("Please log in at your specified access period!");
-										DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-										System.out.println("\nCurrent date and time is \t" + LocalDateTime.now().format(formatter));
-										System.out.println("\nYour access period starts on \t" +AccessPeriod.retrieveAccessPeriod().get(0).getap() + " " +  AccessPeriod.retrieveAccessPeriod().get(0).getapt());
-										System.out.println("Your access period ends on \t" +AccessPeriod.retrieveAccessPeriod().get(1).getap() + " " +  AccessPeriod.retrieveAccessPeriod().get(1).getapt());
+										// DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+										System.out.println("\nCurrent date is \t" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
+										AccessPeriod accessPeriod = AccessPeriod.retrieveAccessPeriod();
+										System.out.println("\nYour access date is from \t" + accessPeriod.getStartDate() + " to " +  accessPeriod.getEndDate());
+										System.out.println("\nCurrent time is \t" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
+										System.out.println("Your access time is from \t" + accessPeriod.getStartTime() + " to " + accessPeriod.getEndTime());
 									}
 									
 									break;

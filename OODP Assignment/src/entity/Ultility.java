@@ -50,13 +50,13 @@ public class Ultility {
        // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
        // dateFormat.format(date);
     	
-            if(dateEnd.compareTo(dateStart)>0)
+            if(dateEnd.compareTo(dateStart)>=0 && timeEnd.compareTo(timeStart)>0)
             {
                 return true;
             }
-            else if (dateEnd.compareTo(dateStart)==0 && isValidTimeInput(timeStart,timeEnd)){
-            	return true;
-            		}
+//            else if (dateEnd.compareTo(dateStart)==0 && isValidTimeInput(timeStart,timeEnd)){
+//            	return true;
+//            		}
             else{
                 return false;
             }
