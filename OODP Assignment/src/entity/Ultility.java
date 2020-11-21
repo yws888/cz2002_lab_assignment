@@ -4,7 +4,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Utility is the class containing oft-used utility methods for input validation
+ */
+
 public class Ultility {
+	
+	  /**
+	   * Validates whether an input is numeric
+	   * 
+	   * @param input   input from user
+	   * @return        boolean whether input is numeric or not
+	   */
+	
     public static boolean isNumeric(String input) {
         try {
             Integer.parseInt(input);
@@ -13,6 +25,16 @@ public class Ultility {
             return false;
         }
     }
+    
+    /**
+	   * Validates whether an input  has the correct date / time format
+	   * 
+	   * @param format   	date / time format
+	   * @param value       input value
+	   * @return        	boolean whether input  has the correct date / time format
+	   */
+    
+    
     public static boolean isValidFormat(String format, String value) {
         Date date = null;
         try {
@@ -23,7 +45,6 @@ public class Ultility {
             }
         } catch (ParseException ex) {
             return false;
-            // ex.printStackTrace();
         }
         return date != null;
     }

@@ -1,15 +1,14 @@
 package entity;
 
 import java.io.*;
-//import java.lang.reflect.Array;
 import java.util.ArrayList;
 //import java.util.HashMap;
 import java.util.Scanner;
 
+//import scrame.exception.CourseNotFoundException;
+
 
 public class Course {
-	//datetime standard
-	// private String dateformat = "HH:mm";
 	
 	  /**
 	   * The name of the course, e.g. "Object Oriented Design and Programming"
@@ -79,10 +78,6 @@ public class Course {
 	public String getCourseCode() {
 		return courseCode;
 	}
-
-//	public void setCourseCode(String courseCode) {
-//		this.courseCode = courseCode;
-//	}
 
 
 	public String getSchool() {
@@ -169,9 +164,9 @@ public class Course {
 	
 	public boolean isIndexTaken(ArrayList<String> courseIndex){
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+			File file=new File(System.getProperty("user.dir")+"/src/Courses");    
 			FileReader fr=new FileReader(file);   //reads the file
-			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+			BufferedReader br=new BufferedReader(fr); 
 			String line;
 			while((line=br.readLine())!=null)
 			{
@@ -184,7 +179,7 @@ public class Course {
 				}
 
 			}
-			fr.close();    //closes the stream and release the resources
+			fr.close();    
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -194,9 +189,9 @@ public class Course {
 
 	public boolean isIndexTaken(String courseIndex){
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+			File file=new File(System.getProperty("user.dir")+"/src/Courses");    
 			FileReader fr=new FileReader(file);   //reads the file
-			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+			BufferedReader br=new BufferedReader(fr); 
 			String line;
 			while((line=br.readLine())!=null)
 			{
@@ -207,7 +202,7 @@ public class Course {
 				}
 
 			}
-			fr.close();    //closes the stream and release the resources
+			fr.close();    
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -218,7 +213,7 @@ public class Course {
 	public String addCourses(String courseCode, String courseName, String school, String noOfAUs, ArrayList<String> courseIndex, ArrayList<String> vacancy){
 		if(!isIndexTaken(courseIndex)){
 			try {
-				File file = new File(System.getProperty("user.dir") + "/src/Courses");    //creates a new file instance
+				File file = new File(System.getProperty("user.dir") + "/src/Courses");    
 				PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
 				for(int i = 0;i<courseIndex.size();i++){
 					pw.println(courseCode+";"+courseName+";"+school+";"+noOfAUs+";"+courseIndex.get(i)+";"+vacancy.get(i)+";NONE;NONE;NONE");
@@ -233,13 +228,20 @@ public class Course {
 		}
 
 	}
-
+	
+	  /**
+	   * Finds the course object based on course index.
+	   * 
+	   * @param courseIndex               course Index 
+	   * @return                          course object
+	   * @throws IOException  			  if no course found (?)
+	   */
 
 	public Course retrieveCourseByIndex(String courseIndex) throws IOException {
 		Course course = new Course();
-			File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+			File file=new File(System.getProperty("user.dir")+"/src/Courses");    
 			FileReader fr=new FileReader(file);   //reads the file
-			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+			BufferedReader br=new BufferedReader(fr); 
 			String line;
 			while((line=br.readLine())!=null)
 			{
@@ -251,15 +253,23 @@ public class Course {
 				}
 
 			}
-			fr.close();    //closes the stream and release the resources
+			fr.close();    
 		return course;
 		}
+	
+	/**
+	   * Finds the course object based on course Code.
+	   * 
+	   * @param courseCode                course Code 
+	   * @return                          course object
+	   * @throws IOException  			  if no course found (?)
+	   */
 
 	public Course retrieveCourseByCourseCode(String courseCode) throws IOException {
 		Course course = new Course();
-		File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+		File file=new File(System.getProperty("user.dir")+"/src/Courses");    
 		FileReader fr=new FileReader(file);   //reads the file
-		BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+		BufferedReader br=new BufferedReader(fr); 
 		String line;
 		while((line=br.readLine())!=null)
 		{
@@ -271,7 +281,7 @@ public class Course {
 			}
 
 		}
-		fr.close();    //closes the stream and release the resources
+		fr.close();    
 		return course;
 	}
 
@@ -311,7 +321,7 @@ public class Course {
 	public String updateCourse() {
 			try {
 
-				File file = new File(System.getProperty("user.dir") + "/src/Courses");    //creates a new file instance
+				File file = new File(System.getProperty("user.dir") + "/src/Courses");    
 				Scanner scanner = new Scanner(file);
 				ArrayList<String> textcontent = new ArrayList<String>();
 				while (scanner.hasNextLine()){
@@ -334,6 +344,7 @@ public class Course {
 				return "Error updating courses.";
 			}
 	}
+	
 	public int courseIndexVacancy(String courseIndex){
 		//count lines which has index
 		//vacancy - count = result
@@ -343,9 +354,9 @@ public class Course {
 			course = retrieveCourseByIndex(courseIndex);
 			int vacancy = course.getVacancy();
 
-			File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    //creates a new file instance
+			File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
 			FileReader fr=new FileReader(file);   //reads the file
-			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+			BufferedReader br=new BufferedReader(fr); 
 			String line;
 			while((line=br.readLine())!=null)
 			{
@@ -355,7 +366,7 @@ public class Course {
 				}
 
 			}
-			fr.close();    //closes the stream and release the resources
+			fr.close();    
 
 			return (vacancy-count);
 
@@ -365,11 +376,13 @@ public class Course {
 		return 0;
 	}
 
+	
+	
 	public boolean isCourseTaken(String courseCode) {
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Courses");    //creates a new file instance
+			File file=new File(System.getProperty("user.dir")+"/src/Courses");    
 			FileReader fr=new FileReader(file);   //reads the file
-			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+			BufferedReader br=new BufferedReader(fr); 
 			String line;
 			while((line=br.readLine())!=null)
 			{
@@ -380,7 +393,7 @@ public class Course {
 				}
 
 			}
-			fr.close();    //closes the stream and release the resources
+			fr.close();    
 		}
 		catch(IOException e){
 			e.printStackTrace();

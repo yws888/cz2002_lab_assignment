@@ -1,30 +1,75 @@
 package entity;
 import java.io.*;
-import java.util.ArrayList;
+
+/**
+ * AccessPeriod is the class representing the Access Period for students
+ * All students registered share the same Access Period
+ */
+
 public class AccessPeriod {
 	
+	  /**
+		Start Date of access period 	   
+		*/
+	
 	private String startDate;
+	
+	  /**
+		End Date of access period 	   
+		*/
 	private String endDate;
-
+	  /**
+		Start Time of access period 	   
+		*/
 	private String startTime;
+	  /**
+		End Time of access period 	   
+		*/
 	private String endTime;
-
+	/**
+	   * Getter method for Start Date of access period
+	   * 
+	   * @return Start Date of access period
+	   */
 
 	public String getStartDate() {
 		return startDate;
 	}
-
+	/**
+	   * Getter method for End Date of access period
+	   * 
+	   * @return End Date of access period
+	   */
 	public String getEndDate() {
 		return endDate;
 	}
+	/**
+	   * Getter method for Start Time of access period
+	   * 
+	   * @return Start Time of access period
+	   */
 
 	public String getStartTime() {
 		return startTime;
 	}
+	/**
+	   * Getter method for End Time of access period
+	   * 
+	   * @return End Time of access period
+	   */
 
 	public String getEndTime() {
 		return endTime;
 	}
+	
+	  /**
+	   * Constructor for AccessPeriod class.
+	   * 
+	   * @param startDate                   start Date
+	   * @param endDate                  	end Date
+	   * @param startTime               	start Time
+	   * @param endTime           			end Time
+	   */
 
 	public AccessPeriod(String startDate, String endDate, String startTime, String endTime) {
 		this.startDate = startDate;
@@ -32,10 +77,15 @@ public class AccessPeriod {
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
-	
-	public AccessPeriod() {
-	}
 
+	  /**
+	   * create/modify Access Period by (over)writing the text file.
+	   * 
+	   * @param startDate                   start Date
+	   * @param endDate                  	end Date
+	   * @param startTime               	start Time
+	   * @param endTime           			end Time
+	   */
 	
 	public static void createAccessPeriod(String startDate,  String endDate,String startTime, String endTime) {
 		try {
@@ -47,6 +97,13 @@ public class AccessPeriod {
 
 		}
 	}
+	/**
+	   * retrieves and returns AccessPeriod object by reading from text file
+	   * 
+	   * @return                          course object
+	   */
+	
+	
 	public static AccessPeriod retrieveAccessPeriod() { 		
 		AccessPeriod accessPeriod = null;
 		try {
