@@ -411,7 +411,7 @@ public class Student extends User{
     	
 		//transfer data from old file to temp file without that course info
     	String tempFile = "temp.txt";
-    	File oldFile = new File("registeredRecords");
+    	File oldFile = new File(System.getProperty("user.dir")+ "/src/registeredRecords");
     	File newFile = new File (tempFile);
     	
     	String currentLine;
@@ -421,7 +421,7 @@ public class Student extends User{
     		BufferedWriter bw = new BufferedWriter(fw);
     		PrintWriter pw = new PrintWriter(bw);
     		
-    		FileReader fr = new FileReader("registeredRecords");
+    		FileReader fr = new FileReader(System.getProperty("user.dir")+"/src/registeredRecords");
     		BufferedReader br = new BufferedReader(fr);
     		
     		while((currentLine = br.readLine()) != null)  {
@@ -440,7 +440,7 @@ public class Student extends User{
     		fw.close();
     		
     		oldFile.delete();
-    		File dump = new File("registeredRecords");
+    		File dump = new File(System.getProperty("user.dir")+ "/src/registeredRecords");
     		newFile.renameTo(dump);
     		
     		return "Course dropped successfully.";
