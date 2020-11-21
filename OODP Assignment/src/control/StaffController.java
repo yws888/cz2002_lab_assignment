@@ -11,8 +11,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Staffcontroller is the logic to realise use case of the options
+ * given to the admin in the StaffUI.
+ */
 public class StaffController {
-
+	
+	/**
+	   * Constructor for student object.
+	   *  
+	   * Adds a new student not found in the database
+	   * hash the password of the student so as to protect data
+	   * admin keys in information of new student into database.
+	   * 
+	   * @throws InterruptedException
+	   */
     public static void addStudent() throws InterruptedException {
         Scanner sc = new Scanner(System.in);
 
@@ -58,7 +71,12 @@ public class StaffController {
         sc.nextLine();
 
     }
-
+    
+    /**
+	   * Edits students access period in terms of the access date
+	   * as well as access time.
+	   * 
+	   */
     public static void editAccessPeriod() {
     	AccessPeriod accessPeriod = AccessPeriod.retrieveAccessPeriod();
     	System.out.println("Access period Dates are: " +accessPeriod.getStartDate() + " to " +  accessPeriod.getEndDate());
@@ -136,7 +154,13 @@ public class StaffController {
     }
 		
     }
-
+    
+    /**
+	   * Adds a new course not found in the database
+	   * and set the course's vacancy size as well as
+	   * the additional information of the new course.
+	   * 
+	   */
     public static void addCourse(){
         System.out.println("\nStarting Add Course Process: (Enter \"cancel\" to cancel process) ");
         Scanner sc = new Scanner(System.in);
@@ -269,7 +293,14 @@ public class StaffController {
         System.out.println("\nPress the \"ENTER\" key to be directed back to STARS main menu!");
         sc.nextLine();
     }
-
+    
+    
+    /**
+	   * Update the class schedule for both existing and
+	   * new courses in terms of lecture, lab and tutorial
+	   * Ensures that the time format follows the right format.
+	   * 
+	   */
     public static void updateClassSchedule(){
         Scanner sc = new Scanner(System.in);
         Course course = new Course();
@@ -456,7 +487,12 @@ public class StaffController {
 
 
     }
-
+    
+    /**
+	   * Courseconfiguration is the logic to realise use case 
+	   * of the options when configuring the course information
+	   * 
+	   */
     public static void courseConfiguration() {
         Scanner sc = new Scanner(System.in);
 
@@ -490,7 +526,12 @@ public class StaffController {
         } while (choice != 0);
         return;
     }
-
+    
+    /**
+	   * Updates existing course vacancy and ensure that the
+	   * target course vacancy to change to is larger than before.
+	   * 
+	   */
     private static void updateCourseVacancy() {
         Scanner sc = new Scanner(System.in);
         String courseIndex="",input="";
@@ -570,7 +611,12 @@ public class StaffController {
 
 
     }
-
+    
+    /**
+	   * Checks the course vacancy size by taking in the course
+	   * index and prints out the course vacancy.
+	   * 
+	   */
     public static void checkAvailableSlot() {
         Scanner sc = new Scanner(System.in);
         String courseIndex="";
@@ -602,7 +648,12 @@ public class StaffController {
             return;
         }
     }
-
+    
+    /**
+	   * Prints the list of students with the course index
+	   * as the input.
+	   * 
+	   */
     public static void printListByIndex() {
         //name gender nationality only
         Scanner sc = new Scanner(System.in);
@@ -642,7 +693,12 @@ public class StaffController {
             return;
         }
     }
-
+    
+    /**
+	   * Prints the list of students with the course code
+	   * as the input.
+	   * 
+	   */
     public static void printListByCourse() {
         //name gender nationality only
         Scanner sc = new Scanner(System.in);

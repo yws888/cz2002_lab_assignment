@@ -9,8 +9,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import boundary.StudentUI;
 
+/**
+ * Studentcontroller is the logic to realise use case of the options
+ * given to the student in the StudentUI.
+ */
 public class StudentController {
-    public static void addCourse(Student student) {
+    
+	/**
+	   * Adds a new course not found in the student's record
+	   * by asking the user for course index as input.
+	   * Ensures that the course either exists or does not
+	   * clash with student's schedule.
+	   * 
+	   * @param student				student object
+	   */
+	public static void addCourse(Student student) {
         Scanner sc = new Scanner(System.in);
         String courseIndex="";
         Course course = new Course();
@@ -119,7 +132,14 @@ public class StudentController {
         }
 
     }
-
+	
+	/**
+	   * Drops an existing course found in the student's record
+	   * by asking the user for course index as input.
+	   * Updates the database according to the student's request.
+	   * 
+	   * @param student				student object
+	   */
     public static void dropCourse(Student student) {
     	Scanner sc = new Scanner(System.in);
         String courseIndex="";
@@ -199,6 +219,13 @@ public class StudentController {
             e.printStackTrace();
         }
     }
+    
+    /**
+	   * Prints out registered courses under the student
+	   * found in the database
+	   * 
+	   * @param student				student object
+	   */
     public static void printRegisteredCourses(Student student) {
         try{
             Scanner sc = new Scanner(System.in);
@@ -225,7 +252,12 @@ public class StudentController {
             e.printStackTrace();
         }
     }
-
+    
+    
+    /**
+	   * Checks the vacancy of the course.
+	   * 
+	   */
     public static void checkCourseVacancy() {
         Scanner sc = new Scanner(System.in);
         String courseIndex="";
@@ -250,7 +282,16 @@ public class StudentController {
             return;
         }
     }
-
+    
+    /**
+	   * Changing of existing index found in the student's
+	   * database and ensure that the new index the student
+	   * is changing to, belongs to the same course code.
+	   * Ensure that the new course index do not clash with
+	   * the student's schedule as well.
+	   * 
+	   * @param student				student object
+	   */
     public static void changeIndex(Student student) {
         Scanner sc = new Scanner(System.in);
         String courseIndex, newCourseIndex ="";
@@ -364,7 +405,15 @@ public class StudentController {
 			}
         	
 }
-
+    
+    /**
+	   * Swaps index with an existing student found in the database.
+	   * Done by keying in the other student's username and password.
+	   * Ensure that both the index are registered by both students 
+	   * and that the index belong to the same course code.
+	   * 
+	   * @param student				student object
+	   */
     public static void swapIndex(Student student) {
     	LoginController logincontroller = new LoginController();
 		String username, password;
