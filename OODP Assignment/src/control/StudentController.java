@@ -464,6 +464,7 @@ public class StudentController {
 			if (courseIndex1.compareTo(courseIndex2)!=0) {
 				if(student.courseIndexTakenByStudent(courseIndex1)&& student2.courseIndexTakenByStudent(courseIndex2)){
 					if (course1.getCourseCode().equals(course2.getCourseCode())) {
+						if (!student.hasClashingSchedule(course2) && !student2.hasClashingSchedule(course1)){
 						//Swapping of index happens here
 						System.out.println("\n\nStudent: " + student.getName() + "," + student.getMatricnumber());
 						System.out.println("Index " + courseIndex1);
@@ -503,6 +504,12 @@ public class StudentController {
 							sc.nextLine();
 							}
 					}
+						else {
+							System.out.println("Swap in indexes will result in clashes in schedule with other courses.Please check and try again.");
+							swapIndex(student);
+						}
+					}
+					
 					else {
 						System.out.println("Two indexes do not belong to same course. Please try again.");
 						swapIndex(student);
@@ -513,6 +520,7 @@ public class StudentController {
 					swapIndex(student);
 				}
 			}
+		
 			else {
 				System.out.println("The course indexes are the same.Please try again.");
 				swapIndex(student);
