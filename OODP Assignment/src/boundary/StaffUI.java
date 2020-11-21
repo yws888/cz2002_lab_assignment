@@ -12,7 +12,7 @@ import entity.Staff;
 public class StaffUI implements UserUI {
 
 	/**
-	 *  Staff object of current user (Student) 
+	 *  Staff object of current user (Staff) 
 	 */
 	private Staff staff;
 //	private Staff getStaff() {
@@ -24,7 +24,7 @@ public class StaffUI implements UserUI {
 	
 	/**
 	 * Constructor for Staff object
-	 * @param staff
+	 * @param staff staff object
 	 */
 	public StaffUI(Staff staff) {
 		this.staff = staff;

@@ -19,7 +19,7 @@ public class StudentUI implements UserUI {
 	
 	/**
 	 * Get Student object details
-	 * @return
+	 * @return student object
 	 */
 	public Student getStudent() {
 		return this.student;
@@ -31,7 +31,7 @@ public class StudentUI implements UserUI {
 	
 	/**
 	 * Constructor for Student Object 
-	 * @param student
+	 * @param student   student object 
 	 */
 	public StudentUI(Student student) {
 		this.student = student;

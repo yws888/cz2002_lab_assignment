@@ -12,10 +12,15 @@ import entity.Student;
 import entity.User;
 
 /**
- * Controller to manage the 
- *
+ * Logincontroller is the logic to validate the Users during the login processes
  */
 public class LoginController {
+	/**
+	 * Checks for user in database and verifies login.
+	 * @param username       User's username
+	 * @param password       User's password
+	 * @return true if user exist in database, false if user does not exist in database
+	 */
 	public boolean verifylogin(String username, String password) {
 		User user = new User(username, password);
 		//if login true
@@ -25,6 +30,12 @@ public class LoginController {
 			return false;
 		}
 	}
+	
+	/**
+	 * Gets the mode of login (Staff/Student) based on the user type.
+	 * @param username    User's username
+	 * @return mode of login (integer form), 1 for Student mode, 2 for Staff mode, 3 if user type is not identified. 
+	 */
 	public int getLoginMode(String username) {
 		String type;
 		User user = new User();
@@ -39,11 +50,23 @@ public class LoginController {
 		return 3;
 	}
 	
+	/** 
+	 * @param username  Staff's username
+	 * @return staff object with Username, Password and Type
+	 */
+	
 	public Staff getStaff(String username) {
 		Staff staff = new Staff();
 		return staff.retrieveStaffInfo(username);
+
 		
 	}
+	
+	/** 
+	 * @param username  Student's username
+	 * @return student object with Username, name, matric number, gender and nationality
+	 */
+	
 	public Student getStudent(String username) {
 		Student student = new Student();
 		return student.retrieveStudentInfoByUsername(username);
@@ -61,6 +84,11 @@ public class LoginController {
 		}
 		return null;
 	}*/
+	
+	/**
+	 * Checks if time of access by student is within the access period. 
+	 * @return true if time of access is within access period, false if time of access is not within access period
+	 */
 	public static  boolean isValidAccessTime() {
 		AccessPeriod accessPeriod = AccessPeriod.retrieveAccessPeriod();
 		// LocalDateTime daten =LocalDateTime.now();
