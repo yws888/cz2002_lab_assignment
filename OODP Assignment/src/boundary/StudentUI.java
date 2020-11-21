@@ -88,7 +88,6 @@ public class StudentUI implements UserUI {
 				break;
 }
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Please select an option from 0-6");
 		}
 } while (choice != 0);

@@ -274,9 +274,9 @@ public class StudentController {
 				        return;
 				    }
 
-					if(!student.courseIndexTakenByStudent(newCourseIndex) &&  (course.retrieveCourseByIndex(courseIndex).getCourseCode().equals(course.retrieveCourseByIndex(newCourseIndex).getCourseCode()))){ // add condition that both course indexes must have the same course code
+					if(!student.courseIndexTakenByStudent(newCourseIndex) &&  (course.retrieveCourseByIndex(courseIndex).getCourseCode().equals(course.retrieveCourseByIndex(newCourseIndex).getCourseCode()))){ 
+						// add condition that both course indexes must have the same course code
 						 
-
 						System.out.println("New index: " + newCourseIndex);
 						// check if index has vacancies & check if new index timetable clashes
 						try {
@@ -336,7 +336,7 @@ public class StudentController {
 
 					}
 
-					System.out.println("Course index entered is taken already by the student");
+					System.out.println("Either Course index entered is taken already by the student or course index is for a different course code");
 				    System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
 				    sc.nextLine();
 				    return;

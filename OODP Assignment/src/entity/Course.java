@@ -81,9 +81,9 @@ public class Course {
 		return courseCode;
 	}
 
-	public void setCourseCode(String courseCode) {
-		this.courseCode = courseCode;
-	}
+//	public void setCourseCode(String courseCode) {
+//		this.courseCode = courseCode;
+//	}
 
 
 	public String getSchool() {
@@ -104,9 +104,6 @@ public class Course {
 		return noOfAUs;
 	}
 
-//	public void setNoOfAUs(int noOfAUs) {
-//		this.noOfAUs = noOfAUs;
-//	}
 	
 	/**
 	   * Getter method for courseIndex

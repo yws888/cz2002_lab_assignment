@@ -1,7 +1,7 @@
 package boundary;
 
 /**
- * Maker Interface to distinguish Staff and User Interface 
+ * Interface to fulfill Dependency Injection Principle
  *
  */
 
