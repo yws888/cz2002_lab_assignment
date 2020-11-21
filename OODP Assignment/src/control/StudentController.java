@@ -446,11 +446,13 @@ public class StudentController {
 			password = new String(ch);
 		}
 		
-		verifylogin = logincontroller.verifylogin(username,password);
+		
 		//Checks if the user trys to login to his/her own account again
-		if (username.equals(student.getUsername())) {
-			verifylogin=false; 
+		if (!username.equals(student.getUsername())) {
+			verifylogin = logincontroller.verifylogin(username,password);
 		}
+		
+		else { verifylogin=false; }
 		
 		if(verifylogin == true) {
 			System.out.println("Verified.");
