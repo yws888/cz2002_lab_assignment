@@ -1,4 +1,4 @@
-package boundary;
+/*package boundary;
 
 import control.CourseMgr;
 //import entity.Course;
@@ -29,5 +29,5 @@ public class CourseUI {
 
 
 	}
-}
+}*/
 

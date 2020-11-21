@@ -5,6 +5,8 @@ import control.LoginController;
 import entity.AccessPeriod;
 
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * User Interface for Users to Login  
@@ -70,9 +72,10 @@ public class LoginUI {
 									{
 										System.out.println("Sorry you are not allowed to access the portal now!");
 										System.out.println("Please log in at your specified access period!");
-										System.out.println("Your access period starts on " +AccessPeriod.retrieveAccessPeriod().get(0).getap() + " " +  AccessPeriod.retrieveAccessPeriod().get(0).getapt());
-										System.out.println("Your access period ends on " +AccessPeriod.retrieveAccessPeriod().get(1).getap() + " " +  AccessPeriod.retrieveAccessPeriod().get(1).getapt());
-
+										DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+										System.out.println("\nCurrent date and time is \t" + LocalDateTime.now().format(formatter));
+										System.out.println("\nYour access period starts on \t" +AccessPeriod.retrieveAccessPeriod().get(0).getap() + " " +  AccessPeriod.retrieveAccessPeriod().get(0).getapt());
+										System.out.println("Your access period ends on \t" +AccessPeriod.retrieveAccessPeriod().get(1).getap() + " " +  AccessPeriod.retrieveAccessPeriod().get(1).getapt());
 									}
 									
 									break;
@@ -88,6 +91,7 @@ public class LoginUI {
 							}
 						}else {
 							System.out.println("Login Unsuccessful.");
+							System.out.println("Username or password is incorrect or it is not found in the system");
 							//break;
 						}
 						

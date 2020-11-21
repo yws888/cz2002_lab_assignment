@@ -1,4 +1,4 @@
-package control;
+/*package control;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,10 +17,6 @@ public class CourseMgr {
 		courses.put(testCourse.getCourseCode(), testCourse);
 	}
 
-	/*public int checkVacancies(String courseCode, int courseIndex) {
-		//assume validation of input done in UI
-		return courses.get(courseCode).getcourseIndex(courseIndex).getNoOfVacancies();
-		}*/
 	
 	
 	//validate if course index exists
@@ -46,4 +42,4 @@ public class CourseMgr {
 	 }
 
 	
-}
+}*/
