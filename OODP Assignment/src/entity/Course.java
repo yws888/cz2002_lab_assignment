@@ -6,7 +6,6 @@ import java.util.ArrayList;
 //import java.util.HashMap;
 import java.util.Scanner;
 
-//import enumeration.SessionType;
 
 public class Course {
 	//datetime standard
@@ -90,9 +89,9 @@ public class Course {
 		return school;
 	}
 
-	public void setSchool(String school) {
-		this.school = school;
-	}
+//	public void setSchool(String school) {
+//		this.school = school;
+//	}
 
 	/**
 	   * Getter method for no of AUs.
@@ -284,28 +283,28 @@ public class Course {
 		String day="", result;
 		switch(Integer.parseInt(scheduleArray[1])){
 			case 1:
-				day = "Monday";
+				day = "Monday   ";
 				break;
 			case 2:
-				day = "Tuesday";
+				day = "Tuesday  ";
 				break;
 			case 3:
 				day = "Wednesday";
 				break;
 			case 4:
-				day = "Thursday";
+				day = "Thursday ";
 				break;
 			case 5:
-				day = "Friday";
+				day = "Friday   ";
 				break;
 			case 6:
-				day = "Saturday";
+				day = "Saturday ";
 				break;
 			case 7:
-				day = "Sunday";
+				day = "Sunday   ";
 				break;
 		}
-		result = "Week:"+scheduleArray[0]+"\t"+day+"\t"+scheduleArray[2]+" - "+scheduleArray[3]+"\t Location:"+scheduleArray[4];
+		result = "Week:"+scheduleArray[0]+"\t"+day+" \t"+scheduleArray[2]+" - "+scheduleArray[3]+"\t Location:"+scheduleArray[4];
 		return result;
 
 	}

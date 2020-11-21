@@ -582,6 +582,12 @@ public class StaffController {
         if(course.isIndexTaken(courseIndex)){
             int vacancy = course.courseIndexVacancy(courseIndex);
             System.out.println("Course vacancy of index '"+courseIndex+"' is "+vacancy);
+            try {
+				course = course.retrieveCourseByIndex(courseIndex);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             System.out.println("Total size of index '"+courseIndex+"' is "+course.getVacancy());
             System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
             sc.nextLine();
@@ -639,7 +645,7 @@ public class StaffController {
         String courseCode="";
         Course course = new Course();
         Student student = new Student();
-        System.out.println("Please enter the course index to print student list:");
+        System.out.println("Please enter the course code to print student list:");
         courseCode = sc.nextLine();
         if(courseCode.toLowerCase().equals("cancel")){
             System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
