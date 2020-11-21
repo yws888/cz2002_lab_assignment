@@ -582,6 +582,7 @@ public class StaffController {
         if(course.isIndexTaken(courseIndex)){
             int vacancy = course.courseIndexVacancy(courseIndex);
             System.out.println("Course vacancy of index '"+courseIndex+"' is "+vacancy);
+            System.out.println("Total size of index '"+courseIndex+"' is "+course.getVacancy());
             System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
             sc.nextLine();
             return;

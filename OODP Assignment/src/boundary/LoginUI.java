@@ -36,6 +36,7 @@ public class LoginUI {
 			System.out.println("====MySTARS====");
 			System.out.println("1. Login");
 			System.out.println("2. Exit");
+			System.out.println("3. Temp admin tester"); 			//to be removed later, for ease of testing now
 		    			
 				try {
 					userinput = Integer.parseInt(sc.next());
@@ -102,6 +103,12 @@ public class LoginUI {
 						System.out.println("Thank you for using MyStars, goodbye!");
 						System.exit(0);
 						break;
+					case 3:
+						userUI = new StaffUI(logincontroller.getStaff("Admin"));
+						((StaffUI) userUI).initStaffUI();
+						break;
+						
+						
 					
 					//default error input message
 					default: 
