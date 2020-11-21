@@ -10,7 +10,7 @@ import java.util.Scanner;
 import boundary.StudentUI;
 
 /**
- * Studentcontroller is the logic to realise use case of the options
+ * StudentController contains the logic to realise use case of the options
  * given to the student in the StudentUI.
  */
 public class StudentController {
@@ -391,12 +391,13 @@ public class StudentController {
 
 					}
 
-					System.out.println("Either Course index entered is taken already by the student or course index is for a different course code");
+					System.out.println("Either Course index entered is taken already by the student or course index is for a different course code or course index doesnt exist");
 				    System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
 				    sc.nextLine();
 				    return;
 				}else{
-				    System.out.println("\nEither student is not registered for that course index, course index is for a different course code, or new course index does not exist. \nPress the \"ENTER\" key to be directed back to the previous menu!");
+				    System.out.println("\nStudent is not currently registered for that course index.  \nPress the \"ENTER\" key to be directed back to the previous menu!");
+				    //Course index could be for a different course code, or new course index does not exist.
 				    sc.nextLine();
 				    return;
 				}

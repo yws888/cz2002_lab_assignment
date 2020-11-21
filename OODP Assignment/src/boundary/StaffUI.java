@@ -6,7 +6,7 @@ import entity.Staff;
 
 /**
  * Boundary Class that limits the user to carry out only Staff functions 
- * A subclass of the UserUI class
+ *  Implements the UserUI interface
  */
 
 public class StaffUI implements UserUI {
@@ -54,7 +54,6 @@ public class StaffUI implements UserUI {
 			System.out.print("\nEnter the number of your choice: ");
 			
 			
-			//if(sc.hasNextInt()) {
 			try {
 
 				choice = Integer.parseInt(sc.next());
@@ -87,7 +86,6 @@ public class StaffUI implements UserUI {
 						break;
 				}
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
 				System.out.println("Please select an option from 0-6");
 			}
 			

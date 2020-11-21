@@ -18,8 +18,9 @@ public class StudentUI implements UserUI {
 	private Student student;
 	
 	/**
-	 * Get Student object details
-	 * @return
+	 * Get Student object
+	 * 
+	 * @return Student object
 	 */
 	public Student getStudent() {
 		return this.student;
@@ -30,7 +31,7 @@ public class StudentUI implements UserUI {
 //	}
 	
 	/**
-	 * Constructor for Student Object 
+	 * Constructor for StudentUI Object 
 	 * @param student
 	 */
 	public StudentUI(Student student) {
@@ -42,14 +43,11 @@ public class StudentUI implements UserUI {
 	 */
 	public void initStudentUI() {
 		int choice = -1;
-//		CourseMgr courseMgr = new CourseMgr();
-//		CourseUI courseUI = new CourseUI();
-
 
 		Scanner sc = new Scanner(System.in);
 		
 		do {
-		System.out.println("\nWelcome to STARS (Student): "+this.student.getUsername());
+		System.out.println("\nWelcome to STARS (Student): "+this.student.getName());
 		System.out.println("1. Add Course");
 		System.out.println("2. Drop Course");
 		System.out.println("3. Check/Print Courses Registered");
@@ -92,7 +90,7 @@ public class StudentUI implements UserUI {
 		}
 } while (choice != 0);
 
-		return;//temp code
+		return;
 	}
 
 }

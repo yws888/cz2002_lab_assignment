@@ -37,6 +37,7 @@ public class LoginUI {
 			System.out.println("1. Login");
 			System.out.println("2. Exit");
 			System.out.println("3. Admin tester"); 			//to be removed later, for ease of testing now
+			//all passwords for my added students are b
 		    			
 				try {
 					userinput = Integer.parseInt(sc.next());
@@ -94,8 +95,8 @@ public class LoginUI {
 									break;
 							}
 						}else {
-							System.out.println("Login Unsuccessful.");
-							System.out.println("Username or password is incorrect or it is not found in the system");
+							System.out.println("\nLogin Unsuccessful.");
+							System.out.println("Username or password is incorrect or is not registered in the system");
 							//break;
 						}
 						

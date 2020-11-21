@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Staffcontroller is the logic to realise use case of the options
+ * StaffController contains the logic to realise use case of the options
  * given to the admin in the StaffUI.
  */
 public class StaffController {
@@ -343,9 +343,9 @@ public class StaffController {
             System.out.print("\n2. Lab Schedule");
             System.out.print("\n3. Tutorial Schedule");
             System.out.println("\nPlease select an option:");
-            input = sc.nextLine();
             int update_option;
             while(true){
+                input = sc.nextLine();
                 if(Ultility.isNumeric(input)) {
                     update_option = Integer.parseInt(input); //remember this option
                     if (update_option >= 1 && update_option <= 3){
@@ -415,8 +415,8 @@ public class StaffController {
 
                         System.out.println("=====SUMMARY=====");
                         System.out.print("Class Type:\t\t" + classType);
-                        System.out.print("\nClass Frequency:\t\t" + week);
-                        System.out.print("\nDay of the week:\t\t" + day);
+                        System.out.print("\nClass Frequency:\t" + week);
+                        System.out.print("\nDay of the week:\t" + day);
                         System.out.print("\nStart Time:\t\t" + timeStart);
                         System.out.print("\nEnd Time:\t\t" + timeEnd);
                         System.out.print("\nClass Venue:\t\t" + classVenue);
