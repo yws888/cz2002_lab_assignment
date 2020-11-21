@@ -39,8 +39,6 @@ public class StaffUI implements UserUI {
 	
 	public void initStaffUI() throws InterruptedException {
 		int choice = -1;
-		//boolean isChoice0 = false;
-		//boolean inputValid = false;
 
 		Scanner sc = new Scanner(System.in);
 

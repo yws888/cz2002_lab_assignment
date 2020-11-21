@@ -192,7 +192,7 @@ public class Student extends User{
 	public boolean hasClashingSchedule(Course course) throws IOException {
 		String matriculation_no = this.matricnumber;
 		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
-		FileReader fr=new FileReader(file);   //reads the file
+		FileReader fr=new FileReader(file);   
 		BufferedReader br=new BufferedReader(fr);  
 		String line;
 		String [] courseSchedule, tempCourseSchedule;
@@ -267,7 +267,8 @@ public class Student extends User{
 					}
 				}
 				//compare lec with all 3
-				if(!course.getLectureSchedule().equals("NONE")) {
+				//if same course code, dont compare since same course but difft index supposed to have the same lecture slots
+				if(!course.getLectureSchedule().equals("NONE") && !course.getCourseCode().equals(tempCourse.getCourseCode())) {
 					courseSchedule = course.getLectureSchedule().split(",");
 					courseWeek = courseSchedule[0];
 					courseDay = courseSchedule[1];

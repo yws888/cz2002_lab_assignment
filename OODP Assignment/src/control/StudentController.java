@@ -205,6 +205,19 @@ public class StudentController {
             String registeredCourses = student.printCourseList();
             System.out.println("=====Registered Courses=====");
             System.out.print(registeredCourses);
+            System.out.println("\n=============================");
+            ArrayList<Course> courses = student.retrieveRegisteredCourses();
+            for (Course course :courses) {
+            	System.out.println("\nCourse code: " + course.getCourseCode() + " Course index: " + course.getCourseIndex());
+            	System.out.println();
+            	System.out.print("\n---Lecture Schedule---");
+                System.out.print("\n"+course.printSchedule(course.getLectureSchedule()));
+                System.out.print("\n---Lab Schedule---");
+                System.out.print("\n"+course.printSchedule(course.getLabSchedule()));
+                System.out.print("\n---Tutorial Schedule---");
+                System.out.print("\n"+course.printSchedule(course.getTutorialSchedule()));
+                System.out.println("\n=============================");
+            }
             System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
             sc.nextLine();
             return;
@@ -282,16 +295,17 @@ public class StudentController {
 						try {
 							if ((course.courseIndexVacancy(newCourseIndex) > 0) && (!student.hasClashingSchedule(course.retrieveCourseByIndex(newCourseIndex))) ) {
 								Course tempCourse1 = course.retrieveCourseByIndex(courseIndex);
-								System.out.println("\nIndex " + courseIndex);
+								System.out.println("\nIndex " + courseIndex + ":");
 								System.out.print("\n---Lecture Schedule---");
 				                System.out.print("\n"+tempCourse1.printSchedule(tempCourse1.getLectureSchedule()));
 				                System.out.print("\n---Lab Schedule---");
 				                System.out.print("\n"+tempCourse1.printSchedule(tempCourse1.getLabSchedule()));
 				                System.out.print("\n---Tutorial Schedule---");
 				                System.out.print("\n"+tempCourse1.printSchedule(tempCourse1.getTutorialSchedule()));
+				                System.out.println();
 				                
 								Course tempCourse2= course.retrieveCourseByIndex(newCourseIndex);
-								System.out.println("\nIndex " + newCourseIndex);
+								System.out.println("\nIndex " + newCourseIndex + ":");
 								System.out.print("\n---Lecture Schedule---");
 				                System.out.print("\n"+tempCourse2.printSchedule(tempCourse2.getLectureSchedule()));
 				                System.out.print("\n---Lab Schedule---");
