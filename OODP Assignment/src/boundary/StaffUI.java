@@ -4,8 +4,16 @@ import java.util.Scanner;
 import control.StaffController;
 import entity.Staff;
 
+/**
+ * Boundary Class that limits the user to carry out only Staff functions 
+ * A subclass of the UserUI class
+ */
+
 public class StaffUI implements UserUI {
 
+	/**
+	 *  Staff object of current user (Student) 
+	 */
 	private Staff staff;
 //	private Staff getStaff() {
 //		return this.staff;
@@ -13,12 +21,22 @@ public class StaffUI implements UserUI {
 //	private void setStaff(Staff staff) {
 //		this.staff = staff;
 //	}
+	
+	/**
+	 * Constructor for Staff object
+	 * @param staff
+	 */
 	public StaffUI(Staff staff) {
 		this.staff = staff;
 	}
 
 	public StaffUI(){}
 
+	/**
+	 * User Interface for Staff Member
+	 * @throws InterruptedException
+	 */
+	
 	public void initStaffUI() throws InterruptedException {
 		int choice = -1;
 		//boolean isChoice0 = false;

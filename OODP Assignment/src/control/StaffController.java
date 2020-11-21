@@ -74,7 +74,7 @@ public class StaffController {
 			if(startDate.toLowerCase().equals("cancel")){
 	            System.out.println("\n Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
 	            sc.nextLine();
-	            sc.close();
+	            //sc.close();
 	            return;
 	        }
 			System.out.println("Please enter Access Period Start Time: ");
@@ -85,7 +85,7 @@ public class StaffController {
 			if(startTime.toLowerCase().equals("cancel")){
 	            System.out.println("\n Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
 	            sc.nextLine();
-	            sc.close();
+	            //sc.close();
 	            return;
 	        }
 			System.out.println("Please enter Access Period End Date: ");
@@ -96,7 +96,7 @@ public class StaffController {
 			if(endDate.toLowerCase().equals("cancel")){
 	            System.out.println("\n Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
 	            sc.nextLine();
-	            sc.close();
+	            //sc.close();
 	            return;
 	        }
 			System.out.println("Please enter Access Period End Time: ");
@@ -107,17 +107,24 @@ public class StaffController {
 			if(endTime.toLowerCase().equals("cancel")){
 	            System.out.println("\n Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
 	            sc.nextLine();
-	            sc.close();
+	            //sc.close();
 	            return;
 	        }
-				if (startDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})") && startTime.matches("([0-9]{2}):([0-9]{2})") &&
-						endDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})") && endTime.matches("([0-9]{2}):([0-9]{2})")	) {
-					AccessPeriod accessperiod = new AccessPeriod();
-					accessperiod.createAccessPeriod(startDate,startTime, endDate, endTime);
-					System.out.println("Access time is updated Successfully!\n Press ENTER to return to previous menu");
-					sc.nextLine();
-					sc.close();
-					break;
+			    
+			/*if (startDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})") && startTime.matches("([0-9]{2}):([0-9]{2})") &&
+					endDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})") && endTime.matches("([0-9]{2}):([0-9]{2})")	)*/
+			
+				if (Ultility.isValidFormat("HH:mm", startTime) && Ultility.isValidFormat("HH:mm", endTime)&& Ultility.isValidFormat("yyyy-MM-dd", startDate) && Ultility.isValidFormat("yyyy-MM-dd", endDate)) {
+					if (Ultility.isValidTimeRange(startDate,endDate,startTime,endTime)) {
+						AccessPeriod accessperiod = new AccessPeriod();
+						accessperiod.createAccessPeriod(startDate,startTime, endDate, endTime);
+						System.out.println("Access time is updated Successfully!\n Press ENTER to return to previous menu");
+						sc.nextLine();
+						//sc.close();
+						return;}
+					
+					else {System.out.println("Starting Access Date is later than Ending Access Date. Please try again.");}
+					
 				}
 				
 				else 

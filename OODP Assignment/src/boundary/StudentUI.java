@@ -5,18 +5,41 @@ import java.util.Scanner;
 import control.StudentController;
 import entity.Student;
 
+/**
+ * Boundary Class that limits the user to carry out only Student functions 
+ * A subclass of the UserUI class
+ */
+
 public class StudentUI implements UserUI {
 
+	/**
+	 *  Student object of current User(Student) 
+	 */ 
 	private Student student;
+	
+	/**
+	 * Get Student object details
+	 * @return
+	 */
 	public Student getStudent() {
 		return this.student;
 	}
+	
 //	private void setStudent(Student student) {
 //		this.student = student;
 //	}
+	
+	/**
+	 * Constructor for Student Object 
+	 * @param student
+	 */
 	public StudentUI(Student student) {
 		this.student = student;
 	}
+	
+	/**
+	 * User Interface for Student 
+	 */
 	public void initStudentUI() {
 		int choice = -1;
 //		CourseMgr courseMgr = new CourseMgr();

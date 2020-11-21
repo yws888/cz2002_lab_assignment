@@ -6,8 +6,18 @@ import entity.AccessPeriod;
 
 import java.io.*;
 
+/**
+ * User Interface for Users to Login  
+ *
+ */
+
 public class LoginUI {
 
+	/**
+	 * Main Function to run in Console
+	 * @param args
+	 * @throws InterruptedException
+	 */
 	
 	public static void main(String[] args) throws InterruptedException {
 		LoginController logincontroller = new LoginController();

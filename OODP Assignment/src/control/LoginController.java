@@ -8,6 +8,10 @@ import entity.Staff;
 import entity.Student;
 import entity.User;
 
+/**
+ * Controller to manage the 
+ *
+ */
 public class LoginController {
 	public boolean verifylogin(String username, String password) {
 		User user = new User(username, password);
