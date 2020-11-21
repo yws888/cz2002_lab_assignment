@@ -255,7 +255,7 @@ public class StudentController {
     
     
     /**
-	   * Checks the vacancy of the course.
+	   * Checks the number of vacancies in a course.
 	   * 
 	   */
     public static void checkCourseVacancy() {

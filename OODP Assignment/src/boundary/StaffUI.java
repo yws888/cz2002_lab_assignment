@@ -15,29 +15,22 @@ public class StaffUI implements UserUI {
 	 *  Staff object of current user (Staff) 
 	 */
 	private Staff staff;
-//	private Staff getStaff() {
-//		return this.staff;
-//	}
-//	private void setStaff(Staff staff) {
-//		this.staff = staff;
-//	}
 	
 	/**
-	 * Constructor for Staff object
-	 * @param staff staff object
+	 * Constructor for StaffUI
+	 * @param staff 	staff object
 	 */
 	public StaffUI(Staff staff) {
 		this.staff = staff;
 	}
 
-	public StaffUI(){}
+	//public StaffUI(){}
 
 	/**
-	 * User Interface for Staff Member
-	 * @throws InterruptedException
+	 * Initialises User Interface for Staff Member
 	 */
 	
-	public void initStaffUI() throws InterruptedException {
+	public void initStaffUI()  {
 		int choice = -1;
 
 		Scanner sc = new Scanner(System.in);
@@ -87,6 +80,8 @@ public class StaffUI implements UserUI {
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Please select an option from 0-6");
+			}catch (InterruptedException e) {
+				
 			}
 			
 						

@@ -9,19 +9,22 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * User Interface for Users to Login  
+ * User Interface Boundary Class for Users to Login  
  *
  */
 
 public class LoginUI {
 
-	/**
-	 * Main Function to run in Console
-	 * @param args
-	 * @throws InterruptedException
-	 */
+
 	
-	public static void main(String[] args) throws InterruptedException {
+	  /**
+	   * Main function that are run in the console.
+	   * 
+	   * @param args the default parameter for main function, not used in this case
+	   * @throws InterruptedException
+	   */
+	
+	public static void main(String[] args) throws InterruptedException  {
 		LoginController logincontroller = new LoginController();
 		String username, password;
 		int userinput = -1;
@@ -122,7 +125,6 @@ public class LoginUI {
 				} catch (NumberFormatException e) {
 					System.out.println("Pls select option 1 or 2");
 					}
-				//break;
 		} while(true);
 
 	}

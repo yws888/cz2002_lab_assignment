@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+  * Student represents a student in the school.
+ *
+ */
 public class Student extends User{
 	  /**
 	   * The name of the student.
@@ -55,11 +59,11 @@ public class Student extends User{
 	  /**
 	   * Constructor for Student object.
 	   * 
-	   * @param username                            username of the student
+	   * @param username                         username of the student
 	   * @param name                             name of the student
-	   * @param matricnumber                           matric number of the student
+	   * @param matricnumber                     matric number of the student
 	   * @param gender                           gender of the student
-	   * @param nationality                           nationality of the student
+	   * @param nationality                      nationality of the student
 	   */	
 	
 	public Student(String username, String name, String matricnumber, String gender, String nationality) {
@@ -138,6 +142,8 @@ public class Student extends User{
 		}
 		return sb.toString();
 	}
+	
+	
 	public void createStudent(String username, String password, String salt, String name, String matriculationNumber, String gender, String nationality) {
 		try {
 
@@ -170,6 +176,8 @@ public class Student extends User{
 		return false;
 
 	}
+	
+	//returns true if time overlaps?
 
 	public boolean timeOverlap(String startTime1, String endTime1, String startTime2, String endTime2){
 		//ranges overlap if (StartDate1 <= EndDate2) and (StartDate2 <= EndDate1)
@@ -177,7 +185,9 @@ public class Student extends User{
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 		dateFormat.format(date);
 		try {
-			if((dateFormat.parse(startTime1).before(dateFormat.parse(endTime2)) || dateFormat.parse(startTime1).equals(dateFormat.parse(endTime2))) && (dateFormat.parse(startTime2).before(dateFormat.parse(endTime1)) || dateFormat.parse(startTime2).equals(dateFormat.parse(endTime1)))){
+			if((dateFormat.parse(startTime1).before(dateFormat.parse(endTime2)) || dateFormat.parse(startTime1).equals(dateFormat.parse(endTime2))) 
+					&& (dateFormat.parse(startTime2).before(dateFormat.parse(endTime1)) || dateFormat.parse(startTime2).equals(dateFormat.parse(endTime1)))){
+				// shld add && (dateFormat.parse(startTime1).before(dateFormat.parse(endTime2)) ?
 				return true;
 			}else{
 				return false;
