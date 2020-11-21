@@ -35,18 +35,36 @@ public class Student extends User{
 	
 	private String nationality;
 
+	/**
+	   * Getter method for name of the student.
+	   * 
+	   * @return name of the student
+	   */
 	public String getName() {
 		return name;
 	}
+	/**
+	   * Getter method for matriculation number of the student.
+	   * 
+	   * @return matriculation number of the student
+	   */
 
 	public String getMatricnumber() {
 		return matricnumber;
 	}
-
+	/**
+	   * Getter method for gender of the student.
+	   * 
+	   * @return gender of the student
+	   */
 	public String getGender() {
 		return gender;
 	}
-
+	/**
+	   * Getter method for nationality of the student.
+	   * 
+	   * @return nationality of the student
+	   */
 
 	public String getNationality() {
 		return nationality;
@@ -74,6 +92,12 @@ public class Student extends User{
 		this.nationality = nationality;
 	}
 	
+	/**
+	   * retrieves and returns Student object from corresponding username 
+	   * by reading & matching from text file
+	   * 
+	   * @return                          Student object
+	   */
 	public Student retrieveStudentInfoByUsername(String username) {
 		Student student = new Student();
 		//ArrayList<User> studentlist = retrieveStudentLoginDetails();
@@ -144,6 +168,16 @@ public class Student extends User{
 	}
 	
 	
+	/**
+	 * @param username
+	 * @param password
+	 * @param salt
+	 * @param name
+	 * @param matriculationNumber
+	 * @param gender
+	 * @param nationality
+	 */
+	
 	public void createStudent(String username, String password, String salt, String name, String matriculationNumber, String gender, String nationality) {
 		try {
 
@@ -155,7 +189,15 @@ public class Student extends User{
 
 		}
 	}
+	
+	
 
+	/**
+	 * checks if course Index input is already taken By Student
+	 * @param courseIndex		course Index
+	 * @return true 			if course Index input is already taken By Student, false otherwise
+	 * @throws IOException		
+	 */
 	public boolean courseIndexTakenByStudent(String courseIndex) throws IOException {
 		String matriculation_no = this.matricnumber;
 		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
@@ -179,6 +221,13 @@ public class Student extends User{
 	
 	//returns true if time overlaps?
 
+	/**
+	 * @param startTime1
+	 * @param endTime1
+	 * @param startTime2
+	 * @param endTime2
+	 * @return
+	 */
 	public boolean timeOverlap(String startTime1, String endTime1, String startTime2, String endTime2){
 		//ranges overlap if (StartDate1 <= EndDate2) and (StartDate2 <= EndDate1)
 		Date date = new Date();
@@ -199,6 +248,11 @@ public class Student extends User{
 	}
 
 
+	/**
+	 * @param course
+	 * @return
+	 * @throws IOException
+	 */
 	public boolean hasClashingSchedule(Course course) throws IOException {
 		String matriculation_no = this.matricnumber;
 		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
@@ -318,6 +372,12 @@ public class Student extends User{
 	return false;
 
 	}
+	/**
+	 * retrieve  Courses Student has Registered for
+	 * 
+	 * @return ArrayList<Course> containing Courses Student has Registered for 		
+	 * @throws IOException
+	 */
 	public ArrayList<Course> retrieveRegisteredCourses() throws IOException {
 		ArrayList<String> indexList = new ArrayList<String>();
 		String matriculation_no = this.matricnumber;
@@ -353,6 +413,10 @@ public class Student extends User{
 
 	}
 
+	/**
+	 * @return
+	 * @throws IOException
+	 */
 	public String printCourseList() throws IOException {
 		ArrayList<Course> courseList = retrieveRegisteredCourses();
 		StringBuilder sb = new StringBuilder();
@@ -378,6 +442,11 @@ public class Student extends User{
 
 	}
 
+	/**
+	 * retrieves Total AUs Taken
+	 * @return Total AUs Taken
+	 * @throws IOException
+	 */
 	public int retrieveTotalAUTaken() throws IOException {
 		ArrayList<Course> registeredCourses = retrieveRegisteredCourses();
 		int count=0;
@@ -387,6 +456,13 @@ public class Student extends User{
 		return count;
 	}
 	
+	/**
+	 * enroll Student in a course by adding a new record to registeredRecords file
+	 * 
+	 * @param course			{@link Course} object to enroll Student in
+	 * @param status			ACCEPTED or WAITLIST
+	 * @return					different messages
+	 */
 	public String enrollStudent(Course course, String status){
 			try {
 				File file = new File(System.getProperty("user.dir") + "/src/registeredRecords");    
@@ -401,6 +477,11 @@ public class Student extends User{
 				return "Error adding courses.";
 			}
 	}
+	
+	/**
+	 * @param course
+	 * @return
+	 */
 	
 	public String dropStudentCourse(Course course) {
     	String courseCodeToRemove = course.getCourseCode();
@@ -448,6 +529,11 @@ public class Student extends User{
     	}
     }
 
+	/**
+	 * @param courseIndex
+	 * @return
+	 * @throws IOException
+	 */
 	public boolean courseCodeTakenByStudent(String courseIndex) throws IOException {
 		Course course = new Course();
 		course = course.retrieveCourseByIndex(courseIndex);
@@ -472,6 +558,11 @@ public class Student extends User{
 
 	}
 
+	/**
+	 * @param courseIndex
+	 * @return
+	 * @throws IOException
+	 */
 	public ArrayList<Student> studentListByIndex(String courseIndex) throws IOException {
 		//name gender nationality only
 		ArrayList<Student> studentList = new ArrayList<>();
@@ -492,6 +583,11 @@ public class Student extends User{
 		return studentList;
 
 	}
+	/**
+	 * @param courseCode
+	 * @return
+	 * @throws IOException
+	 */
 	public ArrayList<Student> studentListByCourseCode(String courseCode) throws IOException {
 		//name gender nationality only
 		ArrayList<Student> studentList = new ArrayList<>();
@@ -512,10 +608,19 @@ public class Student extends User{
 		return studentList;
 	}
 	
+	
+	
+	/**
+	 * 
+	 * changes course Index For the Student in the file
+	 * 
+	 * @param course		{@link Course} object 
+	 * @return				message "index changed successfully." if Index was changed, "index was not changed" or 	"FileNotFoundException" otherwise
+	 */
 	public String changeIndexForStudent(Course course){
 		try {
 			File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");      
-			String message = "oh no";
+			String message = "index was not changed";
 			Scanner scanner = new Scanner(file);
 			ArrayList<String> textcontent = new ArrayList<String>();
 			while (scanner.hasNextLine()){
@@ -543,6 +648,12 @@ public class Student extends User{
 		}
 }
 
+	/**
+	 * @param courseIndex
+	 * @param availableSlots
+	 * @return
+	 * @throws IOException
+	 */
 	public String removeStudentsFromWaitList(String courseIndex, int availableSlots) throws IOException {
 		//remember trimtosize
 		int counter = availableSlots;

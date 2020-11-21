@@ -18,31 +18,18 @@ public class StudentUI implements UserUI {
 	private Student student;
 	
 	/**
-<<<<<<< HEAD
-	 * Get Student object
+	 * Get Student object details
 	 * 
 	 * @return Student object
-=======
-	 * Get Student object details
-	 * @return student object
->>>>>>> f762b631bf01a11a493dfe31abb8e81e8d247811
 	 */
 	public Student getStudent() {
 		return this.student;
 	}
 	
-//	private void setStudent(Student student) {
-//		this.student = student;
-//	}
 	
 	/**
-<<<<<<< HEAD
 	 * Constructor for StudentUI Object 
-	 * @param student
-=======
-	 * Constructor for Student Object 
 	 * @param student   student object 
->>>>>>> f762b631bf01a11a493dfe31abb8e81e8d247811
 	 */
 	public StudentUI(Student student) {
 		this.student = student;

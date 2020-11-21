@@ -489,10 +489,11 @@ public class StaffController {
     }
     
     /**
-	   * Courseconfiguration is the logic to realise use case 
+	   * Course configuration is the logic to realise use case 
 	   * of the options when configuring the course information
 	   * 
 	   */
+    //this should be in StaffUI
     public static void courseConfiguration() {
         Scanner sc = new Scanner(System.in);
 

@@ -9,19 +9,42 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class PasswordManager {
+    /**
+     * 
+     */
     private static final Random RANDOM = new SecureRandom();
+    /**
+     *  number of iterations
+     */
     private static final int ALGO_ITERATIONS = 10000;
+    /**
+     * 
+     */
     private static final int KEY_LENGTH = 256;
+    /**
+     *  name of algorithm
+     */
     private static final String HASHALGO = "PBKDF2WithHmacSHA1";
 
+    /**
+     * 
+     */
     private PasswordManager(){}
 
+    /**
+     * @return
+     */
     public static byte[] getRandomSalt() {
         byte[] salt = new byte[16];
         RANDOM.nextBytes(salt);
         return salt;
     }
 
+    /**
+     * @param password
+     * @param salt
+     * @return
+     */
     public static byte[] hash(char[] password, byte[] salt){
         PBEKeySpec spec = new PBEKeySpec(password, salt, ALGO_ITERATIONS, KEY_LENGTH);
         Arrays.fill(password, Character.MIN_VALUE);
@@ -34,6 +57,12 @@ public class PasswordManager {
             spec.clearPassword();
         }
     }
+    /**
+     * @param password
+     * @param salt
+     * @param expectedHash
+     * @return
+     */
     public static boolean PasswordValidation(char[] password, byte[] salt, byte[] expectedHash) {
         byte[] pwdHash = hash(password, salt);
         Arrays.fill(password, Character.MIN_VALUE);
@@ -43,6 +72,10 @@ public class PasswordManager {
         }
         return true;
     }
+    /**
+     * @param input
+     * @return
+     */
     public static String hexEncoder( byte[] input ){
         StringBuffer result = new StringBuffer();
         char[] digits = {'0', '1', '2', '3', '4','5','6','7','8','9','a','b','c','d','e','f'};
@@ -53,6 +86,10 @@ public class PasswordManager {
         }
         return result.toString();
     }
+    /**
+     * @param input
+     * @return
+     */
     public static byte[] hexDecoder(String input) {
         int len = input.length();
         byte[] data = new byte[len / 2];
@@ -64,6 +101,10 @@ public class PasswordManager {
     }
 
 
+    /**
+     * @param length
+     * @return
+     */
     public static String generateRNGPassword(int length){
         StringBuilder sb = new StringBuilder(length);
         for(int i = 0; i < length; i++){

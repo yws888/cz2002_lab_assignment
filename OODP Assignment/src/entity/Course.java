@@ -65,9 +65,6 @@ public class Course {
 		return courseName;
 	}
 
-//	public void setCourseName(String courseName) {
-//		this.courseName = courseName;
-//	}
 
 	/**
 	   * Getter method for course code.
@@ -79,14 +76,15 @@ public class Course {
 		return courseCode;
 	}
 
-
+	/**
+	   * Getter method for school offering the course.
+	   * 
+	   * @return school
+	   */
 	public String getSchool() {
 		return school;
 	}
 
-//	public void setSchool(String school) {
-//		this.school = school;
-//	}
 
 	/**
 	   * Getter method for no of AUs.
@@ -148,7 +146,22 @@ public class Course {
 	public Course(){
 
 	}
+	
+	
 
+	/**
+	 * Constructor for Course object
+	 * 
+	 * @param courseCode
+	 * @param courseName
+	 * @param school
+	 * @param noOfAUs
+	 * @param courseIndex
+	 * @param vacancy
+	 * @param labSchedule
+	 * @param tutorialSchedule
+	 * @param lectureSchedule
+	 */
 	public Course(String courseCode, String courseName, String school, int noOfAUs, String courseIndex, int vacancy, String labSchedule, String tutorialSchedule, String lectureSchedule) {
 		this.courseName = courseName;
 		this.courseCode = courseCode;
@@ -161,8 +174,8 @@ public class Course {
 		this.lectureSchedule = lectureSchedule;
 	}
 	
-	
-	public boolean isIndexTaken(ArrayList<String> courseIndex){
+
+/*	public boolean isIndexTaken(ArrayList<String> courseIndex){
 		try {
 			File file=new File(System.getProperty("user.dir")+"/src/Courses");    
 			FileReader fr=new FileReader(file);   //reads the file
@@ -185,8 +198,12 @@ public class Course {
 			e.printStackTrace();
 		}
 		return false;
-	}
+	}*/
 
+	/**
+	 * @param courseIndex
+	 * @return
+	 */
 	public boolean isIndexTaken(String courseIndex){
 		try {
 			File file=new File(System.getProperty("user.dir")+"/src/Courses");    
@@ -210,8 +227,27 @@ public class Course {
 		return false;
 	}
 
+	/**
+	 * @param courseCode
+	 * @param courseName
+	 * @param school
+	 * @param noOfAUs
+	 * @param courseIndex
+	 * @param vacancy
+	 * @return
+	 */
+	
 	public String addCourses(String courseCode, String courseName, String school, String noOfAUs, ArrayList<String> courseIndex, ArrayList<String> vacancy){
-		if(!isIndexTaken(courseIndex)){
+		boolean indexIsTaken = false;
+		for (String course : courseIndex) {
+			if(isIndexTaken(course)) {
+				indexIsTaken = true;
+				break;
+			}
+		}
+		
+		// if(!isIndexTaken(courseIndex)){
+		if(!indexIsTaken){
 			try {
 				File file = new File(System.getProperty("user.dir") + "/src/Courses");    
 				PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
@@ -285,6 +321,10 @@ public class Course {
 		return course;
 	}
 
+	/**
+	 * @param schedule
+	 * @return
+	 */
 	public String printSchedule(String schedule){
 		if(schedule.equals("NONE")){
 			return "No schedule found.";
@@ -318,6 +358,12 @@ public class Course {
 		return result;
 
 	}
+	/**
+	 * update Course details in the file
+	 * 
+	 * @return 		"Courses updated successfully." if Courses were updated successfully, return "Error updating courses." otherwise
+	 */
+	
 	public String updateCourse() {
 			try {
 
@@ -345,6 +391,12 @@ public class Course {
 			}
 	}
 	
+	/**
+	 * returns number of vacancies for a given course Index
+	 * 
+	 * @param courseIndex		course Index
+	 * @return 					number of vacancies for a given course Index	
+	 */
 	public int courseIndexVacancy(String courseIndex){
 		//count lines which has index
 		//vacancy - count = result
@@ -378,6 +430,11 @@ public class Course {
 
 	
 	
+	/**
+	 *  checks if course Code input already exists
+	 * @param courseCode		course Code
+	 * @return true 			if course Code input already exists, false otherwise
+	 */
 	public boolean isCourseTaken(String courseCode) {
 		try {
 			File file=new File(System.getProperty("user.dir")+"/src/Courses");    
