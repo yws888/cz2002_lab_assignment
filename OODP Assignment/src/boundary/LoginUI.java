@@ -116,7 +116,6 @@ public class LoginUI {
 						((StaffUI) userUI).initStaffUI();
 						break;
 						//end portion removal here					
-					//default error input message
 					default: 
 						System.out.println("Pls select option 1 or 2");
 						System.out.println();

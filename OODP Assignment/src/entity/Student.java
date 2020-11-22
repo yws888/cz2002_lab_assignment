@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+//import com.sun.mail.*;
+//import com.sun.activation.*;
+//import javax.*;
+//import javax.mail.*;
+
+
 /**
   * Student represents a student in the school.
  *

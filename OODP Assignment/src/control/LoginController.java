@@ -12,7 +12,7 @@ import entity.Student;
 import entity.User;
 
 /**
- * Logincontroller is the logic to validate the Users during the login processes
+ * Logincontroller contains the logic to validate the Users during the login processes
  */
 public class LoginController {
 	/**
