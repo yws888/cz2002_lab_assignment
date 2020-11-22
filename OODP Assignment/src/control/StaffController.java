@@ -228,68 +228,97 @@ public class StaffController {
     public static void addCourse(){
         System.out.println("\nStarting Add Course Process: (Enter \"cancel\" to cancel process) ");
         Scanner sc = new Scanner(System.in);
+        Course course = new Course();
         String course_code="",course_name="", au="", school="", index="", input="";
         ArrayList<String> indexList = new ArrayList<String>(), vacancyList = new ArrayList<String>();
         //int vacancy;
-        boolean validation1=true, validation2=true;
+        boolean validation1=true, validation2=true,validation3=true;
+        boolean existCourseCode;
 
-        System.out.println("Please enter the course code:");
-        while(course_code.isEmpty()) {
-        	course_code = sc.nextLine();
-        
-        	if(course_code.toLowerCase().equals("cancel")){
-        		System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-        		sc.nextLine();
-        		return;}
-        	
-        	if(course_code.isEmpty()) {
-        		System.out.println("Please do not leave blank entries, please enter again" );
-        	}
-        }
-        System.out.println("Please enter the name for this course:");
-        while(course_name.isEmpty()) {
-        	course_name = sc.nextLine();
-        	if(course_name.toLowerCase().equals("cancel")){
-        		System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-        		sc.nextLine();
-        		return;
-        	}
-        	if(course_name.isEmpty()) {
-        		System.out.println("Please do not leave blank entries, please enter again" );
-        	}
-        }
 
-        System.out.println("Please enter the number of AUs for this course:");
-        while(!Ultility.isNumeric(au.trim())) {
-            au = sc.nextLine();
-            if (au.toLowerCase().equals("cancel")) {
-                System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-                sc.nextLine();
-                return;
+        while (validation3){
+        	System.out.println("Please enter the course code:");
+            
+            do{
+            	course_code = sc.nextLine();
+            
+            	if(course_code.toLowerCase().equals("cancel")){
+            		System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+            		sc.nextLine();
+            		return;}
+            	
+            	if(course_code.isEmpty()) {
+            		System.out.println("Please do not leave blank entries, please enter again" );
+            	}
+            } while(course_code.isEmpty());
+            
+            System.out.println("Please enter the name for this course:");
+            
+            do{
+            	course_name = sc.nextLine();
+            	if(course_name.toLowerCase().equals("cancel")){
+            		System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+            		sc.nextLine();
+            		return;
+            	}
+            	if(course_name.isEmpty()) {
+            		System.out.println("Please do not leave blank entries, please enter again" );
+            	}
+            } while(course_name.isEmpty());
+
+            System.out.println("Please enter the number of AUs for this course:");
+            
+            do {
+                au = sc.nextLine();
+                if (au.toLowerCase().equals("cancel")) {
+                    System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+                    sc.nextLine();
+                    return;
+                }
+                if(!Ultility.isNumeric(au)){
+                    System.out.println("Invalid Input, please enter again" );
+                }
+            } while(!Ultility.isNumeric(au.trim()));
+
+            System.out.println("Please enter School of the Course:");
+            do {
+            	school = sc.nextLine();
+            	if(school.toLowerCase().equals("cancel")){
+            		System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+            		sc.nextLine();
+            		return;
+            	}	
+            	
+            	if(school.isEmpty()) {
+            		System.out.println("Please do not leave blank entries, please enter again" );
+            	}
+            }while(school.isEmpty());
+            
+            validation3=false;
+            existCourseCode= course.existingCourseCode(course_code); 
+            while(existCourseCode) {
+            	
+            	Course orgCourse= new Course();
+            	try {
+    				orgCourse= course.retrieveCourseByCourseCode(course_code);
+    			} catch (IOException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+            	if (!orgCourse.getCourseName().equals(course_name) || !orgCourse.getSchool().equals(school) || orgCourse.getNoOfAUs()!=Integer.parseInt(au) ) {
+            		System.out.println("Course name/Course index/School entered is inconsistent with database. Please check and try again." );
+            		validation3=true;
+            		break;
+            	}
+            	else {validation3=false; break;}
             }
-            if(!Ultility.isNumeric(au)){
-                System.out.println("Invalid Input, please enter again" );
-            }
-        }
-
-        System.out.println("Please enter School of the Course:");
-        while(school.isEmpty()) {
-        	school = sc.nextLine();
-        	if(school.toLowerCase().equals("cancel")){
-        		System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-        		sc.nextLine();
-        		return;
-        	}	
-        	
-        	if(school.isEmpty()) {
-        		System.out.println("Please do not leave blank entries, please enter again" );
-        	}
+            
         }
         
         input = "";
         while(validation1) {
             System.out.println("Please enter the list of indexes that the course has (Eg. '64001,64003'):");
-            while (index.isEmpty()){
+            do{
             	index = sc.nextLine();
            
             	if (index.toLowerCase().equals("cancel")) {
@@ -300,7 +329,7 @@ public class StaffController {
             	if(index.isEmpty()) {
             		System.out.println("Please do not leave blank entries, please enter again" );
             	}
-            }
+            }while (index.isEmpty());
             
             index = index.replaceAll("\\s+","");
             indexList = new ArrayList<>(Arrays.asList(index.split(",")));
@@ -376,7 +405,7 @@ public class StaffController {
 
             }
         }
-        Course course = new Course();
+        
         String message = course.addCourses(course_code,course_name,school,au,indexList,vacancyList);
         System.out.println(message);
         System.out.println("\nPress the \"ENTER\" key to be directed back to STARS main menu!");

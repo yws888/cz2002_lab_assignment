@@ -292,6 +292,36 @@ public class Course {
 		}
 		return false;
 	}
+	
+	/**
+	 * @param courseCode  input course code
+	 * @return true if input course code is in database 
+	 */
+	
+	public boolean existingCourseCode(String courseCode){
+		try {
+			File file=new File("src/Courses");    
+			FileReader fr=new FileReader(file);   //reads the file
+			BufferedReader br=new BufferedReader(fr); 
+			String line;
+			while((line=br.readLine())!=null)
+			{
+				String[] entry = line.split(";");
+					if(entry[0].equals(courseCode.trim())){
+						br.close();
+						return true;
+				}
+
+			}
+			fr.close();    
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	
 
 	/**
 	 * Add course to the student's database only if the course
