@@ -42,10 +42,10 @@ public class EmailManager {
 
             Transport.send(message);
 
-            return "Message to "+email+" sent";
+            return "Sending Email Message to "+email+" success";
 
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            return "Sending Email Message to "+email+" failed";
         }
     }
 }
