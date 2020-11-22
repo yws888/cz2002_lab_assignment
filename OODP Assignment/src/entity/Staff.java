@@ -51,7 +51,7 @@ public class Staff extends User{
 	public ArrayList<User> retrieveStaffLoginDetails() { 
 		ArrayList<User> userarray = new ArrayList<User>();
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/AdminStaff");    
+			File file=new File("src/AdminStaff");    
 
 			FileReader fr=new FileReader(file);   //reads the file  
 			BufferedReader br=new BufferedReader(fr);    
