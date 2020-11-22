@@ -1,7 +1,7 @@
 ===STAFF FILE===
 username;hashed_password;salt;type;name
 ===STUDENT FILE===
-username;hashed_password;salt;type;name;matriculation_number;gender;nationality
+username;hashed_password;salt;type;name;matriculation_number;gender;nationality;email
 ===COURSES===
 course_code;course_name;school;au;index;vacancy;[Lab Schedule];[Tutorial Schedule];[Lecture Schedule]
 ===COURSE WAITLIST===
