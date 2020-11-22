@@ -29,7 +29,7 @@ public class StaffController {
     public static void addStudent() throws InterruptedException {
         Scanner sc = new Scanner(System.in);
 
-        String username, password, name, matriculationNumber, gender = "", nationality;
+        String username, password, name, matriculationNumber, gender = "", nationality, email;
         System.out.println("\nStarting Add Student Process: (Enter \"cancel\" to cancel process) ");
         System.out.println("Please enter student's account username:");
         username = sc.nextLine();
@@ -52,6 +52,12 @@ public class StaffController {
             return;
         }
 
+        System.out.println("Please enter student's email:");
+        email = sc.nextLine();
+        if(email.toLowerCase().equals("cancel")){
+            return;
+        }
+
         while(!(gender.equals("Male") || gender.equals("Female"))) {
             System.out.println("Please enter student's gender: ('Male' or 'Female')");
             gender = sc.nextLine();
@@ -65,7 +71,7 @@ public class StaffController {
         char[] passwordEntered = password.toCharArray();
         byte[] hashedpassword = PasswordManager.hash(passwordEntered, salt);
         Student student = new Student();
-        student.createStudent(username, PasswordManager.hexEncoder(hashedpassword), PasswordManager.hexEncoder(salt), name, matriculationNumber, gender, nationality);
+        student.createStudent(username, PasswordManager.hexEncoder(hashedpassword), PasswordManager.hexEncoder(salt), name, matriculationNumber, gender, nationality, email);
         System.out.println(student.printStudentList());
         System.out.println("Add Student Operation Completed!! Press the \"ENTER\" key to be directed back to STARS main menu!");
         sc.nextLine();

@@ -36,6 +36,12 @@ public class Student extends User{
 	private String nationality;
 
 	/**
+	 * The email of the Student.
+	 */
+
+	private String email;
+
+	/**
 	   * Getter method for name of the student.
 	   * 
 	   * @return name of the student
@@ -70,6 +76,13 @@ public class Student extends User{
 		return nationality;
 	}
 
+	/**
+	 * Getter method for email of the student.
+	 *
+	 * @return email of the student
+	 */
+
+	public String getEmail() { return email; }
 
 	public Student() {
 	}
@@ -82,14 +95,16 @@ public class Student extends User{
 	   * @param matricnumber                     matric number of the student
 	   * @param gender                           gender of the student
 	   * @param nationality                      nationality of the student
+	   * @param email                            email of the student
 	   */	
 	
-	public Student(String username, String name, String matricnumber, String gender, String nationality) {
+	public Student(String username, String name, String matricnumber, String gender, String nationality, String email) {
 		super.setUsername((username));
 		this.name = name;
 		this.matricnumber = matricnumber;
 		this.gender = gender;
 		this.nationality = nationality;
+		this.email = email;
 	}
 	
 	/**
@@ -112,7 +127,7 @@ public class Student extends User{
 			{
 				String[] entry = line.split(";");
 				if(entry[0].equals(username)){
-					student = new Student(entry[0],entry[4],entry[5],entry[6],entry[7]);
+					student = new Student(entry[0],entry[4],entry[5],entry[6],entry[7],entry[8]);
 					entryfound = true;
 
 				}
@@ -176,14 +191,15 @@ public class Student extends User{
 	 * @param matriculationNumber
 	 * @param gender
 	 * @param nationality
+	 * @param email
 	 */
 	
-	public void createStudent(String username, String password, String salt, String name, String matriculationNumber, String gender, String nationality) {
+	public void createStudent(String username, String password, String salt, String name, String matriculationNumber, String gender, String nationality, String email) {
 		try {
 
 			File file = new File(System.getProperty("user.dir") + "/src/Students");    
 			PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
-			pw.println(username+";"+password+";"+salt+";student;"+name+";"+matriculationNumber+";"+gender+";"+nationality);
+			pw.println(username+";"+password+";"+salt+";student;"+name+";"+matriculationNumber+";"+gender+";"+nationality+";"+email);
 			pw.close();
 		}catch(Exception ex){
 
@@ -237,7 +253,11 @@ public class Student extends User{
 			if((dateFormat.parse(startTime1).before(dateFormat.parse(endTime2)) || dateFormat.parse(startTime1).equals(dateFormat.parse(endTime2))) 
 					&& (dateFormat.parse(startTime2).before(dateFormat.parse(endTime1)) || dateFormat.parse(startTime2).equals(dateFormat.parse(endTime1)))){
 				// shld add && (dateFormat.parse(startTime1).before(dateFormat.parse(endTime2)) ?
-				return true;
+				if((dateFormat.parse(startTime2).equals(dateFormat.parse(endTime1)) || dateFormat.parse(startTime1).equals(dateFormat.parse(endTime2)))){
+					return false;
+				}else {
+					return true;
+				}
 			}else{
 				return false;
 			}
@@ -655,10 +675,11 @@ public class Student extends User{
 	 * @throws IOException
 	 */
 	public String removeStudentsFromWaitList(String courseIndex, int availableSlots) throws IOException {
-		//remember trimtosize
 		int counter = availableSlots;
+		ArrayList<String> emailList = new ArrayList<>();
+		ArrayList<String> messageList = new ArrayList<>();
 		ArrayList<String> recordList = new ArrayList<>();
-		//Student student = new Student();
+		Student student = new Student();
 		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  
@@ -670,6 +691,8 @@ public class Student extends User{
 				if(entry[7].equals("WAITLIST") && counter > 0){
 					entry[7] = "ACCEPTED";
 					recordList.add(String.join(";",entry));
+					emailList.add(student.retrieveStudentInfoByUsername(entry[0]).getEmail());
+					messageList.add(entry[4]+" "+entry[5]+" Index "+entry[6]);
 				}else{
 					recordList.add(line);
 				}
@@ -681,22 +704,36 @@ public class Student extends User{
 		fr.close();
 
 		try {
-			file = new File(System.getProperty("user.dir") + "/src/registeredRecords");    
-			// Scanner scanner = new Scanner(file);
+			file = new File(System.getProperty("user.dir") + "/src/registeredRecords");
 			PrintWriter pw = new PrintWriter(new FileOutputStream(file));
 			for(int i=0; i<recordList.size();i++){
 				pw.println(recordList.get(i));
+				//send email at index i;
+				//System.out.println(sendMail(emailList.get(i), messageList.get(i)));
+
 			}
 			pw.close();
+			for(int i=0; i<emailList.size();i++){
+
+			}
 			return "Waitlist updated accordingly.";
 		}catch(Exception ex){
 			ex.printStackTrace();
 			return "Error updating waitlist.";
 		}
+	}
 
-
-
-
+	/**
+	 *
+	 * @param email
+	 * @param message
+	 * @return
+	 */
+	public String sendMail(String email, String message){
+		String response;
+		EmailManager em = new EmailManager();
+		response = em.sendEmail(email, message);
+		return response;
 	}
 
 }

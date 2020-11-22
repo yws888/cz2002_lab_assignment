@@ -43,7 +43,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/javax.mail.jar" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zen\Documents\GitHub\cz2002_lab_assignment\OODP Assignment\src" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.LoginUI">
     <configuration name="Course" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -125,25 +133,68 @@
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="503" y="111" key="#com.intellij.ide.util.MemberChooser/0.30.1536.834@0.30.1536.834" timestamp="1605533112241" />
-    <state width="1493" height="231" key="GridCell.Tab.0.bottom" timestamp="1605631425968">
+    <state x="599" y="141" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1606020832636">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="231" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1605631425968" />
-    <state width="1493" height="231" key="GridCell.Tab.0.center" timestamp="1605631425968">
+    <state x="599" y="141" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.30.1536.834@0.30.1536.834" timestamp="1606020832636" />
+    <state x="473" y="189" key="FileChooserDialogImpl" timestamp="1606020828369">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="231" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1605631425968" />
-    <state width="1493" height="231" key="GridCell.Tab.0.left" timestamp="1605631425968">
+    <state x="473" y="189" key="FileChooserDialogImpl/0.30.1536.834@0.30.1536.834" timestamp="1606020828369" />
+    <state width="1493" height="91" key="GridCell.Tab.0.bottom" timestamp="1606024217257">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="231" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1605631425968" />
-    <state width="1493" height="231" key="GridCell.Tab.0.right" timestamp="1605631425968">
+    <state width="1493" height="91" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1606024217257" />
+    <state width="1493" height="91" key="GridCell.Tab.0.center" timestamp="1606024217257">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="231" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1605631425968" />
+    <state width="1493" height="91" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1606024217257" />
+    <state width="1493" height="91" key="GridCell.Tab.0.left" timestamp="1606024217257">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1493" height="91" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1606024217257" />
+    <state width="1493" height="91" key="GridCell.Tab.0.right" timestamp="1606024217257">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1493" height="91" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1606024217257" />
+    <state width="1493" height="91" key="GridCell.Tab.1.bottom" timestamp="1606024217258">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1493" height="91" key="GridCell.Tab.1.bottom/0.30.1536.834@0.30.1536.834" timestamp="1606024217258" />
+    <state width="1493" height="91" key="GridCell.Tab.1.center" timestamp="1606024217258">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1493" height="91" key="GridCell.Tab.1.center/0.30.1536.834@0.30.1536.834" timestamp="1606024217258" />
+    <state width="1493" height="91" key="GridCell.Tab.1.left" timestamp="1606024217257">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1493" height="91" key="GridCell.Tab.1.left/0.30.1536.834@0.30.1536.834" timestamp="1606024217257" />
+    <state width="1493" height="91" key="GridCell.Tab.1.right" timestamp="1606024217258">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1493" height="91" key="GridCell.Tab.1.right/0.30.1536.834@0.30.1536.834" timestamp="1606024217258" />
+    <state x="249" y="30" key="SettingsEditor" timestamp="1606020836081">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="249" y="30" key="SettingsEditor/0.30.1536.834@0.30.1536.834" timestamp="1606020836081" />
+    <state x="209" y="68" key="new project wizard" timestamp="1606023530005">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="209" y="68" key="new project wizard/0.30.1536.834@0.30.1536.834" timestamp="1606023530005" />
     <state x="431" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1605631435418">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="431" y="186" width="672" height="678" key="search.everywhere.popup/0.30.1536.834@0.30.1536.834" timestamp="1605631435418" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/entity/Student.java</url>
+          <line>285</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
