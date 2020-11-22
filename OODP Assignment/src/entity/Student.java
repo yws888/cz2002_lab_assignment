@@ -167,7 +167,13 @@ public class Student extends User{
 			}  
 		return userarray;
 	}
-
+	
+	/**
+	   * Retrieves and returns Student object regarding their information
+	   * such as username, matriculation number, and name.
+	   * 
+	   * @return the student list as a string.
+	   */
 	public String printStudentList(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("====================Student List====================\n");
