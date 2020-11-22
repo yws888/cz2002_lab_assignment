@@ -562,7 +562,7 @@ public class Student extends User{
     		oldFile.delete();
     		File dump = new File(System.getProperty("user.dir")+ "/src/registeredRecords");
     		newFile.renameTo(dump);
-    		
+    		this.removeStudentsFromWaitList(course.getCourseIndex(),1);
     		return "Course dropped successfully.";
     		
     	}
@@ -746,7 +746,7 @@ public class Student extends User{
 			for(int i=0; i<recordList.size();i++){
 				pw.println(recordList.get(i));
 				if(x< waitList.size() && recordList.get(i).equals(waitList.get(x))) {
-					System.out.println(sendMail(emailList.get(x), messageList.get(x)));
+					sendMail(emailList.get(x), messageList.get(x));
 					x++;
 				}
 			}
