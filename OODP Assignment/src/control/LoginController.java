@@ -51,7 +51,8 @@ public class LoginController {
 	}
 	
 	/** 
-	 * @param username  Staff's username
+	 * Gets the Staff object based on username.
+	 * @param username  		Staff's username
 	 * @return staff object with Username, Password and Type
 	 */
 	
@@ -63,7 +64,8 @@ public class LoginController {
 	}
 	
 	/** 
-	 * @param username  Student's username
+	 * Gets the Student object based on username.
+	 * @param username  		Student's username
 	 * @return student object with Username, name, matric number, gender and nationality
 	 */
 	
@@ -71,19 +73,7 @@ public class LoginController {
 		Student student = new Student();
 		return student.retrieveStudentInfoByUsername(username);
 	}
-/*	public static String retriveAccessperiod() {
-		
-		ArrayList<AccessPeriod> aplist = new ArrayList<AccessPeriod>();
-		aplist.addAll((AccessPeriod.retrieveAccessPeriod()));
-		for(int i=0;i<aplist.size();i++) {
-			if((aplist.size()-1)==i){
-				
-				return aplist.get(i).getap();
-				}
-	
-		}
-		return null;
-	}*/
+
 	
 	/**
 	 * Checks if time of access by student is within the access period. 

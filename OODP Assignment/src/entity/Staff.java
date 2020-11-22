@@ -12,8 +12,17 @@ import java.util.ArrayList;
 
 public class Staff extends User{
 
+	/**
+	 * 	 Default Constructor for Staff object
+	 * 
+	 */
 	public Staff() {
 	}
+	/**
+	 * Constructor for Staff object, initialising the following attributes:
+	 * 
+	 * @param username		Staff username
+	 */
 	public Staff(String username) {
 		this.setUsername(username);
 		

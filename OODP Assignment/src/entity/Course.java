@@ -1,7 +1,7 @@
 package entity;
 
 /**
- * Course carries the persistent information of the course object
+ * Course carries the persistent information of the Course object
  * in the system.
  * 
  */
@@ -202,6 +202,9 @@ public class Course {
 		this.lectureSchedule = lectureSchedule;
 	}
 
+	/**
+	 * Default Constructor for Course object
+	 */
 	public Course(){
 
 	}

@@ -84,6 +84,9 @@ public class Student extends User{
 
 	public String getEmail() { return email; }
 
+	/**
+	 * Default Constructor for Student object.
+	 */
 	public Student() {
 	}
 	

@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 public class User {
 	/**
-	 * 
+	 * username of the user
 	 */
 	private String username;
 	/**
-	 * 
+	 * password of the user
 	 */
 	private String password;
 	/**
@@ -20,7 +20,7 @@ public class User {
 	 */
 	private String salt;
 	/**
-	 * 
+	 * 	 type of the user (e.g. student, staff)
 	 */
 	private String type;
 		
@@ -41,7 +41,7 @@ public class User {
 	 */
 	public String getSalt(){ return this.salt; }
 	/**
-	 * @return
+	 * @return type of the user (e.g. student, staff)
 	 */
 	public String getType() {
 		return this.type;
@@ -53,27 +53,18 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	/**
-	 * @param password
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	/**
-	 * @param type
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
+
+
 
 	/**
-	 * 
+	 * Default constructor for User object
 	 */
 	public User() {
 		
 	}
 
 	/**
+	 * 	 Constructor for User object, initialising the following attributes:
 	 * @param username
 	 * @param password
 	 */
@@ -82,6 +73,7 @@ public class User {
 		this.password = password;
 	}
 	/**
+	 * 	 Constructor for User object, initialising the following attributes:
 	 * @param username
 	 * @param password
 	 * @param salt
@@ -96,7 +88,7 @@ public class User {
 	/**
 	 * Checks if the student or staff login details are correct
 	 *
-	 * @return false if login verification is wrong.
+	 * @return false if login verification is wrong, true if user and password are found in the system
 	 */
 	public boolean verifylogin() {
 		Student student = new Student();
@@ -114,10 +106,10 @@ public class User {
 	}
 	
 	/**
-	 * Gets the user by their user name
+	 * Gets the user object by their user name
 	 *
-	 * @param username
-	 * @return null if username is not found.
+	 * @param username			user name
+	 * @return null if username is not found, otherwise it returns the user object
 	 */
 	public User getUserbyUsername(String username) {
 		Student student = new Student();
