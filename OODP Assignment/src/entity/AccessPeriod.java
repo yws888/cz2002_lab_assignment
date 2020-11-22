@@ -89,7 +89,7 @@ public class AccessPeriod {
 	
 	public static void createAccessPeriod(String startDate,  String endDate,String startTime, String endTime) {
 		try {
-			File file = new File(System.getProperty("user.dir") + "/src/StudentAccessPeriod");    //creates a new file instance
+			File file = new File("src/StudentAccessPeriod");    //creates a new file instance
 			PrintWriter pw = new PrintWriter(new FileOutputStream(file, false)); //changed to false to overwrite the previous one,
 			pw.println(startDate +";" + endDate +";" + startTime +";" +endTime);
 			pw.close();
@@ -107,7 +107,7 @@ public class AccessPeriod {
 	public static AccessPeriod retrieveAccessPeriod() { 		
 		AccessPeriod accessPeriod = null;
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/StudentAccessPeriod");    //creates a new file instance
+			File file=new File("src/StudentAccessPeriod");    //creates a new file instance
 			FileReader fr=new FileReader(file);   //reads the file  
 			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
 			String line;  
