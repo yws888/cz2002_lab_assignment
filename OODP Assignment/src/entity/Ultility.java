@@ -48,7 +48,14 @@ public class Ultility {
         }
         return date != null;
     }
-
+    
+    /**
+	   * Validates whether an input  has the correct time start and time end format.
+	   * 
+	   * @param timeStart   	Starting time in HH:mm
+	   * @param timeEnd             Ending time in HH:mm
+	   * @return        	        boolean whether input  has the correct start and end time format
+	   */
     public static boolean isValidTimeInput(String timeStart, String timeEnd) {
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
@@ -66,6 +73,15 @@ public class Ultility {
         return false;
     }
     
+   /**
+	   * Validates whether an input  has the correct time range.
+	   * 
+	   * @param dateStart   Starting Date
+	   * @param dateEnd     Ending date
+	   * @param timeStart	Starting Time
+	   * @param timeEnd	Ending Time
+	   * @return        	boolean whether input has the correct time range.
+	   */
     public static boolean isValidTimeRange(String dateStart, String dateEnd, String timeStart, String timeEnd) {
       //  Date date = new Date();
        // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
