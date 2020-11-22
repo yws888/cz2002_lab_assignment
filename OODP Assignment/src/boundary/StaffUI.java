@@ -60,7 +60,33 @@ public class StaffUI implements UserUI {
 						StaffController.addStudent();
 						break;
 					case 3:
-						StaffController.courseConfiguration();
+					        do {
+					            System.out.println("\n1. Add Course");
+					            System.out.println("2. Update Class Schedule of a Course");
+					            System.out.println("3. Update course vacancy:");
+					            System.out.println("0. Exit");
+					            System.out.print("\nEnter the number of your choice: ");
+									choice = Integer.parseInt(sc.next());
+
+
+					            switch (choice) {
+					                case 1:
+					                	StaffController.addCourse();
+					                    break;
+					                case 2:
+					                	StaffController.updateClassSchedule();
+					                    break;
+					                case 3:
+					                	StaffController.updateCourseVacancy();
+					                    break;
+					                case 0: //quit
+					                    break;
+					                default:
+					                    System.out.println("Please select an option from 0-3");
+					                    System.out.println();
+					                    break;
+					            }
+					        } while (choice != 0);
 						break;
 					case 4:
 						StaffController.checkAvailableSlot();
@@ -79,7 +105,7 @@ public class StaffUI implements UserUI {
 						break;
 				}
 			} catch (NumberFormatException e) {
-				System.out.println("Please select an option from 0-6");
+				System.out.println("Please select a valid numeric option");
 			}catch (InterruptedException e) {
 				
 			}

@@ -495,51 +495,11 @@ public class StaffController {
     }
     
     /**
-	   * Course configuration is the logic to realise use case 
-	   * of the options when configuring the course information
-	   * 
-	   */
-    //this should be in StaffUI
-    public static void courseConfiguration() {
-        Scanner sc = new Scanner(System.in);
-
-        int choice;
-
-        do {
-            System.out.println("\n1. Add Course");
-            System.out.println("2. Update Class Schedule of a Course");
-            System.out.println("3. Update course vacancy:");
-            System.out.println("0. Exit");
-            System.out.print("\nEnter the number of your choice: ");
-            choice = sc.nextInt();
-
-            switch (choice) {
-                case 1:
-                    addCourse();
-                    break;
-                case 2:
-                    updateClassSchedule();
-                    break;
-                case 3:
-                    updateCourseVacancy();
-                    break;
-                case 0: //quit
-                    break;
-                default:
-                    System.out.println("Please select an option from 0-3");
-                    System.out.println();
-                    break;
-            }
-        } while (choice != 0);
-        return;
-    }
-    
-    /**
 	   * Updates existing course vacancy and ensure that the
 	   * target course vacancy to change to is larger than before.
 	   * 
 	   */
-    private static void updateCourseVacancy() {
+    public static void updateCourseVacancy() {
         Scanner sc = new Scanner(System.in);
         String courseIndex="",input="";
         Course course = new Course();
