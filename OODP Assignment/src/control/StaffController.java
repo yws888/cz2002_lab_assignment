@@ -170,24 +170,35 @@ public class StaffController {
     public static void addCourse(){
         System.out.println("\nStarting Add Course Process: (Enter \"cancel\" to cancel process) ");
         Scanner sc = new Scanner(System.in);
-        String course_code,course_name, au="", school, index, input="";
+        String course_code="",course_name="", au="", school="", index="", input="";
         ArrayList<String> indexList = new ArrayList<String>(), vacancyList = new ArrayList<String>();
         //int vacancy;
         boolean validation1=true, validation2=true;
 
         System.out.println("Please enter the course code:");
-        course_code = sc.nextLine();
-        if(course_code.toLowerCase().equals("cancel")){
-            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
+        while(course_code.isEmpty()) {
+        	course_code = sc.nextLine();
+        
+        	if(course_code.toLowerCase().equals("cancel")){
+        		System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+        		sc.nextLine();
+        		return;}
+        	
+        	if(course_code.isEmpty()) {
+        		System.out.println("Please do not leave blank entries, please enter again" );
+        	}
         }
         System.out.println("Please enter the name for this course:");
-        course_name = sc.nextLine();
-        if(course_name.toLowerCase().equals("cancel")){
-            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
+        while(course_name.isEmpty()) {
+        	course_name = sc.nextLine();
+        	if(course_name.toLowerCase().equals("cancel")){
+        		System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+        		sc.nextLine();
+        		return;
+        	}
+        	if(course_name.isEmpty()) {
+        		System.out.println("Please do not leave blank entries, please enter again" );
+        	}
         }
 
         System.out.println("Please enter the number of AUs for this course:");
@@ -204,21 +215,35 @@ public class StaffController {
         }
 
         System.out.println("Please enter School of the Course:");
-        school = sc.nextLine();
-        if(school.toLowerCase().equals("cancel")){
-            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
+        while(school.isEmpty()) {
+        	school = sc.nextLine();
+        	if(school.toLowerCase().equals("cancel")){
+        		System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+        		sc.nextLine();
+        		return;
+        	}	
+        	
+        	if(school.isEmpty()) {
+        		System.out.println("Please do not leave blank entries, please enter again" );
+        	}
         }
+        
         input = "";
         while(validation1) {
             System.out.println("Please enter the list of indexes that the course has (Eg. '64001,64003'):");
-            index = sc.nextLine();
-            if (index.toLowerCase().equals("cancel")) {
-                System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-                sc.nextLine();
-                return;
+            while (index.isEmpty()){
+            	index = sc.nextLine();
+           
+            	if (index.toLowerCase().equals("cancel")) {
+            		System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+            		sc.nextLine();
+            		return;}
+            		
+            	if(index.isEmpty()) {
+            		System.out.println("Please do not leave blank entries, please enter again" );
+            	}
             }
+            
             index = index.replaceAll("\\s+","");
             indexList = new ArrayList<>(Arrays.asList(index.split(",")));
             System.out.println("You have entered the following indexes:");
