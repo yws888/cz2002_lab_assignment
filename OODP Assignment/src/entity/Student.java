@@ -676,9 +676,11 @@ public class Student extends User{
 	 */
 	public String removeStudentsFromWaitList(String courseIndex, int availableSlots) throws IOException {
 		int counter = availableSlots;
+		//System.out.println(counter);
 		ArrayList<String> emailList = new ArrayList<>();
 		ArrayList<String> messageList = new ArrayList<>();
 		ArrayList<String> recordList = new ArrayList<>();
+		ArrayList<String> waitList = new ArrayList<>();
 		Student student = new Student();
 		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
 		FileReader fr=new FileReader(file);   //reads the file
@@ -691,8 +693,10 @@ public class Student extends User{
 				if(entry[7].equals("WAITLIST") && counter > 0){
 					entry[7] = "ACCEPTED";
 					recordList.add(String.join(";",entry));
+					waitList.add(String.join(";",entry));
 					emailList.add(student.retrieveStudentInfoByUsername(entry[0]).getEmail());
 					messageList.add(entry[4]+" "+entry[5]+" Index "+entry[6]);
+					counter--;
 				}else{
 					recordList.add(line);
 				}
@@ -706,16 +710,16 @@ public class Student extends User{
 		try {
 			file = new File(System.getProperty("user.dir") + "/src/registeredRecords");
 			PrintWriter pw = new PrintWriter(new FileOutputStream(file));
+			int x = 0;
 			for(int i=0; i<recordList.size();i++){
 				pw.println(recordList.get(i));
-				//send email at index i;
-				//System.out.println(sendMail(emailList.get(i), messageList.get(i)));
-
+				if(x< waitList.size() && recordList.get(i).equals(waitList.get(x))) {
+					System.out.println(sendMail(emailList.get(x), messageList.get(x)));
+					x++;
+				}
 			}
 			pw.close();
-			for(int i=0; i<emailList.size();i++){
 
-			}
 			return "Waitlist updated accordingly.";
 		}catch(Exception ex){
 			ex.printStackTrace();

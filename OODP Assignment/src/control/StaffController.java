@@ -594,7 +594,7 @@ public class StaffController {
                     int vacancyIncrease = targetVacancy - currentVacancy;
                     message = student.removeStudentsFromWaitList(courseIndex, vacancyIncrease);
                     System.out.println(message);
-                    System.out.println("\nUPress the \"ENTER\" key to be directed back to the previous menu!");
+                    System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
                     sc.nextLine();
                     return;
                 }else{

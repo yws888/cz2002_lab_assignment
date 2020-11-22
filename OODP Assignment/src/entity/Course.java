@@ -432,7 +432,7 @@ public class Course {
 			while((line=br.readLine())!=null)
 			{
 				String[] entry = line.split(";");
-				if(entry[6].equals(courseIndex)){
+				if(entry[6].equals(courseIndex) && entry[7].equals("ACCEPTED")){
 					count++;
 				}
 

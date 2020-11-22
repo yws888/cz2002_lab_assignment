@@ -43,10 +43,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/javax.mail.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/mail.jar" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -56,6 +56,19 @@
   <component name="RunManager" selected="Application.LoginUI">
     <configuration name="Course" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="entity.Course" />
+      <module name="OODP Assignment" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="entity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmailManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="entity.EmailManager" />
       <module name="OODP Assignment" />
       <extension name="coverage">
         <pattern>
@@ -93,9 +106,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="javax.mail.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/src/javax.mail.jar" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.LoginUI" />
+        <item itemvalue="Application.EmailManager" />
+        <item itemvalue="JAR Application.javax.mail.jar" />
         <item itemvalue="Application.StaffUI" />
         <item itemvalue="Application.Course" />
       </list>
@@ -137,26 +156,26 @@
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="599" y="141" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.30.1536.834@0.30.1536.834" timestamp="1606020832636" />
-    <state x="473" y="189" key="FileChooserDialogImpl" timestamp="1606020828369">
+    <state x="473" y="189" key="FileChooserDialogImpl" timestamp="1606028679647">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="473" y="189" key="FileChooserDialogImpl/0.30.1536.834@0.30.1536.834" timestamp="1606020828369" />
-    <state width="1493" height="91" key="GridCell.Tab.0.bottom" timestamp="1606024217257">
+    <state x="473" y="189" key="FileChooserDialogImpl/0.30.1536.834@0.30.1536.834" timestamp="1606028679647" />
+    <state width="1493" height="301" key="GridCell.Tab.0.bottom" timestamp="1606031423075">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="91" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1606024217257" />
-    <state width="1493" height="91" key="GridCell.Tab.0.center" timestamp="1606024217257">
+    <state width="1493" height="301" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1606031423075" />
+    <state width="1493" height="301" key="GridCell.Tab.0.center" timestamp="1606031423075">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="91" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1606024217257" />
-    <state width="1493" height="91" key="GridCell.Tab.0.left" timestamp="1606024217257">
+    <state width="1493" height="301" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1606031423075" />
+    <state width="1493" height="301" key="GridCell.Tab.0.left" timestamp="1606031423075">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="91" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1606024217257" />
-    <state width="1493" height="91" key="GridCell.Tab.0.right" timestamp="1606024217257">
+    <state width="1493" height="301" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1606031423075" />
+    <state width="1493" height="301" key="GridCell.Tab.0.right" timestamp="1606031423075">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="91" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1606024217257" />
+    <state width="1493" height="301" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1606031423075" />
     <state width="1493" height="91" key="GridCell.Tab.1.bottom" timestamp="1606024217258">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
@@ -173,10 +192,10 @@
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state width="1493" height="91" key="GridCell.Tab.1.right/0.30.1536.834@0.30.1536.834" timestamp="1606024217258" />
-    <state x="249" y="30" key="SettingsEditor" timestamp="1606020836081">
+    <state x="350" y="30" key="SettingsEditor" timestamp="1606028683909">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="249" y="30" key="SettingsEditor/0.30.1536.834@0.30.1536.834" timestamp="1606020836081" />
+    <state x="350" y="30" key="SettingsEditor/0.30.1536.834@0.30.1536.834" timestamp="1606028683909" />
     <state x="209" y="68" key="new project wizard" timestamp="1606023530005">
       <screen x="0" y="30" width="1536" height="834" />
     </state>

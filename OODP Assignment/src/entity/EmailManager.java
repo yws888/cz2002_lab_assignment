@@ -4,6 +4,7 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import javax.activation.*;
 
 public class EmailManager {
     public EmailManager(){}
@@ -33,13 +34,12 @@ public class EmailManager {
                 });
 
         try {
-
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(email));
             message.setSubject("Course "+messageEntry+" on waitlist allocated");
-            message.setText("");
+            message.setText("Course "+messageEntry+" on waitlist has been accepted.");
 
             Transport.send(message);
 
