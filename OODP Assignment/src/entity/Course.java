@@ -201,8 +201,12 @@ public class Course {
 	}*/
 
 	/**
-	 * @param courseIndex
-	 * @return
+	 * Finds if course index is taken by the student.
+	 * 
+	 * @param courseIndex	Check if course index exists in database.
+	 * 
+	 * @return 				true if course index is found in database, 
+	 * 						else return false.
 	 */
 	public boolean isIndexTaken(String courseIndex){
 		try {
@@ -228,13 +232,19 @@ public class Course {
 	}
 
 	/**
+	 * Add course to the student's database only if the course
+	 * index is not already taken.
+	 * 
 	 * @param courseCode
 	 * @param courseName
 	 * @param school
 	 * @param noOfAUs
 	 * @param courseIndex
 	 * @param vacancy
-	 * @return
+	 * 
+	 * @return true if course has been added. Else return error in 
+	 * adding course explaining that the index is not available.
+	 * 
 	 */
 	
 	public String addCourses(String courseCode, String courseName, String school, String noOfAUs, ArrayList<String> courseIndex, ArrayList<String> vacancy){
@@ -269,8 +279,10 @@ public class Course {
 	   * Finds the course object based on course index.
 	   * 
 	   * @param courseIndex               course Index 
-	   * @return                          course object
-	   * @throws IOException  			  if no course found (?)
+	   * 
+	   * @return 						  course as course object
+	   * 
+	   * @throws IOException  			 
 	   */
 
 	public Course retrieveCourseByIndex(String courseIndex) throws IOException {
@@ -297,8 +309,10 @@ public class Course {
 	   * Finds the course object based on course Code.
 	   * 
 	   * @param courseCode                course Code 
-	   * @return                          course object
-	   * @throws IOException  			  if no course found (?)
+	   * 
+	   * @return 						  course as course object
+	   * 
+	   * @throws IOException  			
 	   */
 
 	public Course retrieveCourseByCourseCode(String courseCode) throws IOException {
@@ -322,8 +336,13 @@ public class Course {
 	}
 
 	/**
-	 * @param schedule
-	 * @return
+	 * Prints the schedule based on the days it is available
+	 * as well as its location.
+	 * 
+	 * @param schedule		day, time and location of the course index
+	 * 
+	 * @return				result with the information regarding the 
+	 * 						course index's day, time and location.
 	 */
 	public String printSchedule(String schedule){
 		if(schedule.equals("NONE")){
@@ -359,7 +378,7 @@ public class Course {
 
 	}
 	/**
-	 * update Course details in the file
+	 * Update Course details in the database.
 	 * 
 	 * @return 		"Courses updated successfully." if Courses were updated successfully, return "Error updating courses." otherwise
 	 */
@@ -392,9 +411,9 @@ public class Course {
 	}
 	
 	/**
-	 * returns number of vacancies for a given course Index
+	 * Returns number of vacancies for a given course Index.
 	 * 
-	 * @param courseIndex		course Index
+	 * @param courseIndex		course index
 	 * @return 					number of vacancies for a given course Index	
 	 */
 	public int courseIndexVacancy(String courseIndex){
