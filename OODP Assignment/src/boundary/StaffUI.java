@@ -41,6 +41,7 @@ public class StaffUI implements UserUI {
 	
 	public void initStaffUI()  {
 		int choice = -1;
+		int choice2 = -1;
 
 		Scanner sc = new Scanner(System.in);
 
@@ -75,10 +76,10 @@ public class StaffUI implements UserUI {
 					            System.out.println("3. Update course vacancy:");
 					            System.out.println("0. Exit");
 					            System.out.print("\nEnter the number of your choice: ");
-									choice = Integer.parseInt(sc.nextLine());
+						    choice2 = Integer.parseInt(sc.nextLine());
 
 
-					            switch (choice) {
+					            switch (choice2) {
 					                case 1:
 					                	StaffController.addCourse();
 					                    break;
@@ -95,7 +96,7 @@ public class StaffUI implements UserUI {
 					                    System.out.println();
 					                    break;
 					            }
-					        } while (choice != 0);
+					        } while (choice2 != 0);
 						break;
 					case 4:
 						StaffController.checkAvailableSlot();
