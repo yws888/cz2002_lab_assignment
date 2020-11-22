@@ -27,36 +27,84 @@ public class StaffController {
 	   * @throws InterruptedException
 	   */
     public static void addStudent() throws InterruptedException {
-        Scanner sc = new Scanner(System.in);
-
-        String username, password, name, matriculationNumber, gender = "", nationality, email;
-        System.out.println("\nStarting Add Student Process: (Enter \"cancel\" to cancel process) ");
+    	Scanner sc = new Scanner(System.in);
+    	
+    	
+        String username = "", password = "", name = "", matriculationNumber = "", gender = "", nationality = "", email = "";
+        System.out.println("\nStarting Add Student Process: (Enter \"cancel\" to cancel process at any time) ");
         System.out.println("Please enter student's account username:");
-        username = sc.nextLine();
-        if(username.toLowerCase().equals("cancel")){
-            return;
+        
+        while(true) {
+        	Student student = new Student();
+        	username = sc.nextLine();
+        	
+        	if(username.toLowerCase().equals("cancel")){
+                return;
+            }
+        	if(username.isEmpty()) {
+        		System.out.println("Please do not leave blank entries, please enter account's username again" );
+        		continue;
+        	}
+        	if(student.isUsernameTaken(username) == true) {
+        		System.out.println("Username already exists, please input a different account's username" );
+        		continue;
+        	}
+        	
+        	break;
         }
+        
         System.out.println("Please enter student's account password:");
-        password = sc.nextLine();
-        if(password.toLowerCase().equals("cancel")){
-            return;
+        while(password.isEmpty()) {
+        	password = sc.nextLine();
+        	if(password.toLowerCase().equals("cancel")){
+                return;
+            }
+        	if(password.isEmpty()) {
+        		System.out.println("Please do not leave blank entries, please enter account's password again" );
+        	}
         }
+        
         System.out.println("Please enter student's name:");
-        name = sc.nextLine();
-        if(name.toLowerCase().equals("cancel")){
-            return;
+        while(name.isEmpty()) {
+        	name = sc.nextLine();
+        	if(name.toLowerCase().equals("cancel")){
+                return;
+            }
+        	if(name.isEmpty()) {
+        		System.out.println("Please do not leave blank entries, please enter student's name again" );
+        	}
         }
+        
         System.out.println("Please enter student's matric number:");
-        matriculationNumber = sc.nextLine();
-        if(matriculationNumber.toLowerCase().equals("cancel")){
-            return;
+        while(true) {
+        	Student student = new Student();
+        	matriculationNumber = sc.nextLine();
+        	
+        	if(matriculationNumber.toLowerCase().equals("cancel")){
+                return;
+            }
+        	if(matriculationNumber.isEmpty()) {
+        		System.out.println("Please do not leave blank entries, please enter student's matric number again" );
+        		continue;
+        	}
+        	if(student.isMatricNumberTaken(matriculationNumber) == true) {
+        		System.out.println("Matric number already exists, please input a different matric number" );
+        		continue;
+        	}
+        	break;
         }
 
         System.out.println("Please enter student's email:");
-        email = sc.nextLine();
-        if(email.toLowerCase().equals("cancel")){
-            return;
+        while(email.isEmpty()) {
+        	email = sc.nextLine();
+        	if(email.toLowerCase().equals("cancel")){
+                return;
+            }
+        	if(email.isEmpty()) {
+        		System.out.println("Please do not leave blank entries, please enter student's email again" );
+        	}
         }
+
 
         while(!(gender.equals("Male") || gender.equals("Female"))) {
             System.out.println("Please enter student's gender: ('Male' or 'Female')");
@@ -65,8 +113,18 @@ public class StaffController {
                 return;
             }
         }
+        
         System.out.println("Please enter student's nationality:");
-        nationality = sc.nextLine();
+        while(nationality.isEmpty()) {
+        	nationality = sc.nextLine();
+        	if(nationality.toLowerCase().equals("cancel")){
+                return;
+            }
+        	if(nationality.isEmpty()) {
+        		System.out.println("Please do not leave blank entries, please enter student's nationality again" );
+        	}
+        }
+        
         byte[] salt = PasswordManager.getRandomSalt();
         char[] passwordEntered = password.toCharArray();
         byte[] hashedpassword = PasswordManager.hash(passwordEntered, salt);
