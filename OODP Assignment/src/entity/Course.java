@@ -8,10 +8,7 @@ package entity;
 
 import java.io.*;
 import java.util.ArrayList;
-//import java.util.HashMap;
 import java.util.Scanner;
-
-//import scrame.exception.CourseNotFoundException;
 
 
 public class Course {
@@ -183,7 +180,7 @@ public class Course {
 
 /*	public boolean isIndexTaken(ArrayList<String> courseIndex){
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Courses");    
+			File file=new File("src/Courses");    
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr); 
 			String line;
@@ -216,7 +213,7 @@ public class Course {
 	 */
 	public boolean isIndexTaken(String courseIndex){
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Courses");    
+			File file=new File("src/Courses");    
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr); 
 			String line;
@@ -265,7 +262,7 @@ public class Course {
 		// if(!isIndexTaken(courseIndex)){
 		if(!indexIsTaken){
 			try {
-				File file = new File(System.getProperty("user.dir") + "/src/Courses");    
+				File file = new File("src/Courses");    
 				PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
 				for(int i = 0;i<courseIndex.size();i++){
 					pw.println(courseCode+";"+courseName+";"+school+";"+noOfAUs+";"+courseIndex.get(i)+";"+vacancy.get(i)+";NONE;NONE;NONE");
@@ -293,7 +290,7 @@ public class Course {
 
 	public Course retrieveCourseByIndex(String courseIndex) throws IOException {
 		Course course = new Course();
-			File file=new File(System.getProperty("user.dir")+"/src/Courses");    
+			File file=new File("src/Courses");    
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr); 
 			String line;
@@ -323,7 +320,7 @@ public class Course {
 
 	public Course retrieveCourseByCourseCode(String courseCode) throws IOException {
 		Course course = new Course();
-		File file=new File(System.getProperty("user.dir")+"/src/Courses");    
+		File file=new File("src/Courses");    
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr); 
 		String line;
@@ -392,7 +389,7 @@ public class Course {
 	public String updateCourse() {
 			try {
 
-				File file = new File(System.getProperty("user.dir") + "/src/Courses");    
+				File file = new File("src/Courses");    
 				Scanner scanner = new Scanner(file);
 				ArrayList<String> textcontent = new ArrayList<String>();
 				while (scanner.hasNextLine()){
@@ -431,7 +428,7 @@ public class Course {
 			course = retrieveCourseByIndex(courseIndex);
 			int vacancy = course.getVacancy();
 
-			File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
+			File file=new File("src/registeredRecords");    
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr); 
 			String line;
@@ -462,7 +459,7 @@ public class Course {
 	 */
 	public boolean isCourseTaken(String courseCode) {
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Courses");    
+			File file=new File("src/Courses");    
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr); 
 			String line;
