@@ -140,6 +140,13 @@ public class Student extends User{
 		return student;
 		
 	}
+	
+	/**
+	   * retrieves and returns Student object regarding their login details 
+	   * in an array.
+	   * 
+	   * @return array containing username, password, is salt and is type.
+	   */
 	public ArrayList<User> retrieveStudentLoginDetails() { 		
 		ArrayList<User> userarray = new ArrayList<User>();
 		try {
