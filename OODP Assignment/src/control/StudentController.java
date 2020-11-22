@@ -360,7 +360,7 @@ public class StudentController {
 								if (c == 'Y'||c == 'y') {
 									System.out.println("\nChanging index no...");
 									course = course.retrieveCourseByIndex(newCourseIndex);
-									course.setCourseIndex(newCourseIndex);
+									//course.setCourseIndex(newCourseIndex);
 							        String message = student.changeIndexForStudent(course);
 							        System.out.println(message);
 							        System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");

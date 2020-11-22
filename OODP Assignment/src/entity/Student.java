@@ -7,12 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-//import com.sun.mail.*;
-//import com.sun.activation.*;
-//import javax.*;
-//import javax.mail.*;
-
-
 /**
   * Student represents a student in the school.
  *
@@ -203,7 +197,7 @@ public class Student extends User{
 	
 	
 	/**
-	 * Creates a new student object with its details stored in the database.
+	 * Creates a new student object with its details written to the Students file in the database.
 	 * @param username
 	 * @param password
 	 * @param salt
@@ -259,13 +253,13 @@ public class Student extends User{
 	
 
 	/**
-	 * Checks if there is any timeoverlap that would affect the schedule.
+	 * Checks if there is any time overlap between 2 courses that would affect the schedule.
 	 *
-	 * @param startTime1
-	 * @param endTime1
-	 * @param startTime2
-	 * @param endTime2
-	 * @return true if timeoverlaps, else return false if time does not overlap.
+	 * @param startTime1		startTime of session 1 
+	 * @param endTime1			endTime of session 1 
+	 * @param startTime2		startTime of session 2 
+	 * @param endTime2			endTime of session 2 
+	 * @return true if time overlaps, else return false if time does not overlap.
 	 */
 	public boolean timeOverlap(String startTime1, String endTime1, String startTime2, String endTime2){
 		//ranges overlap if (StartDate1 <= EndDate2) and (StartDate2 <= EndDate1)
@@ -292,9 +286,9 @@ public class Student extends User{
 
 
 	/**
-	 * Checks if there is any clashing schedule with regards to the database
+	 * Checks if there is any clashes in the student's current schedule after adding the Course to be added
 	 *
-	 * @param course
+	 * @param course; Course to be added
 	 * @return true if there is clash, else return false if there is no clash.
 	 * @throws IOException
 	 */
@@ -509,7 +503,7 @@ public class Student extends User{
 	 * 
 	 * @param course			{@link Course} object to enroll Student in
 	 * @param status			ACCEPTED or WAITLIST
-	 * @return					different messages
+	 * @return					"Courses added successfully." if successful, return "Error adding courses." otherwise
 	 */
 	public String enrollStudent(Course course, String status){
 			try {
@@ -527,10 +521,11 @@ public class Student extends User{
 	}
 	
 	/**
-	 * @param course
-	 * @return
+	 * method to drop a Course for the Student
+	 * 
+	 * @param course			{@link Course} object to be dropped
+	 * @return					"Course dropped successfully." if successful, return "Error adding courses." otherwise
 	 */
-	
 	public String dropStudentCourse(Course course) {
     	String courseCodeToRemove = course.getCourseCode();
 		String matriculation_no = this.matricnumber;
@@ -695,7 +690,6 @@ public class Student extends User{
 					pw.println(textcontent.get(i));
 			}
 				pw.close();
-				//br.close();
 				return message;
 			
 		}catch(FileNotFoundException ex){
@@ -768,15 +762,13 @@ public class Student extends User{
 	/**
 	 * Notification sending to student via email.
 	 *
-	 * @param email
+	 * @param email			student's email
 	 * @param message
-	 * @return
+     * @return "Sending Email Message to "+email+" success" if successful; return "Sending Email Message to "+email+" failed" otherwise
 	 */
 	public String sendMail(String email, String message){
-		String response;
 		EmailManager em = new EmailManager();
-		response = em.sendEmail(email, message);
-		return response;
+		return em.sendEmail(email, message);
 	}
 
 }

@@ -572,7 +572,7 @@ public class StaffController {
                 if(!(targetVacancy <= currentVacancy)){
                     //update vacancy
                     Course updatedCourse = course;
-                    updatedCourse.setVacancy(targetVacancy);
+                    //updatedCourse.setVacancy(targetVacancy);
                     String message = updatedCourse.updateCourse();
                     System.out.println(message);
                     //fill up spaces from waitlist
@@ -646,7 +646,7 @@ public class StaffController {
 	   * as the input.
 	   * 
 	   */
-    public static void printListByIndex() {
+   /* public static void printListByIndex() {
         //name gender nationality only
         Scanner sc = new Scanner(System.in);
         String courseIndex="";
@@ -684,14 +684,14 @@ public class StaffController {
             sc.nextLine();
             return;
         }
-    }
+    }*/
     
     /**
 	   * Prints the list of students with the course code
 	   * as the input.
 	   * 
 	   */
-    public static void printListByCourse() {
+ /*   public static void printListByCourse() {
         //name gender nationality only
         Scanner sc = new Scanner(System.in);
         String courseCode="";
@@ -731,5 +731,5 @@ public class StaffController {
         }
 
 
-    }
+    }*/
 }

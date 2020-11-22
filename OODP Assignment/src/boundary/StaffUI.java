@@ -1,8 +1,12 @@
 package boundary;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import control.StaffController;
+import entity.Course;
 import entity.Staff;
+import entity.Student;
 
 /**
  * Boundary Class that limits the user to carry out only Staff functions 
@@ -25,6 +29,11 @@ public class StaffUI implements UserUI {
 	}
 
 	//public StaffUI(){}
+	
+    Course course;
+    Student student;
+
+
 
 	/**
 	 * Initialises User Interface for Staff Member
@@ -92,11 +101,76 @@ public class StaffUI implements UserUI {
 						StaffController.checkAvailableSlot();
 						break;
 					case 5:
-						StaffController.printListByIndex();
-						break;
+				        //name gender nationality only
+				        String courseIndex="";
+				        course = new Course();
+				        student = new Student();
+				        System.out.println("Please enter the course index to print student list:");
+				        courseIndex = sc.nextLine();
+				        if(courseIndex.toLowerCase().equals("cancel")){
+				            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+				            sc.nextLine();
+				            break;
+				        }
+				        if(course.isIndexTaken(courseIndex)){
+				            ArrayList<Student> studentList = new ArrayList<Student>();
+				            try {
+				                studentList = student.studentListByIndex(courseIndex);
+				            } catch (IOException e) {
+				                e.printStackTrace();
+				            }
+				            System.out.print("=====Student list=====");
+				            //print list
+				            if(studentList.size() > 0){
+				                for(int i=0;i<studentList.size();i++){
+				                    System.out.print("\nName:"+studentList.get(i).getName()+"\tGender:"+studentList.get(i).getGender()+"\tNationality:"+studentList.get(i).getNationality());
+				                }
+
+				            }else{
+				                System.out.print("\nNo student list found.");
+				            }
+				            System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+				            sc.nextLine();
+				        }else{
+				            System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
+				            sc.nextLine();
+				        }
+				        break;
 					case 6:
-						StaffController.printListByCourse();
-						break;
+					        //name gender nationality only
+					        String courseCode="";
+					        course = new Course();
+					        student = new Student();
+					        System.out.println("Please enter the course code to print student list:");
+					        courseCode = sc.nextLine();
+					        if(courseCode.toLowerCase().equals("cancel")){
+					            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+					            sc.nextLine();
+					            break;
+					        }
+					        if(course.isCourseTaken(courseCode)){
+					            ArrayList<Student> studentList = new ArrayList<Student>();
+					            try {
+					                studentList = student.studentListByCourseCode(courseCode);
+					            } catch (IOException e) {
+					                e.printStackTrace();
+					            }
+					            System.out.print("=====Student list====="); //print list
+					            if(studentList.size() > 0){
+					                for(int i=0;i<studentList.size();i++){
+					                    System.out.print("\nName:"+studentList.get(i).getName()+"\tGender:"+studentList.get(i).getGender()+"\tNationality:"+studentList.get(i).getNationality());
+					                }
+					            }else{
+					                System.out.print("\nNo student list found.");
+					            }
+					            System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+					            sc.nextLine();
+					        }else{
+					            System.out.println("\nThere are no records of course code entered. Press the \"ENTER\" key to be directed back to the previous menu!");
+					            sc.nextLine();
+					        }
+				            break;
+
 					case 0: //quit
 						break;
 					default:

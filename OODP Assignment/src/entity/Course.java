@@ -46,14 +46,20 @@ public class Course {
 	/**
 	   * Maximum number of vacancies (not current vacancies)
 	   */
-	
+
 	private int vacancy;
 
+	/**
+	 * String containing lab Schedule details, if any
+	 */
 	private String labSchedule;
+	/**
+	 * String containing tutorial Schedule details, if any
+	 */
 	private String tutorialSchedule;
 	
 	/**
-	   * lecture schedule
+	 * String containing lecture Schedule details
 	   */
 	
 	private String lectureSchedule;
@@ -64,6 +70,7 @@ public class Course {
 	   * 
 	   * @return course name
 	   */
+
 	public String getCourseName() {
 		return courseName;
 	}
@@ -75,6 +82,7 @@ public class Course {
 	   * @return course code
 	   */
 	
+
 	public String getCourseCode() {
 		return courseCode;
 	}
@@ -84,6 +92,7 @@ public class Course {
 	   * 
 	   * @return school
 	   */
+
 	public String getSchool() {
 		return school;
 	}
@@ -94,7 +103,7 @@ public class Course {
 	   * 
 	   * @return no Of AUs
 	   */
-	
+
 	public int getNoOfAUs() {
 		return noOfAUs;
 	}
@@ -110,37 +119,84 @@ public class Course {
 		return courseIndex;
 	}
 
-	public void setCourseIndex(String courseIndex) {
-		this.courseIndex = courseIndex;
-	}
+//	public void setCourseIndex(String courseIndex) {
+//		this.courseIndex = courseIndex;
+//	}
+	
+	/**
+	   * Getter method for Maximum number of vacancies (not current vacancies)
+	   * 
+	   * @return max vacancies
+	   */
+
 
 	public int getVacancy() {
 		return vacancy;
 	}
 
-	public void setVacancy(int vacancy) {
-		this.vacancy = vacancy;
-	}
+//	public void setVacancy(int vacancy) {
+//		this.vacancy = vacancy;
+//	}
+	
+	/**
+	   * Getter method for String containing lab Schedule details, if any
+	   * 
+	   * @return labSchedule
+	   */
+
 
 	public String getLabSchedule() {
 		return labSchedule;
 	}
 
+	
+	/**
+	 * Setter method for String containing lab Schedule details, if any, for the course object
+	 * 
+	 * @param labSchedule
+	 */
 	public void setLabSchedule(String labSchedule) {
 		this.labSchedule = labSchedule;
 	}
+	
+
+	/**
+	   * Getter method for String containing tutorial Schedule details, if any
+	   * 
+	   * @return tutorialSchedule
+	   */
 
 	public String getTutorialSchedule() {
 		return tutorialSchedule;
 	}
+	
+	
 
+	/**
+	 * Setter method for String containing tutorial Schedule details, if any, for the course object
+	 * 
+	 * @param tutorialSchedule
+	 */
 	public void setTutorialSchedule(String tutorialSchedule) {
 		this.tutorialSchedule = tutorialSchedule;
 	}
+	
+
+	/**
+	   * Getter method for String containing lecture Schedule details, if any
+	   * 
+	   * @return lectureSchedule
+	   */
 
 	public String getLectureSchedule() {
 		return lectureSchedule;
 	}
+	
+	/**
+	 * Setter method for String containing lecture Schedule details for the course object
+	 * 
+	 * @param lectureSchedule
+	 */
 
 	public void setLectureSchedule(String lectureSchedule) {
 		this.lectureSchedule = lectureSchedule;
@@ -453,7 +509,7 @@ public class Course {
 	
 	
 	/**
-	 *  checks if course Code input already exists
+	 *  checks if course Code input has been added in the system
 	 * @param courseCode		course Code
 	 * @return true 			if course Code input already exists, false otherwise
 	 */
