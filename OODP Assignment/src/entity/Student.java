@@ -117,7 +117,7 @@ public class Student extends User{
 		Student student = new Student();
 		//ArrayList<User> studentlist = retrieveStudentLoginDetails();
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Students");    
+			File file=new File("src/Students");    
 			
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr);  
@@ -150,7 +150,7 @@ public class Student extends User{
 	public ArrayList<User> retrieveStudentLoginDetails() { 		
 		ArrayList<User> userarray = new ArrayList<User>();
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Students");    
+			File file=new File("src/Students");    
 			
 			FileReader fr=new FileReader(file);   //reads the file  
 			BufferedReader br=new BufferedReader(fr);  
@@ -178,7 +178,7 @@ public class Student extends User{
 		StringBuilder sb = new StringBuilder();
 		sb.append("====================Student List====================\n");
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/Students");    
+			File file=new File("src/Students");    
 			FileReader fr=new FileReader(file);   //reads the file
 			BufferedReader br=new BufferedReader(fr);  
 			String line;
@@ -211,7 +211,7 @@ public class Student extends User{
 	public void createStudent(String username, String password, String salt, String name, String matriculationNumber, String gender, String nationality, String email) {
 		try {
 
-			File file = new File(System.getProperty("user.dir") + "/src/Students");    
+			File file = new File("src/Students");    
 			PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
 			pw.println(username+";"+password+";"+salt+";student;"+name+";"+matriculationNumber+";"+gender+";"+nationality+";"+email);
 			pw.close();
@@ -231,7 +231,7 @@ public class Student extends User{
 	 */
 	public boolean courseIndexTakenByStudent(String courseIndex) throws IOException {
 		String matriculation_no = this.matricnumber;
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
+		File file=new File("src/registeredRecords");    
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  
 		String line;
@@ -294,7 +294,7 @@ public class Student extends User{
 	 */
 	public boolean hasClashingSchedule(Course course) throws IOException {
 		String matriculation_no = this.matricnumber;
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
+		File file=new File("src/registeredRecords");    
 		FileReader fr=new FileReader(file);   
 		BufferedReader br=new BufferedReader(fr);  
 		String line;
@@ -420,7 +420,7 @@ public class Student extends User{
 	public ArrayList<Course> retrieveRegisteredCourses() throws IOException {
 		ArrayList<String> indexList = new ArrayList<String>();
 		String matriculation_no = this.matricnumber;
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
+		File file=new File("src/registeredRecords");    
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  
 		String line;
@@ -435,7 +435,7 @@ public class Student extends User{
 		fr.close();    
 
 		ArrayList<Course> courseList = new ArrayList<Course>();
-		file=new File(System.getProperty("user.dir")+"/src/Courses");    
+		file=new File("src/Courses");    
 		fr=new FileReader(file);   //reads the file
 		br=new BufferedReader(fr);  
 		while((line=br.readLine())!=null)
@@ -462,7 +462,7 @@ public class Student extends User{
 		ArrayList<Course> courseList = retrieveRegisteredCourses();
 		StringBuilder sb = new StringBuilder();
 		String matriculation_no = this.matricnumber;
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
+		File file=new File("src/registeredRecords");    
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  
 		String line;
@@ -507,7 +507,7 @@ public class Student extends User{
 	 */
 	public String enrollStudent(Course course, String status){
 			try {
-				File file = new File(System.getProperty("user.dir") + "/src/registeredRecords");    
+				File file = new File("src/registeredRecords");    
 				PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
 				pw.println(this.getUsername()+";"+this.getMatricnumber()+";"+this.getName()+";"+this.getGender()+";"+course.getCourseCode()+";"+course.getCourseName()+";"+course.getCourseIndex()+";"+status);
 				pw.close();
@@ -531,7 +531,7 @@ public class Student extends User{
     	
 		//transfer data from old file to temp file without that course info
     	String tempFile = "temp.txt";
-    	File oldFile = new File(System.getProperty("user.dir")+ "/src/registeredRecords");
+    	File oldFile = new File( "src/registeredRecords");
     	File newFile = new File (tempFile);
     	
     	String currentLine;
@@ -541,7 +541,7 @@ public class Student extends User{
     		BufferedWriter bw = new BufferedWriter(fw);
     		PrintWriter pw = new PrintWriter(bw);
     		
-    		FileReader fr = new FileReader(System.getProperty("user.dir")+"/src/registeredRecords");
+    		FileReader fr = new FileReader("src/registeredRecords");
     		BufferedReader br = new BufferedReader(fr);
     		
     		while((currentLine = br.readLine()) != null)  {
@@ -560,7 +560,7 @@ public class Student extends User{
     		fw.close();
     		
     		oldFile.delete();
-    		File dump = new File(System.getProperty("user.dir")+ "/src/registeredRecords");
+    		File dump = new File( "src/registeredRecords");
     		newFile.renameTo(dump);
     		this.removeStudentsFromWaitList(course.getCourseIndex(),1);
     		return "Course dropped successfully.";
@@ -584,7 +584,7 @@ public class Student extends User{
 		String courseCodeToTake = course.getCourseCode();
 
 		String matriculation_no = this.matricnumber;
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
+		File file=new File("src/registeredRecords");    
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  
 		String line;
@@ -614,7 +614,7 @@ public class Student extends User{
 		//name gender nationality only
 		ArrayList<Student> studentList = new ArrayList<>();
 		Student student = new Student();
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
+		File file=new File("src/registeredRecords");    
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  
 		String line;
@@ -641,7 +641,7 @@ public class Student extends User{
 		//name gender nationality only
 		ArrayList<Student> studentList = new ArrayList<>();
 		Student student = new Student();
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
+		File file=new File("src/registeredRecords");    
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  
 		String line;
@@ -668,7 +668,7 @@ public class Student extends User{
 	 */
 	public String changeIndexForStudent(Course course){
 		try {
-			File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");      
+			File file=new File("src/registeredRecords");      
 			String message = "index was not changed";
 			Scanner scanner = new Scanner(file);
 			ArrayList<String> textcontent = new ArrayList<String>();
@@ -714,7 +714,7 @@ public class Student extends User{
 		ArrayList<String> recordList = new ArrayList<>();
 		ArrayList<String> waitList = new ArrayList<>();
 		Student student = new Student();
-		File file=new File(System.getProperty("user.dir")+"/src/registeredRecords");    
+		File file=new File("src/registeredRecords");    
 		FileReader fr=new FileReader(file);   //reads the file
 		BufferedReader br=new BufferedReader(fr);  
 		String line;
@@ -740,7 +740,7 @@ public class Student extends User{
 		fr.close();
 
 		try {
-			file = new File(System.getProperty("user.dir") + "/src/registeredRecords");
+			file = new File("src/registeredRecords");
 			PrintWriter pw = new PrintWriter(new FileOutputStream(file));
 			int x = 0;
 			for(int i=0; i<recordList.size();i++){
