@@ -5,7 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/**
+ * Staff represents a staff in the school.
+*
+*/
 
 public class Staff extends User{
 

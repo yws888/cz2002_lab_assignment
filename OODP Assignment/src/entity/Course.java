@@ -1,5 +1,11 @@
 package entity;
 
+/**
+ * Course carries the persistent information of the course object
+ * in the system.
+ * 
+ */
+
 import java.io.*;
 import java.util.ArrayList;
 //import java.util.HashMap;

@@ -8,6 +8,12 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * PasswordManger carries the persistent information of verifying
+ * the password as well as securing it to allow data hiding.
+ * 
+ */
+
 public class PasswordManager {
     /**
      * 

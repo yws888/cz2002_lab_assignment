@@ -1,6 +1,11 @@
 package entity;
 import java.util.ArrayList;
 
+/**
+ * User represents a user in the database.
+ *
+ */
+
 public class User {
 	/**
 	 * 
@@ -20,13 +25,13 @@ public class User {
 	private String type;
 		
 	/**
-	 * @return
+	 * @return username of the user
 	 */
 	public String getUsername() {
 		return this.username;
 	}
 	/**
-	 * @return
+	 * @return password of the user
 	 */
 	public String getPassword() {
 		return this.password;
@@ -89,7 +94,9 @@ public class User {
 		this.type = type;
 	}
 	/**
-	 * @return
+	 * Checks if the student or staff login details are correct
+	 *
+	 * @return false if login verification is wrong.
 	 */
 	public boolean verifylogin() {
 		Student student = new Student();
@@ -107,8 +114,10 @@ public class User {
 	}
 	
 	/**
+	 * Gets the user by their user name
+	 *
 	 * @param username
-	 * @return
+	 * @return null if username is not found.
 	 */
 	public User getUserbyUsername(String username) {
 		Student student = new Student();

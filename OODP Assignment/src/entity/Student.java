@@ -140,6 +140,13 @@ public class Student extends User{
 		return student;
 		
 	}
+	
+	/**
+	   * retrieves and returns Student object regarding their login details 
+	   * in an array.
+	   * 
+	   * @return array containing username, password, is salt and is type.
+	   */
 	public ArrayList<User> retrieveStudentLoginDetails() { 		
 		ArrayList<User> userarray = new ArrayList<User>();
 		try {
@@ -160,7 +167,13 @@ public class Student extends User{
 			}  
 		return userarray;
 	}
-
+	
+	/**
+	   * Retrieves and returns Student object regarding their information
+	   * such as username, matriculation number, and name.
+	   * 
+	   * @return the student list as a string.
+	   */
 	public String printStudentList(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("====================Student List====================\n");
@@ -184,6 +197,7 @@ public class Student extends User{
 	
 	
 	/**
+	 * Creates a new student object with its details stored in the database.
 	 * @param username
 	 * @param password
 	 * @param salt
@@ -210,6 +224,7 @@ public class Student extends User{
 
 	/**
 	 * checks if course Index input is already taken By Student
+	 *
 	 * @param courseIndex		course Index
 	 * @return true 			if course Index input is already taken By Student, false otherwise
 	 * @throws IOException		
@@ -235,14 +250,16 @@ public class Student extends User{
 
 	}
 	
-	//returns true if time overlaps?
+	
 
 	/**
+	 * Checks if there is any timeoverlap that would affect the schedule.
+	 *
 	 * @param startTime1
 	 * @param endTime1
 	 * @param startTime2
 	 * @param endTime2
-	 * @return
+	 * @return true if timeoverlaps, else return false if time does not overlap.
 	 */
 	public boolean timeOverlap(String startTime1, String endTime1, String startTime2, String endTime2){
 		//ranges overlap if (StartDate1 <= EndDate2) and (StartDate2 <= EndDate1)
@@ -269,8 +286,10 @@ public class Student extends User{
 
 
 	/**
+	 * Checks if there is any clashing schedule with regards to the database
+	 *
 	 * @param course
-	 * @return
+	 * @return true if there is clash, else return false if there is no clash.
 	 * @throws IOException
 	 */
 	public boolean hasClashingSchedule(Course course) throws IOException {
@@ -434,7 +453,9 @@ public class Student extends User{
 	}
 
 	/**
-	 * @return
+	 * Prints the course list found in the database.
+	 *
+	 * @return course list's information as a string
 	 * @throws IOException
 	 */
 	public String printCourseList() throws IOException {
@@ -464,6 +485,7 @@ public class Student extends User{
 
 	/**
 	 * retrieves Total AUs Taken
+	 *
 	 * @return Total AUs Taken
 	 * @throws IOException
 	 */
@@ -550,8 +572,10 @@ public class Student extends User{
     }
 
 	/**
+	 * Checks if course is taken by the student based on the input course index.
 	 * @param courseIndex
-	 * @return
+	 * @return true if the course is found in the database of that student, 
+	 * else return false if it is not found in the student's database.
 	 * @throws IOException
 	 */
 	public boolean courseCodeTakenByStudent(String courseIndex) throws IOException {
@@ -579,8 +603,11 @@ public class Student extends User{
 	}
 
 	/**
+	 * Returns the list of students studying the course based on course
+	 * index as an input.
+	 * 
 	 * @param courseIndex
-	 * @return
+	 * @return student lists under the course index as an input.
 	 * @throws IOException
 	 */
 	public ArrayList<Student> studentListByIndex(String courseIndex) throws IOException {
@@ -604,8 +631,10 @@ public class Student extends User{
 
 	}
 	/**
+	 * Returns the student lists that are found under that course code.
+	 *
 	 * @param courseCode
-	 * @return
+	 * @return studentlist which contains the students under the input course code.
 	 * @throws IOException
 	 */
 	public ArrayList<Student> studentListByCourseCode(String courseCode) throws IOException {
@@ -669,6 +698,9 @@ public class Student extends User{
 }
 
 	/**
+	 * Removes student from waitlist if there is a space after another
+	 * student has dropped the course.
+	 *
 	 * @param courseIndex
 	 * @param availableSlots
 	 * @return
@@ -728,6 +760,7 @@ public class Student extends User{
 	}
 
 	/**
+	 * Notification sending to student via email.
 	 *
 	 * @param email
 	 * @param message
