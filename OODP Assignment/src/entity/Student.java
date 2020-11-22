@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.lang.NullPointerException;
 
 /**
   * Student represents a student in the school.
@@ -141,6 +142,75 @@ public class Student extends User{
 			e.printStackTrace();
 		}
 		return student;
+		
+	}
+	
+		/**
+	   * Checks if username exists in database
+	   * by reading & matching from text file
+	   * 
+	   * @param	username	username of the student
+	   * @return true if username is in database, else return false
+	   */
+	public boolean isUsernameTaken(String username) {
+		
+		try {
+			File file=new File("src/Students");    
+			
+			FileReader fr=new FileReader(file);   //reads the file
+			BufferedReader br=new BufferedReader(fr);  
+			String line;
+			boolean entryfound = false;
+			while((line=br.readLine())!=null || entryfound == false)
+			{
+				String[] entry = line.split(";");
+				if(entry[0].equals(username)){
+					return true;
+				}
+			}
+			
+			fr.close();    
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		catch (NullPointerException e) {} ;
+		
+		return false;
+		
+	}
+	
+	/**
+	   * Checks if matriculation number exists in database
+	   * by reading & matching from text file
+	   * 
+	   * @param	matriculationNumber	matriculation number of the student
+	   * @return true if matriculation number is in database, else return false
+	   */
+	public boolean isMatricNumberTaken(String matriculationNumber) {
+		
+		try {
+			File file=new File("src/Students");    
+			
+			FileReader fr=new FileReader(file);   //reads the file
+			BufferedReader br=new BufferedReader(fr);  
+			String line;
+			boolean entryfound = false;
+			while((line=br.readLine())!=null || entryfound == false)
+			{
+				String[] entry = line.split(";");
+				if(entry[5].equals(matriculationNumber)){
+					return true;
+				}
+			}
+			fr.close();    
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		catch (NullPointerException e) {} ;
+		
+		return false;
 		
 	}
 	
