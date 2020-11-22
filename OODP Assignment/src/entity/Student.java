@@ -622,7 +622,7 @@ public class Student extends User{
 		while((line=br.readLine())!=null)
 		{
 			String[] entry = line.split(";");
-			if(entry[6].equals(courseIndex) && entry[7] == "ACCEPTED"){
+			if(entry[6].equals(courseIndex) && entry[7].equals("ACCEPTED") ){
 				studentList.add(student.retrieveStudentInfoByUsername(entry[0]));
 			}
 
@@ -649,7 +649,7 @@ public class Student extends User{
 		while((line=br.readLine())!=null)
 		{
 			String[] entry = line.split(";");
-			if(entry[4].equals(courseCode) && entry[7] == "ACCEPTED"){
+			if(entry[4].equals(courseCode) && entry[7].equals("ACCEPTED")){
 				studentList.add(student.retrieveStudentInfoByUsername(entry[0]));
 			}
 

@@ -43,16 +43,16 @@ public class LoginUI {
 			//all passwords for my added students are b
 		    			
 				try {
-					userinput = Integer.parseInt(sc.next());
+					userinput = Integer.parseInt(sc.nextLine());
 
 					switch(userinput) {
 					case 1:
 						System.out.println("Username:");
-						username = sc.next();
+						username = sc.nextLine();
 						Console cnsl = System.console();
 						if (cnsl == null) { //eclipse doesnt support input masking
 							System.out.println("Password:");
-							password = sc.next();
+							password = sc.nextLine();
 					    } 
 						else {
 							char[] ch = cnsl.readPassword( "Enter password : ");

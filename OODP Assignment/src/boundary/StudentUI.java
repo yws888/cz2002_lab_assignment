@@ -54,7 +54,7 @@ public class StudentUI implements UserUI {
 		System.out.println("0. Exit");
 		System.out.print("\nEnter the number of your choice: "); 
 		try {
-			choice = Integer.parseInt(sc.next());
+			choice = Integer.parseInt(sc.nextLine());
 			
 			switch (choice) {
 			case 1:

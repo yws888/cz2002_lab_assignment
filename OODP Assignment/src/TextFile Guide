@@ -7,6 +7,6 @@ course_code;course_name;school;au;index;vacancy;[Lab Schedule];[Tutorial Schedul
 ===COURSE WAITLIST===
 username;index
 ===REGISTEREDRECORDS===
-username;matriculation_no;name;gender;course_code;course_name;course;status
+username;matriculation_no;name;gender;course_code;course_name;course_index;status
 
 Square brackets data defaults to [NONE]

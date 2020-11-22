@@ -58,7 +58,7 @@ public class StaffUI implements UserUI {
 			
 			try {
 
-				choice = Integer.parseInt(sc.next());
+				choice = Integer.parseInt(sc.nextLine());
 				
 	
 				switch (choice) {
@@ -75,7 +75,7 @@ public class StaffUI implements UserUI {
 					            System.out.println("3. Update course vacancy:");
 					            System.out.println("0. Exit");
 					            System.out.print("\nEnter the number of your choice: ");
-									choice = Integer.parseInt(sc.next());
+									choice = Integer.parseInt(sc.nextLine());
 
 
 					            switch (choice) {
@@ -106,6 +106,7 @@ public class StaffUI implements UserUI {
 				        course = new Course();
 				        student = new Student();
 				        System.out.println("Please enter the course index to print student list:");
+				        
 				        courseIndex = sc.nextLine();
 				        if(courseIndex.toLowerCase().equals("cancel")){
 				            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
