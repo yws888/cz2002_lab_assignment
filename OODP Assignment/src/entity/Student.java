@@ -122,7 +122,7 @@ public class Student extends User{
 	   */
 	public Student retrieveStudentInfoByUsername(String username) {
 		Student student = new Student();
-		//ArrayList<User> studentlist = retrieveStudentLoginDetails();
+		
 		try {
 			File file=new File("src/Students");    
 			
@@ -406,7 +406,7 @@ public class Student extends User{
 		try {
 			if((dateFormat.parse(startTime1).before(dateFormat.parse(endTime2)) || dateFormat.parse(startTime1).equals(dateFormat.parse(endTime2))) 
 					&& (dateFormat.parse(startTime2).before(dateFormat.parse(endTime1)) || dateFormat.parse(startTime2).equals(dateFormat.parse(endTime1)))){
-				// shld add && (dateFormat.parse(startTime1).before(dateFormat.parse(endTime2)) ?
+				
 				if((dateFormat.parse(startTime2).equals(dateFormat.parse(endTime1)) || dateFormat.parse(startTime1).equals(dateFormat.parse(endTime2)))){
 					return false;
 				}
