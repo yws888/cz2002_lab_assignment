@@ -65,7 +65,7 @@ public class LoginUI {
 									
 									if (LoginController.isValidAccessTime()==true){
 										System.out.println("Login Successful.");
-										((StudentUI) userUI).initStudentUI();
+										((StudentUI) userUI).initUI();
 										
 
 										}
@@ -85,7 +85,7 @@ public class LoginUI {
 								case 2: //Staff
 									userUI = new StaffUI(logincontroller.getStaff(username));
 									System.out.println("Login Successful. ");
-									((StaffUI) userUI).initStaffUI();
+									((StaffUI) userUI).initUI();
 									
 									break;
 								case 3: //error
