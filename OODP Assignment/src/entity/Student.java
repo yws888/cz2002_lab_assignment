@@ -165,6 +165,7 @@ public class Student extends User{
 			{
 				String[] entry = line.split(";");
 				if(entry[0].equals(username)){
+					br.close();
 					return true;
 				}
 			}
@@ -200,6 +201,7 @@ public class Student extends User{
 			{
 				String[] entry = line.split(";");
 				if(entry[5].equals(matriculationNumber)){
+					br.close();
 					return true;
 				}
 			}
