@@ -362,10 +362,41 @@ public class Course {
 				return "Error adding courses.";
 			}
 		}else{
-			return "Courses could not be added, one of the index entered is not available.";
+			return "Courses could not be added, the index entered is not available.";
 		}
 
 	}
+	
+	/**
+	   * Prints out the whole list of courses in the database with information regarding
+	   * its course code, course name and its course index.
+	   * 
+	   * @return course list as course code, course name as well as its course index.
+	   * 
+	   * @throws IOException
+	   * @throws NullPointerException
+	   */
+
+	public String retrieveCourse() throws IOException {
+		
+		String courselist = "";
+		File file=new File("src/Courses");    
+		FileReader fr=new FileReader(file);   //reads the file
+		BufferedReader br=new BufferedReader(fr); 
+		String line;
+		try {
+			while((line=br.readLine())!=null)
+			{
+				String[] entry = line.split(";");
+				courselist += "Course Code: " + entry[0] + ", Course Name: " + entry[1] + ", Course Index: " + entry[4] + "\n";
+			}
+			br.close();
+			fr.close();
+		}
+		catch (NullPointerException e) {}; 
+		
+		return courselist;
+		}
 	
 	  /**
 	   * Finds the course object based on course index.
