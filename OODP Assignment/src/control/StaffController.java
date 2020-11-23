@@ -301,20 +301,31 @@ public class StaffController {
                     System.out.println("Invalid Input, please enter again" );
                 }
             } while(!Ultility.isNumeric(au.trim()));
-
+            
+            
             System.out.println("Please enter School of the Course:");
-            do {
+            
+            do{
             	school = sc.nextLine();
             	if(school.toLowerCase().equals("cancel")){
             		System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
             		sc.nextLine();
             		return;
-            	}	
-            	
+            	}
             	if(school.isEmpty()) {
             		System.out.println("Please do not leave blank entries, please enter again" );
             	}
-            }while(school.isEmpty());
+            } while(school.isEmpty());
+            
+            sb = new StringBuilder();
+            for (char c : school.toCharArray()) {
+            	
+            	if (Character.isAlphabetic(c)) {
+                    sb.append(Character.toUpperCase(c));
+                }
+            	else sb.append(c);
+            }
+            school = sb.toString();
             
             validation3=false;
             existCourseCode= course.existingCourseCode(course_code); 
