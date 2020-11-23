@@ -54,7 +54,7 @@ public class Staff extends User{
 	/**
 	   * retrieves and returns all Staffs as objects by reading from text file
 	   * 
-	   * @return                          ArrayList<User> of Staff object(s)
+	   * @return                         ArrayList for {@link User}  of Staff object(s)
 	   */
 	
 	public ArrayList<User> retrieveStaffLoginDetails() { 

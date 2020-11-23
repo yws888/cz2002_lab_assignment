@@ -753,8 +753,8 @@ public class StaffController {
 
    /**
     * get list of student objects taking that course index as the input.
- * @param courseIndex
- * @return  list of student objects taking that course index
+ * @param courseIndex 		course Index
+ * @return  ArrayList for {@link Student} taking that course index
  */
 	public static ArrayList<Student> getStudentListByCourseIndex(String courseIndex) {
 	       
@@ -777,8 +777,8 @@ public class StaffController {
 	/**
 	 * get list of student objects taking that course Code as the input.
 	 * 
-	 * @param courseCode
-	 * @return  list of student objects taking that course Code
+	 * @param courseCode			course Code
+	 * @return  ArrayList for {@link Student} taking that course Code
 	 */
     public static ArrayList<Student> getStudentListByCourseCode(String courseCode) {
         

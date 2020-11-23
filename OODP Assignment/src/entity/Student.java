@@ -116,10 +116,11 @@ public class Student extends User{
 	
 	/**
 	   * retrieves and returns Student object from corresponding username 
-	   * by reading & matching from text file
-	   * 
+	   * by reading and matching from text file
+	   * @param username		username of student
 	   * @return                          Student object
 	   */
+
 	public Student retrieveStudentInfoByUsername(String username) {
 		Student student = new Student();
 		
@@ -150,7 +151,7 @@ public class Student extends User{
 	
 		/**
 	   * Checks if username exists in database
-	   * by reading & matching from text file
+	   * by reading and matching from text file
 	   * 
 	   * @param	username	username of the student
 	   * @return true if username is in database, else return false
@@ -186,7 +187,7 @@ public class Student extends User{
 	
 	/**
 	   * Checks if matriculation number exists in database
-	   * by reading & matching from text file
+	   * by reading and matching from text file
 	   * 
 	   * @param	matriculationNumber	matriculation number of the student
 	   * @return true if matriculation number is in database, else return false
@@ -306,7 +307,7 @@ public class Student extends User{
 	 *
 	 * @param courseIndex		course Index
 	 * @return true 			if course Index input is already taken By Student, false otherwise
-	 * @throws IOException		
+	 * @throws IOException		if I/O exception occurs
 	 */
 	public boolean courseIndexTakenByStudent(String courseIndex) throws IOException {
 		String matriculation_no = this.matricnumber;
@@ -334,7 +335,7 @@ public class Student extends User{
 	 *
 	 * @param courseIndex		course Index
 	 * @return true 			if student is accepted for the course index, else return false.
-	 * @throws IOException		
+	 * @throws IOException		if I/O exception occurs
 	 */
 	public boolean isCourseIndexAccepted(String courseIndex) throws IOException {
 		String matriculation_no = this.matricnumber;
@@ -360,7 +361,7 @@ public class Student extends User{
 	 *
 	 * @param courseIndex		course Index
 	 * @return true 			if student is on waitlist for the course index, else return false.
-	 * @throws IOException		
+	 * @throws IOException		if I/O exception occurs
 	 */
 	public boolean isCourseIndexOnWaitlist(String courseIndex) throws IOException {
 		String matriculation_no = this.matricnumber;
@@ -419,7 +420,7 @@ public class Student extends User{
 	 *
 	 * @param course			 Course to be added
 	 * @return true if there is clash, else return false if there is no clash.
-	 * @throws IOException
+	 * @throws IOException		if I/O exception occurs
 	 */
 	public boolean hasClashingSchedule(Course course) throws IOException {
 		String matriculation_no = this.matricnumber;
@@ -543,8 +544,8 @@ public class Student extends User{
 	/**
 	 * retrieve  Courses Student has Registered for
 	 * 
-	 * @return ArrayList<Course> containing Courses Student has Registered for 		
-	 * @throws IOException
+	 * @return ArrayList containing Course objects Student has Registered for 		
+	 * @throws IOException				if I/O exception occurs
 	 */
 	public ArrayList<Course> retrieveRegisteredCourses() throws IOException {
 		ArrayList<String> indexList = new ArrayList<String>();
@@ -585,7 +586,7 @@ public class Student extends User{
 	 * Prints the course list found in the database.
 	 *
 	 * @return course list's information as a string
-	 * @throws IOException
+	 * @throws IOException				if I/O exception occurs
 	 */
 	public String printCourseList() throws IOException {
 		ArrayList<Course> courseList = retrieveRegisteredCourses();
@@ -747,8 +748,8 @@ public class Student extends User{
 	 * index as an input.
 	 * 
 	 * @param courseIndex				courseIndex
-	 * @return 							student lists under the course index  input.
-	 * @throws IOException
+	 * @return 							ArrayList of {@link Student} under the course index  input.
+	 * @throws IOException				if I/O exception occurs
 	 */
 	public ArrayList<Student> studentListByIndex(String courseIndex) throws IOException {
 		//name gender nationality only
@@ -774,8 +775,8 @@ public class Student extends User{
 	 * Returns the student lists that are found under that course code.
 	 *
 	 * @param courseCode				courseCode
-	 * @return							 studentlist which contains the students under the input course code.
-	 * @throws IOException
+	 * @return							ArrayList of {@link Student}  which contains the students under the input course code.
+	 * @throws IOException				if I/O exception occurs
 	 */
 	public ArrayList<Student> studentListByCourseCode(String courseCode) throws IOException {
 		//name gender nationality only
@@ -843,7 +844,7 @@ public class Student extends User{
 	 * @param courseIndex				course Index of course to remove student from 
 	 * @param availableSlots			no. of available slots
 	 * @return							"Waitlist updated accordingly." if successful, return "Error updating waitlist." otherwise
-	 * @throws IOException
+	 * @throws IOException				if I/O exception occurs
 	 */
 	public String removeStudentsFromWaitList(String courseIndex, int availableSlots) throws IOException {
 		int counter = availableSlots;

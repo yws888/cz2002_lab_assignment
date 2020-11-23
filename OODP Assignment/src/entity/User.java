@@ -76,8 +76,8 @@ public class User {
 
 	/**
 	 * 	 Constructor for User object, initialising the following attributes:
-	 * @param username
-	 * @param password
+	 * @param username			username
+	 * @param password			password
 	 */
 	public User(String username, String password) {
 		this.username = username;
@@ -85,10 +85,10 @@ public class User {
 	}
 	/**
 	 * 	 Constructor for User object, initialising the following attributes:
-	 * @param username
-	 * @param password
-	 * @param salt
-	 * @param type
+	 * @param username			username
+	 * @param password			password
+	 * @param salt				salt for password hashing
+	 * @param type				type of Useer
 	 */
 	public User(String username, String password, String salt, String type) {
 		this.username = username;

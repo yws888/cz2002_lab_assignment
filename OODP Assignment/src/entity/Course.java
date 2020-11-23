@@ -146,7 +146,7 @@ public class Course {
 	/**
 	 * Setter method for String containing lab Schedule details, if any, for the course object
 	 * 
-	 * @param labSchedule
+	 * @param labSchedule		lab Schedule
 	 */
 	public void setLabSchedule(String labSchedule) {
 		this.labSchedule = labSchedule;
@@ -168,7 +168,7 @@ public class Course {
 	/**
 	 * Setter method for String containing tutorial Schedule details, if any, for the course object
 	 * 
-	 * @param tutorialSchedule
+	 * @param tutorialSchedule			tutorial Schedule
 	 */
 	public void setTutorialSchedule(String tutorialSchedule) {
 		this.tutorialSchedule = tutorialSchedule;
@@ -188,7 +188,7 @@ public class Course {
 	/**
 	 * Setter method for String containing lecture Schedule details for the course object
 	 * 
-	 * @param lectureSchedule
+	 * @param lectureSchedule	lecture Schedule
 	 */
 
 	public void setLectureSchedule(String lectureSchedule) {
@@ -296,12 +296,12 @@ public class Course {
 	 * Add course to the student's database only if the course
 	 * index is not already taken.
 	 * 
-	 * @param courseCode
-	 * @param courseName
-	 * @param school
-	 * @param noOfAUs
-	 * @param courseIndex
-	 * @param vacancy
+	 * @param courseCode					course Code
+	 * @param courseName					course Name
+	 * @param school						school
+	 * @param noOfAUs						number Of AUs
+	 * @param courseIndex					ArrayList of {@link String}, each element containing a course Index
+	 * @param vacancy						ArrayList of {@link String}, each element containing the vacancy for the corresponding course Index
 	 * 
 	 * @return true if course has been added. Else return error in 
 	 * adding course explaining that the index is not available.
@@ -341,7 +341,7 @@ public class Course {
 	   * 
 	   * @return course list as course code, course name as well as its course index.
 	   * 
-	   * @throws IOException
+	   * @throws IOException			If I/O error occurs
 	   */
 
 	public String retrieveCourse() throws IOException {
@@ -374,7 +374,7 @@ public class Course {
 	   * 
 	   * @return 						  course as course object
 	   * 
-	   * @throws IOException  			 
+	   * @throws IOException  			 If I/O error occurs
 	   */
 
 	public Course retrieveCourseByIndex(String courseIndex) throws IOException {
@@ -404,7 +404,7 @@ public class Course {
 	   * 
 	   * @return 						  course as course object
 	   * 
-	   * @throws IOException  			
+	   * @throws IOException  				If I/O error occurs
 	   */
 
 	public Course retrieveCourseByCourseCode(String courseCode) throws IOException {
