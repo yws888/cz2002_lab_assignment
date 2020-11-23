@@ -9,7 +9,7 @@ import java.util.Properties;
  * EmailManager is the class containing the logic to perform email sending
  * 
  */
-public class EmailManager implements NotificationManager {
+public class EmailManager extends NotificationManager {
 	
 	
     /**

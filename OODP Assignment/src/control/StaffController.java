@@ -790,9 +790,6 @@ public class StaffController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if(studentList.size() == 0) {
-            	return null;
-            }
 
             return studentList;
         }

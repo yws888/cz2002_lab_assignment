@@ -5,7 +5,7 @@ package helper;
  * Manages notification sending via different modes e.g. email, SMS, WhatsApp
  *
  */
-public interface NotificationManager {
+public abstract class NotificationManager {
 
 	/**
 	 * sends Notification containing message to the specified contactInfo
