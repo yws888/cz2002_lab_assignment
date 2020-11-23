@@ -6,7 +6,6 @@ import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import boundary.StudentUI;
 
 /**
  * StudentController contains the logic to realise use case of the options
@@ -475,9 +474,8 @@ public class StudentController {
 		if(verifylogin == true) {
 			System.out.println("Verified.");
 			
-			StudentUI studentUI = new StudentUI(logincontroller.getStudent(username));
-			Student student2= new Student();
-			student2=studentUI.getStudent();
+		
+			Student student2= logincontroller.getStudent(username);
 			Course course1 = new Course();
 			Course course2 = new Course();
 			
