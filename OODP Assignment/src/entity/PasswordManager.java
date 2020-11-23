@@ -9,31 +9,42 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * PasswordManger carries the persistent information of verifying
- * the password as well as securing it to allow data hiding.
+ * PasswordManager class handles all password related jobs,
+ * such as salt hashing passwords using the PBKDF2-HMAC-SHA1 hashing algorithm to secure passwords,
+ * and verifying passwords with the salt hashed passwords.
  * 
  */
 
 public class PasswordManager {
     /**
-     * 
+     * Generates a random number to be used to generate a random salt for secure password hashing.
+     * SecureRandom() is used instead of Random() since SecureRandom() generates a more non-predictable random number as
+     * SecureRandom() implements Cryptographically Secure Pseudo-Random Number Generator (CSPRNG) which is more secure in the case
+     * of generating a random salt.
+     *
      */
     private static final Random RANDOM = new SecureRandom();
     /**
-     *  number of iterations
+     *  The iteration count of the number of times that the password is hashed during the derivation of the symmetric key with PBEKeySpec.
+     *  The higher number, the more difficult it is to validate a password guess and then derive the correct key.
+     *  In this case it is used together with the salt, the reason of using a salt is to prevent against rainbow tables attacks.
      */
     private static final int ALGO_ITERATIONS = 10000;
     /**
-     * length of key
+     * Symmetric key length in bits generated from PBEKeySpec. In this case it is 256 bits.
      */
     private static final int KEY_LENGTH = 256;
     /**
-     *  name of algorithm
+     *  Defines the hashing algorithm used. Hashing algorithm used is PBKDF2-HMAC-SHA1,
+     *  which is a password-based key derivation function
      */
     private static final String HASHALGO = "PBKDF2WithHmacSHA1";
 
+
+
     /**
-     * @return
+     * This method generates a random salt in bytes for password+salt hashing
+     * @return      Returns a randomly generated salt in bytes for password+salt hashing
      */
     public static byte[] getRandomSalt() {
         byte[] salt = new byte[16];
@@ -42,9 +53,10 @@ public class PasswordManager {
     }
 
     /**
-     * @param password
-     * @param salt
-     * @return
+     * This function securely hashes passwords to be stored securely in a database.
+     * @param password      Plaintext password in char[] to hash
+     * @param salt          Random salt generated to hash
+     * @return              Returns an encrypted hashed password+salt password in byte format.
      */
     public static byte[] hash(char[] password, byte[] salt){
         PBEKeySpec spec = new PBEKeySpec(password, salt, ALGO_ITERATIONS, KEY_LENGTH);
@@ -58,11 +70,13 @@ public class PasswordManager {
             spec.clearPassword();
         }
     }
+    
     /**
-     * @param password
-     * @param salt
-     * @param expectedHash
-     * @return
+     * Verifies if input password is correct.
+     * @param password          Password to verify
+     * @param salt              Salt of the password
+     * @param expectedHash      Expected hash output of password+salt to compare
+     * @return                  returns "True" if expectedHash equals to to the hash format of the input password+salt, else returns "False"
      */
     public static boolean PasswordValidation(char[] password, byte[] salt, byte[] expectedHash) {
         byte[] pwdHash = hash(password, salt);
@@ -73,9 +87,11 @@ public class PasswordManager {
         }
         return true;
     }
+    
     /**
-     * @param input
-     * @return
+     * Takes in a byte array and converts the byte array to hex format
+     * @param input     Byte array
+     * @return          Returns byte input in hex format
      */
     public static String hexEncoder( byte[] input ){
         StringBuffer result = new StringBuffer();
@@ -88,8 +104,9 @@ public class PasswordManager {
         return result.toString();
     }
     /**
-     * @param input
-     * @return
+     * takes in a string in hex format and converts the string to a byte array
+     * @param input     Hex format string
+     * @return          Returns hex input in byte format
      */
     public static byte[] hexDecoder(String input) {
         int len = input.length();
@@ -123,5 +140,4 @@ public class PasswordManager {
         }
         return sb.toString();
     }
-
 }
