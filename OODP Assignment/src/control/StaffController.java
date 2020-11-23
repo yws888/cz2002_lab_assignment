@@ -251,6 +251,18 @@ public class StaffController {
             		System.out.println("Please do not leave blank entries, please enter again" );
             	}
             } while(course_code.isEmpty());
+            StringBuilder sb = new StringBuilder();
+            for (char c : course_code.toCharArray()) {
+            	
+            	if (Character.isDigit(c)) {
+                    sb.append(c);
+                }
+                else if (Character.isAlphabetic(c)) {
+                    sb.append(Character.toUpperCase(c));
+                }
+            }
+            course_code = sb.toString();
+            System.out.println(course_code);
             
             System.out.println("Please enter the name for this course:");
             
