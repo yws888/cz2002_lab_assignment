@@ -20,7 +20,7 @@ public class LoginController {
 	 */
 	public boolean verifylogin(String username, String password) {
 		User user = new User(username, password);
-		//if login true
+		
 		if(user.verifylogin() == true) {
 			return true;
 		}
@@ -55,7 +55,6 @@ public class LoginController {
 	public Staff getStaff(String username) {
 		Staff staff = new Staff();
 		return staff.retrieveStaffInfo(username);
-
 		
 	}
 	
@@ -77,29 +76,16 @@ public class LoginController {
 	 */
 	public static  boolean isValidAccessTime() {
 		AccessPeriod accessPeriod = AccessPeriod.retrieveAccessPeriod();
-		// LocalDateTime daten =LocalDateTime.now();
+		
 		String currentDate =LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-		/*SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date currentDate = null;
-		Date startDate = null;
-		Date endDate = null;
-		try {
-			currentDate = simpleDateFormat.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-			startDate = simpleDateFormat.parse(accessPeriod.getStartDate());
-			endDate = simpleDateFormat.parse(accessPeriod.getEndDate());
-		} catch (ParseException e) {
-			//e.printStackTrace();
-		}*/
 		String currentTime =LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
-		
+		    
+		if(currentDate.compareTo( accessPeriod.getStartDate() ) >= 0 && currentDate.compareTo( accessPeriod.getEndDate() ) <= 0
+				&& currentTime.compareTo( accessPeriod.getStartTime() ) >= 0 && currentTime.compareTo( accessPeriod.getEndTime() ) <= 0) {	
+			return true;
 
-			//if(daten.compareTo(accessPeriodStartDateTime)>=0 && daten.compareTo(accessPeriodEndDateTime)<0){            
-			if(currentDate.compareTo( accessPeriod.getStartDate() ) >= 0 && currentDate.compareTo( accessPeriod.getEndDate() ) <= 0
-					&& currentTime.compareTo( accessPeriod.getStartTime() ) >= 0 && currentTime.compareTo( accessPeriod.getEndTime() ) <= 0) {	
-				return true;
-
-			}
+		}
 		return false;
 	}
 	
