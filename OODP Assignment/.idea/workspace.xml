@@ -210,7 +210,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/entity/Student.java</url>
-          <line>304</line>
+          <line>425</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
