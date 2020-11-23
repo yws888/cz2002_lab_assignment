@@ -27,8 +27,6 @@ public class StaffUI implements UserUI {
 	public StaffUI(Staff staff) {
 		this.staff = staff;
 	}
-
-	//public StaffUI(){}
 	
     Course course;
     Student student;

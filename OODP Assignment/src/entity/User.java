@@ -16,7 +16,7 @@ public class User {
 	 */
 	private String password;
 	/**
-	 * 
+	 * salt used in password hashing process
 	 */
 	private String salt;
 	/**
@@ -25,22 +25,29 @@ public class User {
 	private String type;
 		
 	/**
+	 * Getter method for username of the user
+	 * 
 	 * @return username of the user
 	 */
 	public String getUsername() {
 		return this.username;
 	}
 	/**
+	 * Getter method for password of the user
+	 * 
 	 * @return password of the user
 	 */
 	public String getPassword() {
 		return this.password;
 	}
 	/**
-	 * @return
+	 * Getter method for salt used in password hashing process
+	 * @return salt
 	 */
 	public String getSalt(){ return this.salt; }
 	/**
+	 * Getter method for type of the user
+	 * 
 	 * @return type of the user (e.g. student, staff)
 	 */
 	public String getType() {
@@ -48,7 +55,9 @@ public class User {
 	}
 
 	/**
-	 * @param username
+	 * Setter method for username
+	 * 
+	 * @param username username
 	 */
 	public void setUsername(String username) {
 		this.username = username;

@@ -119,9 +119,6 @@ public class Course {
 		return courseIndex;
 	}
 
-//	public void setCourseIndex(String courseIndex) {
-//		this.courseIndex = courseIndex;
-//	}
 	
 	/**
 	   * Getter method for Maximum number of vacancies (not current vacancies)
@@ -134,10 +131,6 @@ public class Course {
 		return vacancy;
 	}
 
-//	public void setVacancy(int vacancy) {
-//		this.vacancy = vacancy;
-//	}
-	
 	/**
 	   * Getter method for String containing lab Schedule details, if any
 	   * 
@@ -294,6 +287,7 @@ public class Course {
 	}
 	
 	/**
+	 * check if CourseCode input exists in database
 	 * @param courseCode  input course code
 	 * @return true if input course code is in database 
 	 */

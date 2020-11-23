@@ -836,7 +836,7 @@ public class Student extends User{
 	 * Notification sending to student via email.
 	 *
 	 * @param email			student's email
-	 * @param message
+	 * @param message		message to be sent in email
      * @return "Sending Email Message to "+email+" success" if successful; return "Sending Email Message to "+email+" failed" otherwise
 	 */
 	public String sendMail(String email, String message){

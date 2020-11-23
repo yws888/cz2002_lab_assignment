@@ -16,7 +16,7 @@ public class EmailManager {
      * Returns a String that will be the response from javamail of whether the email is successfully sent.
      *
 	 * @param email					student's email
-     * @param messageEntry
+     * @param messageEntry			portion of message to be sent in email
      * @return "Sending Email Message to "+email+" success" if successful; return "Sending Email Message to "+email+" failed" otherwise
      */
     public String sendEmail(String email, String messageEntry){
