@@ -753,24 +753,16 @@ public class StaffController {
 		return;
     }
     
-    /**
-	   * Prints the list of students with the course index
-	   * as the input.
-	   * 
-	   */
-   /* public static void printListByIndex() {
+
+   /**
+    * get list of student objects taking that course index as the input.
+ * @param courseIndex
+ * @return  list of student objects taking that course index
+ */
+public static ArrayList<Student> getStudentListByCourseIndex(String courseIndex) {
         //name gender nationality only
-        Scanner sc = new Scanner(System.in);
-        String courseIndex="";
         Course course = new Course();
         Student student = new Student();
-        System.out.println("Please enter the course index to print student list:");
-        courseIndex = sc.nextLine();
-        if(courseIndex.toLowerCase().equals("cancel")){
-            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
-        }
         if(course.isIndexTaken(courseIndex)){
             ArrayList<Student> studentList = new ArrayList<Student>();
             try {
@@ -778,44 +770,22 @@ public class StaffController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.print("=====Student list=====");
-            //print list
-            if(studentList.size() > 0){
-                for(int i=0;i<studentList.size();i++){
-                    System.out.print("\nName:"+studentList.get(i).getName()+"\tGender:"+studentList.get(i).getGender()+"\tNationality:"+studentList.get(i).getNationality());
-                }
-
-            }else{
-                System.out.print("\nNo student list found.");
-            }
-            System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
-        }else{
-            System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
+            
+            return studentList;}
+        
+            return null;
         }
-    }*/
     
-    /**
-	   * Prints the list of students with the course code
-	   * as the input.
-	   * 
-	   */
- /*   public static void printListByCourse() {
+/**
+ * get list of student objects taking that course Code as the input.
+* @param courseCode
+* @return  list of student objects taking that course Code
+*/
+    public static ArrayList<Student> getStudentListByCourseCode(String courseCode) {
         //name gender nationality only
-        Scanner sc = new Scanner(System.in);
-        String courseCode="";
         Course course = new Course();
         Student student = new Student();
-        System.out.println("Please enter the course code to print student list:");
-        courseCode = sc.nextLine();
-        if(courseCode.toLowerCase().equals("cancel")){
-            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
-        }
+
         if(course.isCourseTaken(courseCode)){
             ArrayList<Student> studentList = new ArrayList<Student>();
             try {
@@ -823,25 +793,13 @@ public class StaffController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.print("=====Student list=====");
-            //print list
-            if(studentList.size() > 0){
-                for(int i=0;i<studentList.size();i++){
-                    System.out.print("\nName:"+studentList.get(i).getName()+"\tGender:"+studentList.get(i).getGender()+"\tNationality:"+studentList.get(i).getNationality());
-                }
 
-            }else{
-                System.out.print("\nNo student list found.");
-            }
-            System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
-        }else{
-            System.out.println("\nThere are no records of course code entered. Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
+            return studentList;
         }
+		//System.out.println("\nThere are no records of course code entered. Press the \"ENTER\" key to be directed back to the previous menu!");
+		// sc.nextLine();
+		return null;
 
 
-    }*/
+    }
 }
