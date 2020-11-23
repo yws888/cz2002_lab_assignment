@@ -76,12 +76,22 @@ public class StaffUI implements UserUI {
 					            System.out.println("3. Update course vacancy:");
 					            System.out.println("0. Exit");
 					            System.out.print("\nEnter the number of your choice: ");
-						    choice2 = Integer.parseInt(sc.nextLine());
+					            choice2 = Integer.parseInt(sc.nextLine());
 
 
 					            switch (choice2) {
 					                case 1:
 					                	StaffController.addCourse();
+					                	
+										
+										try { 
+											 Course course = new Course();
+											 System.out.println(course.retrieveCourse()); 
+											 
+										} catch (IOException e) {} 
+										 catch (NullPointerException e) {};
+										
+					                	
 					                    break;
 					                case 2:
 					                	StaffController.updateClassSchedule();
