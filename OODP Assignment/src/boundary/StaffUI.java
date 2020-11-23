@@ -28,18 +28,18 @@ public class StaffUI implements UserUI {
 		this.staff = staff;
 	}
 
-	//public StaffUI(){}
-	
+	/**
+	 * Initialises Course and Student to be used in the
+	 * user interface later.
+	 */
     Course course;
     Student student;
-
-
 
 	/**
 	 * Initialises User Interface for Staff Member
 	 */
 	
-	public void initUI()  {
+	public void initStaffUI()  {
 		int choice = -1;
 		int choice2 = -1;
 
@@ -190,16 +190,16 @@ public class StaffUI implements UserUI {
 						System.out.println();
 						break;
 				}
-			} catch (NumberFormatException e) {
+			} 
+			catch (NumberFormatException e) {
 				System.out.println("Please select a valid numeric option");
-			}catch (InterruptedException e) {
-				
+				System.out.println();
 			}
-			
+			catch (InterruptedException e) {}
 						
 		} while (choice != 0);
 
-		return;//temp code
+		return;
 	}
 }
 
