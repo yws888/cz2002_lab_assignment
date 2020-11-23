@@ -132,6 +132,16 @@ public class Course {
 	}
 
 	/**
+	 * Setter method for Maximum number of vacancies (not current vacancies)
+	 * 
+	 * @param vacancy			max vacancies
+	 */
+	public void setVacancy(int vacancy) {
+		this.vacancy = vacancy;
+	}
+
+
+	/**
 	   * Getter method for String containing lab Schedule details, if any
 	   * 
 	   * @return labSchedule

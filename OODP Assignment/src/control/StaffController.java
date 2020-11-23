@@ -681,7 +681,7 @@ public class StaffController {
                 if(!(targetVacancy <= currentVacancy)){
                     
                     Course updatedCourse = course;
-                    
+                    updatedCourse.setVacancy(targetVacancy);
                     String message = updatedCourse.updateCourse();
                     System.out.println(message);
                     
@@ -773,7 +773,7 @@ public class StaffController {
 	    }
     
 	/**
-	 * get list of student objects taking that course Code as the input.
+	 * get ArrayList for {@link Student} objects taking that course Code as the input.
 	 * 
 	 * @param courseCode			course Code
 	 * @return  ArrayList for {@link Student} taking that course Code
