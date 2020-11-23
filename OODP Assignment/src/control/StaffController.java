@@ -262,7 +262,6 @@ public class StaffController {
                 }
             }
             course_code = sb.toString();
-            System.out.println(course_code);
             
             System.out.println("Please enter the name for this course:");
             
