@@ -155,7 +155,7 @@ public class StaffController {
 			if(startDate.toLowerCase().equals("cancel")){
 	            System.out.println("\n Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
 	            sc.nextLine();
-	            //sc.close();
+	            
 	            return;
 	        }
 			
@@ -167,7 +167,7 @@ public class StaffController {
 			if(endDate.toLowerCase().equals("cancel")){
 	            System.out.println("\n Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
 	            sc.nextLine();
-	            //sc.close();
+	            
 	            return;
 	        }
 			
@@ -179,7 +179,7 @@ public class StaffController {
 			if(startTime.toLowerCase().equals("cancel")){
 	            System.out.println("\n Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
 	            sc.nextLine();
-	            //sc.close();
+	            
 	            return;
 	        }
 
@@ -191,28 +191,25 @@ public class StaffController {
 			if(endTime.toLowerCase().equals("cancel")){
 	            System.out.println("\n Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
 	            sc.nextLine();
-	            //sc.close();
+	            
 	            return;
 	        }
 			    
-			/*if (startDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})") && startTime.matches("([0-9]{2}):([0-9]{2})") &&
-					endDate.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})") && endTime.matches("([0-9]{2}):([0-9]{2})")	)*/
 			
-				if (Ultility.isValidFormat("HH:mm", startTime) && Ultility.isValidFormat("HH:mm", endTime)&& 
-						Ultility.isValidFormat("yyyy-MM-dd", startDate) && Ultility.isValidFormat("yyyy-MM-dd", endDate)
-						) {
-					if (Ultility.isValidTimeRange(startDate,endDate,startTime,endTime) && Ultility.isValidTimeInput(startTime, endTime)) {
-						AccessPeriod.createAccessPeriod(startDate, endDate, startTime,  endTime);
-						System.out.println("Access time is updated Successfully!\n Press ENTER to return to previous menu");
-						sc.nextLine();
-						return;}
-					System.out.println("Starting Access Date is later than Ending Access Date. Please try again.");
-					
-				}
+			if (Ultility.isValidFormat("HH:mm", startTime) && Ultility.isValidFormat("HH:mm", endTime)&& 
+					Ultility.isValidFormat("yyyy-MM-dd", startDate) && Ultility.isValidFormat("yyyy-MM-dd", endDate)
+					) {
+				if (Ultility.isValidTimeRange(startDate,endDate,startTime,endTime) && Ultility.isValidTimeInput(startTime, endTime)) {
+					AccessPeriod.createAccessPeriod(startDate, endDate, startTime,  endTime);
+					System.out.println("Access time is updated Successfully!\n Press ENTER to return to previous menu");
+					sc.nextLine();
+					return;}
+				System.out.println("Starting Access Date is later than Ending Access Date. Please try again.");
 				
-				else 
-					System.out.println("Wrong format try again");
-    }
+			}
+			
+			else System.out.println("Wrong format try again");
+		}
 		
     }
     
@@ -228,7 +225,7 @@ public class StaffController {
         Course course = new Course();
         String course_code="",course_name="", au="", school="", index="", input="";
         ArrayList<String> indexList = new ArrayList<String>(), vacancyList = new ArrayList<String>();
-        //int vacancy;
+        
         boolean validation1=true, validation2=true,validation3=true;
         boolean existCourseCode;
 
@@ -403,7 +400,7 @@ public class StaffController {
                 }
             }
         }
-        //Summary
+        
         System.out.println("=====SUMMARY=====");
         System.out.print("Course Code:\t\t"+course_code);
         System.out.print("\nCourse Name:\t\t"+course_name);
@@ -461,9 +458,9 @@ public class StaffController {
             sc.nextLine();
             return;
         }
-        //one for exists, one for doesn't exist
+        
         if(course.isIndexTaken(input)){
-            //instantiate course object
+            
             try {
                 course = course.retrieveCourseByIndex(input);
             } catch (IOException e) {
@@ -589,7 +586,7 @@ public class StaffController {
                             }
                         }
 
-                        //check whether time is valid
+                        
                         if(Ultility.isValidTimeInput(timeStart,timeEnd)){
                             String message = updatedCourse.updateCourse();
                             System.out.println("=====SUMMARY=====");
@@ -684,12 +681,12 @@ public class StaffController {
                     }
                 }
                 if(!(targetVacancy <= currentVacancy)){
-                    //update vacancy
+                    
                     Course updatedCourse = course;
-                    //updatedCourse.setVacancy(targetVacancy);
+                    
                     String message = updatedCourse.updateCourse();
                     System.out.println(message);
-                    //fill up spaces from waitlist
+                    
                     int vacancyIncrease = targetVacancy - currentVacancy;
                     message = student.removeStudentsFromWaitList(courseIndex, vacancyIncrease);
                     System.out.println(message);
@@ -740,7 +737,7 @@ public class StaffController {
             try {
 				course = course.retrieveCourseByIndex(courseIndex);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
             System.out.println("Total size of index '"+courseIndex+"' is "+course.getVacancy());
@@ -759,30 +756,32 @@ public class StaffController {
  * @param courseIndex
  * @return  list of student objects taking that course index
  */
-public static ArrayList<Student> getStudentListByCourseIndex(String courseIndex) {
-        //name gender nationality only
-        Course course = new Course();
-        Student student = new Student();
-        if(course.isIndexTaken(courseIndex)){
-            ArrayList<Student> studentList = new ArrayList<Student>();
-            try {
-                studentList = student.studentListByIndex(courseIndex);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            
-            return studentList;}
-        
-            return null;
-        }
+	public static ArrayList<Student> getStudentListByCourseIndex(String courseIndex) {
+	       
+	        Course course = new Course();
+	        Student student = new Student();
+	        if(course.isIndexTaken(courseIndex)){
+	            ArrayList<Student> studentList = new ArrayList<Student>();
+	            try {
+	                studentList = student.studentListByIndex(courseIndex);
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	            
+	        return studentList;
+	        }
+	        
+	        return null;
+	    }
     
-/**
- * get list of student objects taking that course Code as the input.
-* @param courseCode
-* @return  list of student objects taking that course Code
-*/
+	/**
+	 * get list of student objects taking that course Code as the input.
+	 * 
+	 * @param courseCode
+	 * @return  list of student objects taking that course Code
+	 */
     public static ArrayList<Student> getStudentListByCourseCode(String courseCode) {
-        //name gender nationality only
+        
         Course course = new Course();
         Student student = new Student();
 
@@ -796,8 +795,7 @@ public static ArrayList<Student> getStudentListByCourseIndex(String courseIndex)
 
             return studentList;
         }
-		//System.out.println("\nThere are no records of course code entered. Press the \"ENTER\" key to be directed back to the previous menu!");
-		// sc.nextLine();
+		
 		return null;
 
 
