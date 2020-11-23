@@ -1,6 +1,8 @@
 package entity;
 import java.util.ArrayList;
 
+import helper.PasswordManager;
+
 /**
  * User represents a user in the database.
  *

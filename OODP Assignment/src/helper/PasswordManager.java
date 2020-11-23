@@ -1,4 +1,4 @@
-package entity;
+package helper;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -122,8 +122,8 @@ public class PasswordManager {
     /**
      * generates RNG Password
      * 
-     * @param length		
-     * @return
+     * @param length		length of password
+     * @return				randomly generated password
      */
     public static String generateRNGPassword(int length){
         StringBuilder sb = new StringBuilder(length);

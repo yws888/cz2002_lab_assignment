@@ -2,9 +2,9 @@ package control;
 
 import entity.AccessPeriod;
 import entity.Course;
-import entity.PasswordManager;
 import entity.Student;
-import entity.Ultility;
+import helper.PasswordManager;
+import helper.Ultility;
 
 import java.io.IOException;
 import java.util.ArrayList;
