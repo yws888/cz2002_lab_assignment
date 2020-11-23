@@ -14,8 +14,6 @@ import java.time.format.DateTimeFormatter;
  */
 
 public class LoginUI {
-
-
 	
 	  /**
 	   * Main function that are run in the console.
@@ -27,7 +25,7 @@ public class LoginUI {
 	public static void main(String[] args) throws InterruptedException  {
 		LoginController logincontroller = new LoginController();
 		String username, password;
-		int userinput = -1;
+		int userinput;
 		
 		boolean verifylogin;
 
@@ -39,8 +37,6 @@ public class LoginUI {
 			System.out.println("====MySTARS====");
 			System.out.println("1. Login");
 			System.out.println("2. Exit");
-			System.out.println("3. Admin tester"); 			//to be removed later, for ease of testing now
-			//all passwords for my added students are b
 		    			
 				try {
 					userinput = Integer.parseInt(sc.nextLine());
@@ -58,7 +54,7 @@ public class LoginUI {
 							char[] ch = cnsl.readPassword( "Enter password : ");
 							password = new String(ch);
 						}
-						//System.out.println("Username: "+username+ " Password: "+password);
+						
 						System.out.println("Processing....");
 						verifylogin = logincontroller.verifylogin(username,password);
 						if(verifylogin == true) {
@@ -69,13 +65,14 @@ public class LoginUI {
 									
 									if (LoginController.isValidAccessTime()==true){
 										System.out.println("Login Successful.");
-										userUI.initUI();										
+										((StudentUI) userUI).initStudentUI();
+										
+
 										}
 									else
 									{
 										System.out.println("Sorry you are not allowed to access the portal now!");
 										System.out.println("Please log in at your specified access period!");
-										// DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 										System.out.println("\nCurrent date is \t\t" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
 										AccessPeriod accessPeriod = AccessPeriod.retrieveAccessPeriod();
@@ -88,7 +85,8 @@ public class LoginUI {
 								case 2: //Staff
 									userUI = new StaffUI(logincontroller.getStaff(username));
 									System.out.println("Login Successful. ");
-									userUI.initUI();									
+									((StaffUI) userUI).initStaffUI();
+									
 									break;
 								case 3: //error
 									System.out.println("Error, could not find user entry.");
@@ -107,19 +105,15 @@ public class LoginUI {
 						System.out.println("Thank you for using MyStars, goodbye!");
 						System.exit(0);
 						break;
-						//remove this portion before submission
-					case 3:
-						userUI = new StaffUI(logincontroller.getStaff("Admin"));
-						userUI.initUI();										
-						break;
-						//end portion removal here					
+										
 					default: 
 						System.out.println("Pls select option 1 or 2");
 						System.out.println();
 						break;
 					}
 				} catch (NumberFormatException e) {
-					System.out.println("Pls select option 1 or 2");
+					System.out.println("Please select a valid numeric option");
+					System.out.println();
 					}
 		} while(true);
 
