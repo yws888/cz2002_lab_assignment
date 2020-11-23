@@ -178,10 +178,7 @@ public class Student extends User{
 		catch(IOException e){
 			e.printStackTrace();
 		}
-		catch (NullPointerException e) {
-			System.out.println("an error occurred");
-
-		} ;
+		catch (NullPointerException e) {};
 		
 		return false;
 		
@@ -216,10 +213,7 @@ public class Student extends User{
 		catch(IOException e){
 			e.printStackTrace();
 		}
-		catch (NullPointerException e) {
-			System.out.println("an error occurred");
-
-		} ;
+		catch (NullPointerException e) {};
 		
 		return false;
 		
