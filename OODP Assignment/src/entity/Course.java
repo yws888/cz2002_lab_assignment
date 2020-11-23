@@ -230,31 +230,6 @@ public class Course {
 	}
 	
 
-/*	public boolean isIndexTaken(ArrayList<String> courseIndex){
-		try {
-			File file=new File("src/Courses");    
-			FileReader fr=new FileReader(file);   //reads the file
-			BufferedReader br=new BufferedReader(fr); 
-			String line;
-			while((line=br.readLine())!=null)
-			{
-				String[] entry = line.split(";");
-				for(int i=0;i<courseIndex.size();i++){
-					if(entry[4].equals(courseIndex.get(i))){
-						br.close();
-						return true;
-					}
-				}
-
-			}
-			fr.close();    
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
-		return false;
-	}*/
-
 	/**
 	 * Finds if course index is taken by the student.
 	 * 
@@ -342,7 +317,7 @@ public class Course {
 			}
 		}
 		
-		// if(!isIndexTaken(courseIndex)){
+		
 		if(!indexIsTaken){
 			try {
 				File file = new File("src/Courses");    

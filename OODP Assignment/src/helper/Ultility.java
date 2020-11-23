@@ -82,9 +82,6 @@ public class Ultility {
 	   * @return        	boolean whether input has the correct time range.
 	   */
     public static boolean isValidTimeRange(String dateStart, String dateEnd, String timeStart, String timeEnd) {
-      //  Date date = new Date();
-       // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-       // dateFormat.format(date);
     	
             if(dateEnd.compareTo(dateStart)>=0 && timeEnd.compareTo(timeStart)>0)
             {
