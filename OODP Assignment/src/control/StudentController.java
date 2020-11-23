@@ -1,7 +1,6 @@
 package control;
 
 import entity.Course;
-import entity.PasswordManager;
 import entity.Student;
 import java.io.Console;
 import java.io.IOException;
@@ -426,14 +425,33 @@ public class StudentController {
     	
     try{System.out.println("\nSwapping Index with classmate...(Enter \"cancel\" to cancel process) ");
     	System.out.println("\nPlease enter YOUR index to be swapped: ");
-    	courseIndex1 = sc.nextLine();
     	
-    	if (courseIndex1.toLowerCase().equals("cancel")) {
-    		System.out.println("\nSwapping Index Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-    		sc.nextLine();
-    		return;
+    	while (true) {
+    		courseIndex1 = sc.nextLine();
+    		if (courseIndex1.toLowerCase().equals("cancel")) {
+	    		System.out.println("\nSwapping Index Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+	    		break;
+	    	}
+    		else if (courseIndex1.isBlank()) {
+	    		System.out.println("Please do not leave blank entries, please enter course index again");
+	    		continue;
+	    	}
+    		else if (student.isCourseIndexAccepted(courseIndex1) != true) {
+    			if (student.isCourseIndexOnWaitlist(courseIndex1) == true) {
+        			System.out.println("You are currently on waitlist for this index. Please enter indexes that you are already accepted in.");
+    				continue;
+        		}
+    			else {
+    				System.out.println("Please enter index that you are registered in. Please try again!");
+    				continue;
+    			}
+    		}
+    		break;
     	}
     	
+    	if (courseIndex1.toLowerCase().equals("cancel")) {
+    		return;
+    	}
     	System.out.println("Enter Peer's Username:");
 		username = sc.next();
 		Console con = System.console();
@@ -456,14 +474,42 @@ public class StudentController {
 		
 		if(verifylogin == true) {
 			System.out.println("Verified.");
-			System.out.println("\nPlease enter PEER's index to be swapped: ");
-	    	courseIndex2 = sc.next();
-	    	
+			
 			StudentUI studentUI = new StudentUI(logincontroller.getStudent(username));
 			Student student2= new Student();
 			student2=studentUI.getStudent();
 			Course course1 = new Course();
 			Course course2 = new Course();
+			
+			System.out.println("\nPlease enter PEER's index to be swapped: ");
+	    	
+	    	while (true) {
+	    		sc = new Scanner(System.in);
+	    		courseIndex2 = sc.nextLine();
+	    		if (courseIndex2.toLowerCase().equals("cancel")) {
+		    		System.out.println("\nSwapping Index Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+		    		break;
+		    	}
+	    		else if (courseIndex2.isBlank()) {
+		    		System.out.println("Please do not leave blank entries, please enter course index again");
+		    		continue;
+		    	}
+	    		else if (student2.isCourseIndexAccepted(courseIndex2) != true) {
+	    			if (student2.isCourseIndexOnWaitlist(courseIndex2) == true) {
+	        			System.out.println("Your peer is currently on waitlist for this index. Please enter indexes that your peer is already accepted in.");
+	    				continue;
+	        		}
+	    			else {
+	    				System.out.println("Please enter index that your peer is registered in. Please try again!");
+	    				continue;
+	    			}
+	    		}
+	    		break;
+	    	}
+	    	if (courseIndex2.toLowerCase().equals("cancel")) {
+	    		return;
+	    	}
+			
 			course1 = course1.retrieveCourseByIndex(courseIndex1);//CourseIndexTakenByFirstStudent
 			course2 = course2.retrieveCourseByIndex(courseIndex2); //CourseIndexTakenBySecondStudent
 			
