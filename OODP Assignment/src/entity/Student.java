@@ -323,6 +323,58 @@ public class Student extends User{
 
 	}
 	
+	/**
+	 * checks if student is already accepted for the course index
+	 *
+	 * @param courseIndex		course Index
+	 * @return true 			if student is accepted for the course index, else return false.
+	 * @throws IOException		
+	 */
+	public boolean isCourseIndexAccepted(String courseIndex) throws IOException {
+		String matriculation_no = this.matricnumber;
+		File file=new File("src/registeredRecords");    
+		FileReader fr=new FileReader(file);   //reads the file
+		BufferedReader br=new BufferedReader(fr);  
+		String line;
+		while((line=br.readLine())!=null)
+		{
+			String[] entry = line.split(";");
+			if(entry[1].equals(matriculation_no) && entry[6].equals(courseIndex) && entry[7].equals("ACCEPTED")){
+				br.close();
+				return true;
+			}
+
+		}
+		fr.close();    
+		return false;
+	}
+	
+	/**
+	 * checks if student is on waitlist for the course index
+	 *
+	 * @param courseIndex		course Index
+	 * @return true 			if student is on waitlist for the course index, else return false.
+	 * @throws IOException		
+	 */
+	public boolean isCourseIndexOnWaitlist(String courseIndex) throws IOException {
+		String matriculation_no = this.matricnumber;
+		File file=new File("src/registeredRecords");    
+		FileReader fr=new FileReader(file);   //reads the file
+		BufferedReader br=new BufferedReader(fr);  
+		String line;
+		while((line=br.readLine())!=null)
+		{
+			String[] entry = line.split(";");
+			if(entry[1].equals(matriculation_no) && entry[6].equals(courseIndex) && entry[7].equals("WAITLIST")){
+				br.close();
+				return true;
+			}
+
+		}
+		fr.close();    
+		return false;
+	}
+	
 	
 
 	/**
