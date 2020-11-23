@@ -207,15 +207,15 @@ public class Course {
 	/**
 	 * Constructor for Course object
 	 * 
-	 * @param courseCode
-	 * @param courseName
-	 * @param school
-	 * @param noOfAUs
-	 * @param courseIndex
-	 * @param vacancy
-	 * @param labSchedule
-	 * @param tutorialSchedule
-	 * @param lectureSchedule
+	 * @param courseCode					course Code
+	 * @param courseName					course Name
+	 * @param school						school
+	 * @param noOfAUs						number Of AUs
+	 * @param courseIndex					course Index
+	 * @param vacancy						vacancy
+	 * @param labSchedule					lab Schedule
+	 * @param tutorialSchedule				tutorial Schedule
+	 * @param lectureSchedule				lecture Schedule
 	 */
 	public Course(String courseCode, String courseName, String school, int noOfAUs, String courseIndex, int vacancy, String labSchedule, String tutorialSchedule, String lectureSchedule) {
 		this.courseName = courseName;

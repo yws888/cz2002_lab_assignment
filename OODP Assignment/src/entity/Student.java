@@ -280,17 +280,17 @@ public class Student extends User{
 	}
 	
 	
-	/**
-	 * Creates a new student object with its details written to the Students file in the database.
-	 * @param username
-	 * @param password
-	 * @param salt
-	 * @param name
-	 * @param matriculationNumber
-	 * @param gender
-	 * @param nationality
-	 * @param email
-	 */
+	   /**
+	   * Creates a new student object with its details written to the Students file in the database.
+	   * @param username                        username of the student
+	   * @param password						password of student
+	   * @param salt							salt used in hashing
+	   * @param name                             name of the student
+	   * @param matriculationNumber              matric number of the student
+	   * @param gender                           gender of the student
+	   * @param nationality                      nationality of the student
+	   * @param email                            email of the student
+	   */
 	
 	public void createStudent(String username, String password, String salt, String name, String matriculationNumber, String gender, String nationality, String email) {
 		try {
