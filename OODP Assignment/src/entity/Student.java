@@ -907,7 +907,7 @@ public class Student extends User{
 	 */
 	public String sendMail(String email, String message){
 		EmailManager em = new EmailManager();
-		return em.sendEmail(email, message);
+		return em.sendNotification(email, message);
 	}
 
 }

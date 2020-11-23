@@ -9,7 +9,7 @@ import java.util.Properties;
  * EmailManager is the class containing the logic to perform email sending
  * 
  */
-public class EmailManager {
+public class EmailManager implements NotificationManager {
 	
 	
     /**
@@ -18,13 +18,13 @@ public class EmailManager {
     public EmailManager(){}
 
     /**
-     * Returns a String that will be the response from javamail of whether the email is successfully sent.
-     *
+     *   Attempts to send notification via email containing the corresponding message
+     *   
 	 * @param email					student's email
      * @param messageEntry			portion of message to be sent in email
      * @return "Sending Email Message to "+email+" success" if successful; return "Sending Email Message to "+email+" failed" otherwise
      */
-    public String sendEmail(String email, String messageEntry){
+    public String sendNotification(String email, String messageEntry){
         final String username = "cz2002.app@gmail.com";
         final String password = "Cz2002Application";
 
@@ -57,4 +57,6 @@ public class EmailManager {
             return "Sending Email Message to "+email+" failed";
         }
     }
+
+
 }
