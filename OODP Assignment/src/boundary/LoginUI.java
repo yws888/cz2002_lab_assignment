@@ -69,9 +69,7 @@ public class LoginUI {
 									
 									if (LoginController.isValidAccessTime()==true){
 										System.out.println("Login Successful.");
-										((StudentUI) userUI).initStudentUI();
-										
-
+										userUI.initUI();										
 										}
 									else
 									{
@@ -90,8 +88,7 @@ public class LoginUI {
 								case 2: //Staff
 									userUI = new StaffUI(logincontroller.getStaff(username));
 									System.out.println("Login Successful. ");
-									((StaffUI) userUI).initStaffUI();
-									
+									userUI.initUI();									
 									break;
 								case 3: //error
 									System.out.println("Error, could not find user entry.");
@@ -113,7 +110,7 @@ public class LoginUI {
 						//remove this portion before submission
 					case 3:
 						userUI = new StaffUI(logincontroller.getStaff("Admin"));
-						((StaffUI) userUI).initStaffUI();
+						userUI.initUI();										
 						break;
 						//end portion removal here					
 					default: 

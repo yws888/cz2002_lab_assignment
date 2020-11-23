@@ -39,7 +39,7 @@ public class StaffUI implements UserUI {
 	 * Initialises User Interface for Staff Member
 	 */
 	
-	public void initStaffUI()  {
+	public void initUI()  {
 		int choice = -1;
 		int choice2 = -1;
 

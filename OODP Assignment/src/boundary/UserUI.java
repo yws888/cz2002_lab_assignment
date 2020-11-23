@@ -6,5 +6,7 @@ package boundary;
  */
 
 public interface UserUI {
+	public abstract void initUI();
+
 
 }

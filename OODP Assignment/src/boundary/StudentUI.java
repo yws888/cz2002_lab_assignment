@@ -38,7 +38,7 @@ public class StudentUI implements UserUI {
 	/**
 	 * User Interface for Student 
 	 */
-	public void initStudentUI() {
+	public void initUI() {
 		int choice = -1;
 
 		Scanner sc = new Scanner(System.in);
