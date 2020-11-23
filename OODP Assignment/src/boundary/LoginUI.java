@@ -1,12 +1,12 @@
 package boundary;
 import java.util.Scanner;
+import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import control.LoginController;
 import entity.AccessPeriod;
 
-import java.io.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * User Interface Boundary Class for Users to Login  
