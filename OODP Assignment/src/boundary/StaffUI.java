@@ -111,24 +111,38 @@ public class StaffUI implements UserUI {
 					case 5:
 				        String courseIndex="";
 
-				        System.out.println("Please enter the course index to print student list:");
+				        System.out.println("Please enter the course index to print student list: (Enter \"cancel\" to cancel process at any time)");
 				        
-				        courseIndex = sc.nextLine();
+				        
+				        do{
+				        	courseIndex = sc.nextLine();
+			            
+			            	if(courseIndex.toLowerCase().equals("cancel")){
+			            		System.out.println("\nPrint Student List By Course Index Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+			            		sc.nextLine();
+			            		break;
+			            		}
+			            	
+			            	if(courseIndex.isEmpty()) {
+			            		System.out.println("Please do not leave blank entries, please enter again" );
+			            	}
+			            } while(courseIndex.isEmpty());
+				        
 				        if(courseIndex.toLowerCase().equals("cancel")){
-				            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-				            sc.nextLine();
-				            break;
-				        }
+		            		break;
+		            	}
+				        
 				        ArrayList<Student> studentList = StaffController.getStudentListByCourseIndex(courseIndex);
-
-				            System.out.print("=====Student list=====");
+				        
 				            if(studentList== null){
-
-				                System.out.print("\nNo student list found.");
-					            System.out.println("\nOr There are no records of course index entered.");
-				                
-
-				            }else{
+				            	System.out.println("\nThere are no records of course index entered.");
+				            }
+				            else if (studentList.size() == 0) {
+				            	System.out.print("\nStudent List is empty.");
+				            	System.out.print("\nNo Student is currently taking this course index: " + courseIndex + ".");
+				            }
+				            else{
+				            	System.out.print("=====Student list=====");
 				            	for(int i=0;i<studentList.size();i++){
 				                    System.out.print("\nName:"+studentList.get(i).getName()+"\tGender:"+studentList.get(i).getGender()+"\tNationality:"+studentList.get(i).getNationality());
 				                }
@@ -140,22 +154,49 @@ public class StaffUI implements UserUI {
 					case 6:
 					        //name gender nationality only
 					        String courseCode="";
-					        System.out.println("Please enter the course code to print student list:");
-					        courseCode = sc.nextLine();
+					        System.out.println("Please enter the course code to print student list:	(Enter \"cancel\" to cancel process at any time)");
+					        
+					        do{
+					        	courseCode = sc.nextLine();
+				            
+				            	if(courseCode.toLowerCase().equals("cancel")){
+				            		System.out.println("\nPrint Student List By Course Code Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
+				            		sc.nextLine();
+				            		break;
+				            	}
+				            	
+				            	if(courseCode.isEmpty()) {
+				            		System.out.println("Please do not leave blank entries, please enter again" );
+				            	}
+				            } while(courseCode.isEmpty());
+				            
 					        if(courseCode.toLowerCase().equals("cancel")){
-					            System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-					            sc.nextLine();
-					            break;
-					        }
+			            		break;
+			            	}
+					        
+				            StringBuilder sb = new StringBuilder();
+				            for (char c : courseCode.toCharArray()) {
+				            	
+				            	if (Character.isAlphabetic(c)) {
+				                    sb.append(Character.toUpperCase(c));
+				                }
+				            	else sb.append(c);
+				            }
+				            courseCode = sb.toString();
 					        
 				            ArrayList<Student> studentList2 = StaffController.getStudentListByCourseCode(courseCode);
 
-					            System.out.print("=====Student list====="); //print list
+					            
 					            if(studentList2 == null){
-					            	System.out.print("\nNo student list found.");
-					                System.out.println("\nOr there are no records of course code entered. ");
-					            }else{
-					                for(int i=0;i<studentList2.size();i++){
+					                System.out.println("\nThere are no records of course code entered. ");
+					            }
+					            else if (studentList2.size() == 0) {
+					            	System.out.print("\nStudent List is empty.");
+					            	System.out.print("\nNo student is currently taking this course code: " + courseCode + ".");
+					            }
+					            else{
+					            	System.out.print("=====Student list====="); //print list
+					            	for(int i=0;i<studentList2.size();i++){
 					                    System.out.print("\nName:"+studentList2.get(i).getName()+"\tGender:"+studentList2.get(i).getGender()+"\tNationality:"+studentList2.get(i).getNationality());
 					                }
 					            }
