@@ -355,9 +355,8 @@ public class Course {
 			}catch(Exception ex){
 				return "Error adding courses.";
 			}
-		}else{
-			return "Courses could not be added, the index entered is not available.";
 		}
+		return "Courses could not be added, the index entered is not available.";
 
 	}
 	
@@ -368,7 +367,6 @@ public class Course {
 	   * @return course list as course code, course name as well as its course index.
 	   * 
 	   * @throws IOException
-	   * @throws NullPointerException
 	   */
 
 	public String retrieveCourse() throws IOException {
@@ -387,7 +385,9 @@ public class Course {
 			br.close();
 			fr.close();
 		}
-		catch (NullPointerException e) {}; 
+		catch (NullPointerException e) {
+			System.out.println("an error occurred");
+		}; 
 		
 		return courselist;
 		}

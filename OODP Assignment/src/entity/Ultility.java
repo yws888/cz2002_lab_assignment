@@ -64,9 +64,8 @@ public class Ultility {
             if(dateFormat.parse(timeEnd).after(dateFormat.parse(timeStart)))
             {
                 return true;
-            }else{
-                return false;
             }
+			return false;
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -91,12 +90,7 @@ public class Ultility {
             {
                 return true;
             }
-//            else if (dateEnd.compareTo(dateStart)==0 && isValidTimeInput(timeStart,timeEnd)){
-//            	return true;
-//            		}
-            else{
-                return false;
-            }
+			return false;
             
 
     }

@@ -24,18 +24,13 @@ public class PasswordManager {
      */
     private static final int ALGO_ITERATIONS = 10000;
     /**
-     * 
+     * length of key
      */
     private static final int KEY_LENGTH = 256;
     /**
      *  name of algorithm
      */
     private static final String HASHALGO = "PBKDF2WithHmacSHA1";
-
-    /**
-     * 
-     */
-    private PasswordManager(){}
 
     /**
      * @return
@@ -108,7 +103,9 @@ public class PasswordManager {
 
 
     /**
-     * @param length
+     * generates RNG Password
+     * 
+     * @param length		
      * @return
      */
     public static String generateRNGPassword(int length){

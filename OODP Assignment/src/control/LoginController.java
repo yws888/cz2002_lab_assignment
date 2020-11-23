@@ -26,9 +26,8 @@ public class LoginController {
 		//if login true
 		if(user.verifylogin() == true) {
 			return true;
-		}else {
-			return false;
 		}
+		return false;
 	}
 	
 	/**

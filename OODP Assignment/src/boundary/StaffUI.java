@@ -82,15 +82,19 @@ public class StaffUI implements UserUI {
 
 					            switch (choice2) {
 					                case 1:
-					                	StaffController.addCourse();
-					                	
-										
+					                	StaffController.addCourse();										
 										try { 
 											 Course course = new Course();
 											 System.out.println(course.retrieveCourse()); 
 											 
-										} catch (IOException e) {} 
-										 catch (NullPointerException e) {};
+										} catch (IOException e) {
+											System.out.println("an I/O error occurred");
+
+										} 
+										 catch (NullPointerException e) {
+												System.out.println("an error occurred");
+
+										 };
 										
 					                	
 					                    break;
@@ -196,7 +200,6 @@ public class StaffUI implements UserUI {
 				System.out.println("Please select a valid numeric option");
 				System.out.println();
 			}
-			catch (InterruptedException e) {}
 						
 		} while (choice != 0);
 

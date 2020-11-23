@@ -175,7 +175,10 @@ public class Student extends User{
 		catch(IOException e){
 			e.printStackTrace();
 		}
-		catch (NullPointerException e) {} ;
+		catch (NullPointerException e) {
+			System.out.println("an error occurred");
+
+		} ;
 		
 		return false;
 		
@@ -210,7 +213,10 @@ public class Student extends User{
 		catch(IOException e){
 			e.printStackTrace();
 		}
-		catch (NullPointerException e) {} ;
+		catch (NullPointerException e) {
+			System.out.println("an error occurred");
+
+		} ;
 		
 		return false;
 		
@@ -291,6 +297,7 @@ public class Student extends User{
 			pw.println(username+";"+password+";"+salt+";student;"+name+";"+matriculationNumber+";"+gender+";"+nationality+";"+email);
 			pw.close();
 		}catch(Exception ex){
+			System.out.println("an error occurred");
 
 		}
 	}
@@ -399,12 +406,10 @@ public class Student extends User{
 				// shld add && (dateFormat.parse(startTime1).before(dateFormat.parse(endTime2)) ?
 				if((dateFormat.parse(startTime2).equals(dateFormat.parse(endTime1)) || dateFormat.parse(startTime1).equals(dateFormat.parse(endTime2)))){
 					return false;
-				}else {
-					return true;
 				}
-			}else{
-				return false;
+				return true;
 			}
+			return false;
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -415,7 +420,7 @@ public class Student extends User{
 	/**
 	 * Checks if there is any clashes in the student's current schedule after adding the Course to be added
 	 *
-	 * @param course; Course to be added
+	 * @param course			 Course to be added
 	 * @return true if there is clash, else return false if there is no clash.
 	 * @throws IOException
 	 */
@@ -614,10 +619,14 @@ public class Student extends User{
 	 * retrieves Total AUs Taken
 	 *
 	 * @return Total AUs Taken
-	 * @throws IOException
 	 */
-	public int retrieveTotalAUTaken() throws IOException {
-		ArrayList<Course> registeredCourses = retrieveRegisteredCourses();
+	public int retrieveTotalAUTaken()  {
+		ArrayList<Course> registeredCourses = null;
+		try {
+			registeredCourses = retrieveRegisteredCourses();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		int count=0;
 		for(int i=0;i<registeredCourses.size();i++){
 			count += registeredCourses.get(i).getNoOfAUs();
@@ -701,32 +710,38 @@ public class Student extends User{
 
 	/**
 	 * Checks if course is taken by the student based on the input course index.
-	 * @param courseIndex
+	 * @param courseIndex				courseIndex
 	 * @return true if the course is found in the database of that student, 
 	 * else return false if it is not found in the student's database.
-	 * @throws IOException
 	 */
-	public boolean courseCodeTakenByStudent(String courseIndex) throws IOException {
-		Course course = new Course();
-		course = course.retrieveCourseByIndex(courseIndex);
-		String courseCodeToTake = course.getCourseCode();
+	public boolean courseCodeTakenByStudent(String courseIndex) {
+		try {
+			Course course = new Course();
+			course = course.retrieveCourseByIndex(courseIndex);
+			String courseCodeToTake = course.getCourseCode();
 
-		String matriculation_no = this.matricnumber;
-		File file=new File("src/registeredRecords");    
-		FileReader fr=new FileReader(file);   //reads the file
-		BufferedReader br=new BufferedReader(fr);  
-		String line;
-		while((line=br.readLine())!=null)
-		{
-			String[] entry = line.split(";");
-			if(entry[1].equals(matriculation_no) && entry[4].equals(courseCodeToTake)){
-				br.close();
-				return true;
+			String matriculation_no = this.matricnumber;
+			File file=new File("src/registeredRecords");    
+			FileReader fr=new FileReader(file);   //reads the file
+			BufferedReader br=new BufferedReader(fr);  
+			String line;
+			while((line=br.readLine())!=null)
+			{
+				String[] entry = line.split(";");
+				if(entry[1].equals(matriculation_no) && entry[4].equals(courseCodeToTake)){
+					br.close();
+					return true;
+				}
+
 			}
-
-		}
-		br.close();    
+			br.close();    
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}			
 		return false;
+
 
 	}
 
@@ -734,8 +749,8 @@ public class Student extends User{
 	 * Returns the list of students studying the course based on course
 	 * index as an input.
 	 * 
-	 * @param courseIndex
-	 * @return student lists under the course index as an input.
+	 * @param courseIndex				courseIndex
+	 * @return 							student lists under the course index  input.
 	 * @throws IOException
 	 */
 	public ArrayList<Student> studentListByIndex(String courseIndex) throws IOException {
@@ -761,8 +776,8 @@ public class Student extends User{
 	/**
 	 * Returns the student lists that are found under that course code.
 	 *
-	 * @param courseCode
-	 * @return studentlist which contains the students under the input course code.
+	 * @param courseCode				courseCode
+	 * @return							 studentlist which contains the students under the input course code.
 	 * @throws IOException
 	 */
 	public ArrayList<Student> studentListByCourseCode(String courseCode) throws IOException {
@@ -828,14 +843,13 @@ public class Student extends User{
 	 * Removes student from waitlist if there is a space after another
 	 * student has dropped the course.
 	 *
-	 * @param courseIndex
-	 * @param availableSlots
-	 * @return
+	 * @param courseIndex				course Index of course to remove student from 
+	 * @param availableSlots			no. of available slots
+	 * @return							"Waitlist updated accordingly." if successful, return "Error updating waitlist." otherwise
 	 * @throws IOException
 	 */
 	public String removeStudentsFromWaitList(String courseIndex, int availableSlots) throws IOException {
 		int counter = availableSlots;
-		//System.out.println(counter);
 		ArrayList<String> emailList = new ArrayList<>();
 		ArrayList<String> messageList = new ArrayList<>();
 		ArrayList<String> recordList = new ArrayList<>();

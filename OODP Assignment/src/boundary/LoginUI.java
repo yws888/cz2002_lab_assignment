@@ -19,10 +19,9 @@ public class LoginUI {
 	   * Main function that are run in the console.
 	   * 
 	   * @param args the default parameter for main function, not used in this case
-	   * @throws InterruptedException
 	   */
 	
-	public static void main(String[] args) throws InterruptedException  {
+	public static void main(String[] args)  {
 		LoginController logincontroller = new LoginController();
 		String username, password;
 		int userinput;
@@ -65,8 +64,7 @@ public class LoginUI {
 									
 									if (LoginController.isValidAccessTime()==true){
 										System.out.println("Login Successful.");
-										((StudentUI) userUI).initUI();
-										
+										userUI.initUI();
 
 										}
 									else
@@ -85,7 +83,7 @@ public class LoginUI {
 								case 2: //Staff
 									userUI = new StaffUI(logincontroller.getStaff(username));
 									System.out.println("Login Successful. ");
-									((StaffUI) userUI).initUI();
+									 userUI.initUI();
 									
 									break;
 								case 3: //error

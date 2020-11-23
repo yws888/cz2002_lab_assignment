@@ -94,7 +94,7 @@ public class AccessPeriod {
 			pw.println(startDate +";" + endDate +";" + startTime +";" +endTime);
 			pw.close();
 		}catch(Exception ex){
-
+				System.out.println("an error occurred");
 		}
 	}
 	/**

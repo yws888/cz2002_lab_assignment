@@ -10,6 +10,11 @@ import java.util.Properties;
  * 
  */
 public class EmailManager {
+	
+	
+    /**
+     * Default Constructor for EmailManager
+     */
     public EmailManager(){}
 
     /**

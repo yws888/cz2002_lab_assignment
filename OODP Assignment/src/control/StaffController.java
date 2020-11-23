@@ -23,10 +23,8 @@ public class StaffController {
 	   * Adds a new student not found in the database
 	   * hash the password of the student so as to protect data
 	   * admin keys in information of new student into database.
-	   * 
-	   * @throws InterruptedException
 	   */
-    public static void addStudent() throws InterruptedException {
+    public static void addStudent() {
     	Scanner sc = new Scanner(System.in);
     	
     	
@@ -208,8 +206,7 @@ public class StaffController {
 						System.out.println("Access time is updated Successfully!\n Press ENTER to return to previous menu");
 						sc.nextLine();
 						return;}
-					
-					else {System.out.println("Starting Access Date is later than Ending Access Date. Please try again.");}
+					System.out.println("Starting Access Date is later than Ending Access Date. Please try again.");
 					
 				}
 				
@@ -335,7 +332,6 @@ public class StaffController {
             	try {
     				orgCourse= course.retrieveCourseByCourseCode(course_code);
     			} catch (IOException e) {
-    				// TODO Auto-generated catch block
     				e.printStackTrace();
     			}
             	if (!orgCourse.getCourseName().equals(course_name) || !orgCourse.getSchool().equals(school) || orgCourse.getNoOfAUs()!=Integer.parseInt(au) ) {
@@ -343,7 +339,7 @@ public class StaffController {
             		validation3=true;
             		break;
             	}
-            	else {validation3=false; break;}
+				validation3=false; break;
             }
             
         }
@@ -621,9 +617,8 @@ public class StaffController {
                         return;
 
 
-                    }else{
-                        System.out.println("Invalid input, please try again!");
                     }
+					System.out.println("Invalid input, please try again!");
                 }else{
                     System.out.println("Invalid input, please try again!");
                 }
@@ -631,10 +626,9 @@ public class StaffController {
             }
 
 
-        }else{
-            System.out.println("\nCourse Index not found. Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
         }
+		System.out.println("\nCourse Index not found. Press the \"ENTER\" key to be directed back to the previous menu!");
+		sc.nextLine();
 
 
     }
@@ -702,12 +696,11 @@ public class StaffController {
                     System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
                     sc.nextLine();
                     return;
-                }else{
-                    System.out.println("Input vacancy must be more than the current set vacancy, unable to update vacancy.");
-                    System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
-                    sc.nextLine();
-                    return;
                 }
+				System.out.println("Input vacancy must be more than the current set vacancy, unable to update vacancy.");
+				System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
+				sc.nextLine();
+				return;
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -754,11 +747,10 @@ public class StaffController {
             System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
             sc.nextLine();
             return;
-        }else{
-            System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
         }
+		System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
+		sc.nextLine();
+		return;
     }
     
     /**
