@@ -122,15 +122,16 @@ public class StaffUI implements UserUI {
 				        ArrayList<Student> studentList = StaffController.getStudentListByCourseIndex(courseIndex);
 
 				            System.out.print("=====Student list=====");
-				            //print list
-				            if(studentList.size() > 0){
-				                for(int i=0;i<studentList.size();i++){
-				                    System.out.print("\nName:"+studentList.get(i).getName()+"\tGender:"+studentList.get(i).getGender()+"\tNationality:"+studentList.get(i).getNationality());
-				                }
+				            if(studentList== null){
 
-				            }else{
 				                System.out.print("\nNo student list found.");
 					            System.out.println("\nOr There are no records of course index entered.");
+				                
+
+				            }else{
+				            	for(int i=0;i<studentList.size();i++){
+				                    System.out.print("\nName:"+studentList.get(i).getName()+"\tGender:"+studentList.get(i).getGender()+"\tNationality:"+studentList.get(i).getNationality());
+				                }
 				            }
 				            System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
 				            sc.nextLine();
@@ -150,13 +151,13 @@ public class StaffUI implements UserUI {
 				            ArrayList<Student> studentList2 = StaffController.getStudentListByCourseCode(courseCode);
 
 					            System.out.print("=====Student list====="); //print list
-					            if(studentList2.size() > 0){
+					            if(studentList2 == null){
+					            	System.out.print("\nNo student list found.");
+					                System.out.println("\nOr there are no records of course code entered. ");
+					            }else{
 					                for(int i=0;i<studentList2.size();i++){
 					                    System.out.print("\nName:"+studentList2.get(i).getName()+"\tGender:"+studentList2.get(i).getGender()+"\tNationality:"+studentList2.get(i).getNationality());
 					                }
-					            }else{
-					                System.out.print("\nNo student list found.");
-					                System.out.println("\nOr there are no records of course code entered. ");
 					            }
 					            System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
 					            sc.nextLine();

@@ -767,8 +767,11 @@ public class StaffController {
 	            } catch (IOException e) {
 	                e.printStackTrace();
 	            }
-	            
-	        return studentList;
+	            if(studentList.size() == 0) {
+	            	return null;
+	            }
+
+	            return studentList;
 	        }
 	        
 	        return null;
@@ -791,6 +794,9 @@ public class StaffController {
                 studentList = student.studentListByCourseCode(courseCode);
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+            if(studentList.size() == 0) {
+            	return null;
             }
 
             return studentList;
