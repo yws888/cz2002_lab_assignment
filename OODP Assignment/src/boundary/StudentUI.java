@@ -3,6 +3,12 @@ import java.util.Scanner;
 
 import control.StudentController;
 import entity.Student;
+import exception.CourseClashingException;
+import exception.CourseIndexFullException;
+import exception.CourseIndexNotFoundException;
+import exception.ExistingCourseException;
+import exception.IllegalAUWeightageException;
+import exception.IllegalCourseChangeException;
 
 /**
  * Boundary Class that limits the user to carry out only Student functions 
@@ -58,6 +64,7 @@ public class StudentUI implements UserUI {
 					switch (choice) {
 					case 1:
 						StudentController.addCourse(student);
+						
 						break;
 					case 2:
 						StudentController.dropCourse(student);
@@ -85,6 +92,24 @@ public class StudentUI implements UserUI {
 			catch (NumberFormatException e) {
 			System.out.println("Please select a valid numeric option");
 			System.out.println();
+			} catch (CourseIndexNotFoundException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			} catch (CourseClashingException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			} catch (CourseIndexFullException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			} catch (ExistingCourseException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			} catch (IllegalAUWeightageException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			} catch (IllegalCourseChangeException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
 			} 
 		} while (choice != 0);
 
