@@ -1,8 +1,7 @@
 package exception;
  
 /**
- * Exception thrown when the total weightage component does not
- * tally up correctly.
+ * Exception thrown when the course is clashing with another course in student's schedule
  */
 public class CourseClashingException extends Exception {
 

@@ -3,7 +3,7 @@ package exception;
 import java.util.ArrayList;
 
 /**
- * Exception thrown when user registers the same course index.
+ * Exception thrown when user has registered for the same course / course index.
  */
 public class ExistingCourseException extends Exception {
 
@@ -27,7 +27,7 @@ public class ExistingCourseException extends Exception {
   /**
    * The constructor for the exception.
    * 
-   * @param courseIndex  The course index that already exists in database
+   * @param courseIndex  an array of course indexes that already exist in database
    */
   public ExistingCourseException(ArrayList<String> courseIndex) {
 	  super();

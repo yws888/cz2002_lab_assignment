@@ -378,7 +378,7 @@ public class StudentController {
 								throw new CourseIndexFullException(courseIndex);
 							}
 							else if(student.hasClashingSchedule(course.retrieveCourseByIndex(newCourseIndex))) {
-								throw new CourseClashingException(courseIndex);
+								throw new CourseClashingException(newCourseIndex);
 							}
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -554,7 +554,7 @@ public class StudentController {
 								}
 						}
 							else {
-								throw new CourseClashingException(courseIndex1);
+								throw new CourseClashingException(courseIndex2);
 							}
 						}
 						
