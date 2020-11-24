@@ -19,7 +19,7 @@ public class CourseClashingException extends Exception {
    */
   public CourseClashingException(String courseIndex) {
     super();
-    this.message = "Course adding failed" + courseIndex + "clashes with your schedule!! Press the \"ENTER\" key to be directed back to the previous menu!";
+    this.message = "Course adding failed " + courseIndex + " clashes with your schedule!! Press the \"ENTER\" key to be directed back to the previous menu!";
   }
 
   /**
