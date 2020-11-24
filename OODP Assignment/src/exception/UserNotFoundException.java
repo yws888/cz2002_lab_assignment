@@ -15,7 +15,7 @@ public class UserNotFoundException extends Exception {
    */
   public UserNotFoundException() {
     super();
-    this.message = "Login Failed. Please try again.";
+    this.message = "Login Failed." + "\nUsername or password is incorrect or is not registered in the system";
   }
 
   /**
