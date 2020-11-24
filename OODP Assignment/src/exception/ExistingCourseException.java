@@ -1,5 +1,7 @@
 package exception;
 
+import java.util.ArrayList;
+
 /**
  * Exception thrown when user registers the same course index.
  */
@@ -19,10 +21,20 @@ public class ExistingCourseException extends Exception {
    */
   public ExistingCourseException(String courseIndex) {
     super();
-    this.message = "Action failed" + courseIndex + " is already registered! Press the \"ENTER\" key to be directed back to the previous menu!";
+    this.message = "Action failed " + courseIndex + " is already registered! Press the \"ENTER\" key to be directed back to the previous menu!";
   }
-
+  
   /**
+   * The constructor for the exception.
+   * 
+   * @param courseIndex  The course index that already exists in database
+   */
+  public ExistingCourseException(ArrayList<String> courseIndex) {
+	  super();
+	    this.message = "Action failed " + courseIndex + " is already registered! Press the \"ENTER\" key to be directed back to the previous menu!";
+	  }
+
+/**
    * Getter function to the exception message.
    * 
    * @return the message as a string
