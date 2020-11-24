@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 import control.LoginController;
 import entity.AccessPeriod;
+import exception.UserNotFoundException;
 
 
 /**
@@ -90,11 +91,7 @@ public class LoginUI {
 									System.out.println("Error, could not find user entry.");
 									break;
 							}
-						}else {
-							System.out.println("\nLogin Unsuccessful.");
-							System.out.println("Username or password is incorrect or is not registered in the system");
-							//break;
-						}
+						}else throw new UserNotFoundException();
 						
 						break;
 					//exit system
@@ -109,10 +106,15 @@ public class LoginUI {
 						System.out.println();
 						break;
 					}
-				} catch (NumberFormatException e) {
+				} 
+				catch (NumberFormatException e) {
 					System.out.println("Please select a valid numeric option");
 					System.out.println();
-					}
+				}
+				catch (UserNotFoundException e) {
+					System.out.println(e.getMessage());
+					System.out.println();
+				}
 		} while(true);
 
 	}
