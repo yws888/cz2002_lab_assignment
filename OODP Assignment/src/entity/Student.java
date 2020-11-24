@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import helper.EmailManager;
+import helper.NotificationManager;
 
 import java.lang.NullPointerException;
 
@@ -907,6 +908,7 @@ public class Student extends User{
 	 */
 	public String sendMail(String email, String message){
 		EmailManager em = new EmailManager();
+		//NotificationManager em = new EmailManager();
 		return em.sendNotification(email, message);
 	}
 
