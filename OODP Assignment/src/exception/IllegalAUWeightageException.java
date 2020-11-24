@@ -1,7 +1,7 @@
 package exception;
 
 /**
- * Exception thrown when the total AU weightage component 
+ * Exception thrown when the total AU taken  
  * exceeds 21 AUs.
  */
 public class IllegalAUWeightageException extends Exception {

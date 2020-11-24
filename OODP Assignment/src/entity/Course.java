@@ -317,7 +317,7 @@ public class Course {
 	 * 
 	 * @return true if course has been added. Else return error in 
 	 * adding course explaining that the index is not available.
-	 * @throws ExistingCourseException 
+	 * @throws ExistingCourseException 		 Exception thrown when user has registered for the same course / course index.
 	 * 
 	 */
 	

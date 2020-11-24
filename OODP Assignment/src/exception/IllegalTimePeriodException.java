@@ -1,8 +1,8 @@
 package exception;
 
 /**
- * Exception thrown when the time period is not the
- * user has included is not possible.
+ * Exception thrown when the time period input by the user
+ * user is not possible.
  */
 public class IllegalTimePeriodException extends Exception {
 

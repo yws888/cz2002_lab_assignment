@@ -27,10 +27,10 @@ public class StudentController {
 	   * clash with student's schedule.
 	   * 
 	   * @param student				student object
-	 * @throws CourseIndexNotFoundException 
-	 * @throws CourseClashingException 
-	 * @throws ExistingCourseException 
-	 * @throws IllegalAUWeightageException 
+	 * @throws CourseIndexNotFoundException 	Exception thrown when the user inputs an invalid course index
+	 * @throws CourseClashingException  		Exception thrown when the course is clashing with another course in student's schedule
+	 * @throws ExistingCourseException 			Exception thrown when user has registered for the same course / course index.
+	 * @throws IllegalAUWeightageException 		Exception thrown when the total AU taken  exceeds 21 AUs.
 	   */
 	public static void addCourse(Student student) throws CourseIndexNotFoundException, CourseClashingException, ExistingCourseException, IllegalAUWeightageException {
         Scanner sc = new Scanner(System.in);
@@ -137,7 +137,7 @@ public class StudentController {
 	   * Updates the database according to the student's request.
 	   * 
 	   * @param student				student object
-	 * @throws CourseIndexNotFoundException 
+	 * @throws CourseIndexNotFoundException 		Exception thrown when the user inputs an invalid course index
 	   */
     public static void dropCourse(Student student) throws CourseIndexNotFoundException {
     	Scanner sc = new Scanner(System.in);
@@ -253,7 +253,7 @@ public class StudentController {
     
     /**
 	   * Checks the number of vacancies in a course.
-     * @throws CourseIndexNotFoundException 
+     * @throws CourseIndexNotFoundException 		Exception thrown when the user inputs an invalid course index
 	   * 
 	   */
     public static void checkCourseVacancy() throws CourseIndexNotFoundException {
@@ -287,11 +287,11 @@ public class StudentController {
 	   * the student's schedule as well.
 	   * 
 	   * @param student				student object
-     * @throws CourseClashingException 
-     * @throws CourseIndexFullException 
-     * @throws ExistingCourseException 
-     * @throws IllegalCourseChangeException 
-     * @throws CourseIndexNotFoundException 
+     * @throws CourseClashingException 		 	Exception thrown when the course is clashing with another course in student's schedule
+     * @throws CourseIndexFullException 		Exception thrown if you try to register to a course indexthat has no vancancy left.
+     * @throws ExistingCourseException 			Exception thrown when user has registered for the same course / course index.
+     * @throws IllegalCourseChangeException 	Exception thrown when the course index the user is trying to change to is from a different course code.
+     * @throws CourseIndexNotFoundException 	Exception thrown when the user inputs an invalid course index
 	   */
     public static void changeIndex(Student student) throws CourseClashingException, CourseIndexFullException, ExistingCourseException, IllegalCourseChangeException, CourseIndexNotFoundException {
         Scanner sc = new Scanner(System.in);
@@ -408,8 +408,8 @@ public class StudentController {
 	   * and that the index belong to the same course code.
 	   * 
 	   * @param student				student object
-     * @throws CourseClashingException 
-     * @throws IllegalCourseChangeException 
+     * @throws CourseClashingException 				 	Exception thrown when the course is clashing with another course in student's schedule
+     * @throws IllegalCourseChangeException 			Exception thrown when the course index the user is trying to change to is from a different course code.
 	   */
     public static void swapIndex(Student student) throws CourseClashingException, IllegalCourseChangeException {
     	LoginController logincontroller = new LoginController();

@@ -219,7 +219,7 @@ public class StaffController {
 	   * Adds a new course not found in the database
 	   * and set the course's vacancy size as well as
 	   * the additional information of the new course.
-     * @throws ExistingCourseException 
+     * @throws ExistingCourseException 			 Exception thrown when user has registered for the same course / course index.
 	   * 
 	   */
     public static void addCourse() throws ExistingCourseException{
@@ -446,7 +446,7 @@ public class StaffController {
 	   * Update the class schedule for both existing and
 	   * new courses in terms of lecture, lab and tutorial
 	   * Ensures that the time format follows the right format.
-     * @throws IllegalTimePeriodException 
+     * @throws IllegalTimePeriodException 		Exception thrown when the time period the user has included is not possible.
 	   * 
 	   */
     public static void updateClassSchedule() throws IllegalTimePeriodException{
@@ -635,8 +635,8 @@ public class StaffController {
     /**
 	   * Updates existing course vacancy and ensure that the
 	   * target course vacancy to change to is larger than before.
-     * @throws CourseIndexNotFoundException 
-     * @throws IllegalVacancyException 
+     * @throws CourseIndexNotFoundException 	Exception when the user inputs an invalid course index
+     * @throws IllegalVacancyException 			Exception when the target vacancy is less than the previous vacancy size for the course index.
 	   * 
 	   */
     public static void updateCourseVacancy() throws CourseIndexNotFoundException, IllegalVacancyException {
@@ -719,8 +719,8 @@ public class StaffController {
     /**
 	   * Checks the course vacancy size by taking in the course
 	   * index and prints out the course vacancy.
-     * @throws CourseIndexNotFoundException 
-	   * 
+     * @throws CourseIndexNotFoundException   Exception when the user inputs an invalid course index
+	   *
 	   */
     public static void checkAvailableSlot() throws CourseIndexNotFoundException {
         Scanner sc = new Scanner(System.in);
