@@ -3,6 +3,10 @@ package control;
 import entity.AccessPeriod;
 import entity.Course;
 import entity.Student;
+import exception.CourseIndexNotFoundException;
+import exception.ExistingCourseException;
+import exception.IllegalTimePeriodException;
+import exception.IllegalVacancyException;
 import helper.PasswordManager;
 import helper.Ultility;
 
@@ -215,9 +219,10 @@ public class StaffController {
 	   * Adds a new course not found in the database
 	   * and set the course's vacancy size as well as
 	   * the additional information of the new course.
+     * @throws ExistingCourseException 
 	   * 
 	   */
-    public static void addCourse(){
+    public static void addCourse() throws ExistingCourseException{
         System.out.println("\nStarting Add Course Process: (Enter \"cancel\" to cancel process) ");
         Scanner sc = new Scanner(System.in);
         Course course = new Course();
@@ -441,9 +446,10 @@ public class StaffController {
 	   * Update the class schedule for both existing and
 	   * new courses in terms of lecture, lab and tutorial
 	   * Ensures that the time format follows the right format.
+     * @throws IllegalTimePeriodException 
 	   * 
 	   */
-    public static void updateClassSchedule(){
+    public static void updateClassSchedule() throws IllegalTimePeriodException{
         Scanner sc = new Scanner(System.in);
         Course course = new Course();
         String input="";
@@ -602,9 +608,7 @@ public class StaffController {
                             System.out.print("\n=============================\n");
                             System.out.println(message);
                         }else{
-                            System.out.println("\nError Updating Course, inputted start time and end time is not valid! Press the \"ENTER\" key to be directed back to the previous menu!");
-                            sc.nextLine();
-                            return;
+                        	throw new IllegalTimePeriodException();
                         }
 
                         System.out.println("\nPress the \"ENTER\" key to be directed back to STARS main menu!");
@@ -631,9 +635,11 @@ public class StaffController {
     /**
 	   * Updates existing course vacancy and ensure that the
 	   * target course vacancy to change to is larger than before.
+     * @throws CourseIndexNotFoundException 
+     * @throws IllegalVacancyException 
 	   * 
 	   */
-    public static void updateCourseVacancy() {
+    public static void updateCourseVacancy() throws CourseIndexNotFoundException, IllegalVacancyException {
         Scanner sc = new Scanner(System.in);
         String courseIndex="",input="";
         Course course = new Course();
@@ -643,7 +649,7 @@ public class StaffController {
         courseIndex = sc.nextLine();
         if(courseIndex.toLowerCase().equals("cancel")){
             System.out.println("\nUpdate Course Vacancy Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
+            
             return;
         }
         if(course.isIndexTaken(courseIndex)){
@@ -664,14 +670,14 @@ public class StaffController {
                     input = sc.nextLine();
                     if (input.toLowerCase().equals("cancel")) {
                         System.out.println("\nUpdate Course Vacancy Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-                        sc.nextLine();
+                        
                         return;
                     }
                     if (input.toUpperCase().equals("Y")) {
                         fieldIsValid = true;
                     }else if (input.toUpperCase().equals("N")){
                         System.out.println("\nUpdate Course Vacancy Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
-                        sc.nextLine();
+                        
                         return;
 
                     }else {
@@ -689,21 +695,19 @@ public class StaffController {
                     message = student.removeStudentsFromWaitList(courseIndex, vacancyIncrease);
                     System.out.println(message);
                     System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
-                    sc.nextLine();
+                    
                     return;
                 }
-				System.out.println("Input vacancy must be more than the current set vacancy, unable to update vacancy.");
-				System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
-				sc.nextLine();
-				return;
+                throw new IllegalVacancyException();
+				
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
-            System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
+        }
+        
+        else{
+            throw new CourseIndexNotFoundException(courseIndex);
         }
 
 
@@ -715,15 +719,18 @@ public class StaffController {
     /**
 	   * Checks the course vacancy size by taking in the course
 	   * index and prints out the course vacancy.
+     * @throws CourseIndexNotFoundException 
 	   * 
 	   */
-    public static void checkAvailableSlot() {
+    public static void checkAvailableSlot() throws CourseIndexNotFoundException {
         Scanner sc = new Scanner(System.in);
         String courseIndex="";
         Course course = new Course();
         System.out.println("\nStarting Check Course Vacancy Process: (Enter \"cancel\" to cancel process) ");
         System.out.println("Please enter course index:");
+        
         courseIndex = sc.nextLine();
+        
         if(courseIndex.toLowerCase().equals("cancel")){
             System.out.println("\nAdd Course Process Cancelled!! Press the \"ENTER\" key to be directed back to the previous menu!");
             sc.nextLine();
@@ -743,9 +750,8 @@ public class StaffController {
             sc.nextLine();
             return;
         }
-		System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
-		sc.nextLine();
-		return;
+        
+        throw new CourseIndexNotFoundException(courseIndex);
     }
     
 
