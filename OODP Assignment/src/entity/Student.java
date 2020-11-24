@@ -907,9 +907,8 @@ public class Student extends User{
      * @return "Sending Email Message to "+email+" success" if successful; return "Sending Email Message to "+email+" failed" otherwise
 	 */
 	public String sendMail(String email, String message){
-		EmailManager em = new EmailManager();
-		//NotificationManager em = new EmailManager();
-		return em.sendNotification(email, message);
+		NotificationManager notifMgr = new EmailManager();
+		return notifMgr.sendNotification(email, message);
 	}
 
 }
