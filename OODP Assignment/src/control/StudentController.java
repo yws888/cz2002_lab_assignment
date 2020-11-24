@@ -2,6 +2,13 @@ package control;
 
 import entity.Course;
 import entity.Student;
+import exception.CourseClashingException;
+import exception.CourseIndexFullException;
+import exception.CourseIndexNotFoundException;
+import exception.ExistingCourseException;
+import exception.IllegalAUWeightageException;
+import exception.IllegalCourseChangeException;
+
 import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,8 +27,12 @@ public class StudentController {
 	   * clash with student's schedule.
 	   * 
 	   * @param student				student object
+	 * @throws CourseIndexNotFoundException 
+	 * @throws CourseClashingException 
+	 * @throws ExistingCourseException 
+	 * @throws IllegalAUWeightageException 
 	   */
-	public static void addCourse(Student student) {
+	public static void addCourse(Student student) throws CourseIndexNotFoundException, CourseClashingException, ExistingCourseException, IllegalAUWeightageException {
         Scanner sc = new Scanner(System.in);
         String courseIndex="";
         Course course = new Course();
@@ -94,27 +105,19 @@ public class StudentController {
                                 return;
                             } else {
                                 //AU Exceeded
-                                System.out.println("\nCourse adding failed. Maximum number of AUs possible exceeded!! Press the \"ENTER\" key to be directed back to the previous menu!");
-                                sc.nextLine();
-                                return;
+                            	throw new IllegalAUWeightageException();
                             }
                         }else{
                             //clashing schedule
-                            System.out.println("\nCourse adding failed. Selected course clashes with your schedule!! Press the \"ENTER\" key to be directed back to the previous menu!");
-                            sc.nextLine();
-                            return;
+                        	throw new CourseClashingException(courseIndex);
                         }
                     }else{
                         //course taken by you already
-                        System.out.println("\nCourse adding failed. Selected course is taken by you!! Press the \"ENTER\" key to be directed back to the previous menu!");
-                        sc.nextLine();
-                        return;
+                    	throw new ExistingCourseException(courseIndex);
                     }
                 }else{
                     //index already taken by student
-                    System.out.println("\nCourse adding failed. Selected course is taken by you!! Press the \"ENTER\" key to be directed back to the previous menu!");
-                    sc.nextLine();
-                    return;
+                	throw new ExistingCourseException(courseIndex);
                 }
 
 
@@ -123,10 +126,7 @@ public class StudentController {
             }
 
         }else{
-            System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
-
+        	throw new CourseIndexNotFoundException(courseIndex);
         }
 
     }
@@ -137,8 +137,9 @@ public class StudentController {
 	   * Updates the database according to the student's request.
 	   * 
 	   * @param student				student object
+	 * @throws CourseIndexNotFoundException 
 	   */
-    public static void dropCourse(Student student) {
+    public static void dropCourse(Student student) throws CourseIndexNotFoundException {
     	Scanner sc = new Scanner(System.in);
         String courseIndex="";
         Course course = new Course();
@@ -208,9 +209,7 @@ public class StudentController {
                 }
         	}
             else {
-            	System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
-                sc.nextLine();
-                return;
+            	throw new CourseIndexNotFoundException(courseIndex);
             }	
         }
         catch (IOException e) {
@@ -254,9 +253,10 @@ public class StudentController {
     
     /**
 	   * Checks the number of vacancies in a course.
+     * @throws CourseIndexNotFoundException 
 	   * 
 	   */
-    public static void checkCourseVacancy() {
+    public static void checkCourseVacancy() throws CourseIndexNotFoundException {
         Scanner sc = new Scanner(System.in);
         String courseIndex="";
         Course course = new Course();
@@ -275,9 +275,7 @@ public class StudentController {
             sc.nextLine();
             return;
         }else{
-            System.out.println("\nThere are no records of course index entered. Press the \"ENTER\" key to be directed back to the previous menu!");
-            sc.nextLine();
-            return;
+        	throw new CourseIndexNotFoundException(courseIndex);
         }
     }
     
@@ -289,8 +287,13 @@ public class StudentController {
 	   * the student's schedule as well.
 	   * 
 	   * @param student				student object
+     * @throws CourseClashingException 
+     * @throws CourseIndexFullException 
+     * @throws ExistingCourseException 
+     * @throws IllegalCourseChangeException 
+     * @throws CourseIndexNotFoundException 
 	   */
-    public static void changeIndex(Student student) {
+    public static void changeIndex(Student student) throws CourseClashingException, CourseIndexFullException, ExistingCourseException, IllegalCourseChangeException, CourseIndexNotFoundException {
         Scanner sc = new Scanner(System.in);
         String courseIndex, newCourseIndex ="";
         Course course = new Course();
@@ -372,32 +375,25 @@ public class StudentController {
 									}
 							}
 							else if((course.courseIndexVacancy(newCourseIndex) <= 0)) {
-							    System.out.println("\nIndex has no vacancies");
-							    System.out.println("\nProcess cancelled. Press the \"ENTER\" key to be directed back to the previous menu!");
-							    sc.nextLine();
-							    return;
+								throw new CourseIndexFullException(courseIndex);
 							}
 							else if(student.hasClashingSchedule(course.retrieveCourseByIndex(newCourseIndex))) {
-							    System.out.println("\nSchedule clashes");
-							    System.out.println("\nProcess cancelled. Press the \"ENTER\" key to be directed back to the previous menu!");
-							    sc.nextLine();
-							    return;
+								throw new CourseClashingException(courseIndex);
 							}
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 
 					}
-
-					System.out.println("Either Course index entered is taken already by the student or course index is for a different course code or course index doesnt exist");
-				    System.out.println("\nPress the \"ENTER\" key to be directed back to the previous menu!");
-				    sc.nextLine();
+					else if (student.courseIndexTakenByStudent(newCourseIndex)) {
+						throw new ExistingCourseException(courseIndex);
+					}
+					else if ((course.retrieveCourseByIndex(courseIndex).getCourseCode().equals(course.retrieveCourseByIndex(newCourseIndex).getCourseCode()))) {
+						throw new IllegalCourseChangeException();
+					}
 				    return;
 				}else{
-				    System.out.println("\nStudent is not currently registered for that course index.  \nPress the \"ENTER\" key to be directed back to the previous menu!");
-				    //Course index could be for a different course code, or new course index does not exist.
-				    sc.nextLine();
-				    return;
+					throw new CourseIndexNotFoundException(courseIndex);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -412,8 +408,10 @@ public class StudentController {
 	   * and that the index belong to the same course code.
 	   * 
 	   * @param student				student object
+     * @throws CourseClashingException 
+     * @throws IllegalCourseChangeException 
 	   */
-    public static void swapIndex(Student student) {
+    public static void swapIndex(Student student) throws CourseClashingException, IllegalCourseChangeException {
     	LoginController logincontroller = new LoginController();
 		String username, password;
 		boolean verifylogin;
@@ -556,14 +554,12 @@ public class StudentController {
 								}
 						}
 							else {
-								System.out.println("Swap in indexes will result in clashes in schedule with other courses.Please check and try again.");
-								swapIndex(student);
+								throw new CourseClashingException(courseIndex1);
 							}
 						}
 						
 						else {
-							System.out.println("Two indexes do not belong to same course. Please try again.");
-							swapIndex(student);
+							throw new IllegalCourseChangeException();
 							}
 					}
 					else {
