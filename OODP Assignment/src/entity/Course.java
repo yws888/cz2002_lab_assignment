@@ -10,6 +10,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import exception.ExistingCourseException;
+
 
 public class Course {
 	
@@ -315,10 +317,11 @@ public class Course {
 	 * 
 	 * @return true if course has been added. Else return error in 
 	 * adding course explaining that the index is not available.
+	 * @throws ExistingCourseException 
 	 * 
 	 */
 	
-	public String addCourses(String courseCode, String courseName, String school, String noOfAUs, ArrayList<String> courseIndex, ArrayList<String> vacancy){
+	public String addCourses(String courseCode, String courseName, String school, String noOfAUs, ArrayList<String> courseIndex, ArrayList<String> vacancy) throws ExistingCourseException{
 		boolean indexIsTaken = false;
 		for (String course : courseIndex) {
 			if(isIndexTaken(course)) {
@@ -341,7 +344,7 @@ public class Course {
 				return "Error adding courses.";
 			}
 		}
-		return "Courses could not be added, the index entered is not available.";
+		throw new ExistingCourseException(courseIndex);
 
 	}
 	
