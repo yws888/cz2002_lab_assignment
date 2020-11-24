@@ -7,6 +7,11 @@ import control.StaffController;
 import entity.Course;
 import entity.Staff;
 import entity.Student;
+import exception.CourseCodeNotFoundException;
+import exception.CourseIndexNotFoundException;
+import exception.ExistingCourseException;
+import exception.IllegalTimePeriodException;
+import exception.IllegalVacancyException;
 
 /**
  * Boundary Class that limits the user to carry out only Staff functions 
@@ -91,10 +96,20 @@ public class StaffUI implements UserUI {
 					                	
 					                    break;
 					                case 2:
-					                	StaffController.updateClassSchedule();
+										try {
+											StaffController.updateClassSchedule();
+										} catch (IllegalTimePeriodException e) {
+											System.out.println(e.getMessage());
+											sc.nextLine();
+										}
 					                    break;
 					                case 3:
-					                	StaffController.updateCourseVacancy();
+										try {
+											StaffController.updateCourseVacancy();
+										} catch (IllegalVacancyException e) {
+											System.out.println(e.getMessage());
+										}
+					                	sc.nextLine();
 					                    break;
 					                case 0: //quit
 					                    break;
@@ -135,7 +150,7 @@ public class StaffUI implements UserUI {
 				        ArrayList<Student> studentList = StaffController.getStudentListByCourseIndex(courseIndex);
 				        
 				            if(studentList== null){
-				            	System.out.println("\nThere are no records of course index entered.");
+				            	throw new CourseIndexNotFoundException(courseIndex);
 				            }
 				            else if (studentList.size() == 0) {
 				            	System.out.print("\nStudent List is empty.");
@@ -184,11 +199,13 @@ public class StaffUI implements UserUI {
 				            }
 				            courseCode = sb.toString();
 					        
-				            ArrayList<Student> studentList2 = StaffController.getStudentListByCourseCode(courseCode);
-
+					        	ArrayList<Student> studentList2 = StaffController.getStudentListByCourseCode(courseCode);
+					        
 					            
 					            if(studentList2 == null){
-					                System.out.println("\nThere are no records of course code entered. ");
+					                
+					            	throw new CourseCodeNotFoundException(courseCode);
+					                
 					            }
 					            else if (studentList2.size() == 0) {
 					            	System.out.print("\nStudent List is empty.");
@@ -216,6 +233,15 @@ public class StaffUI implements UserUI {
 			catch (NumberFormatException e) {
 				System.out.println("Please select a valid numeric option");
 				System.out.println();
+			} catch (CourseCodeNotFoundException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			} catch (CourseIndexNotFoundException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			} catch (ExistingCourseException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
 			}
 						
 		} while (choice != 0);
